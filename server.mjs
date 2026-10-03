@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { checkCustomer, buildChargePayload, newOrderRef, verifyWebhook, payState } from './tap.mjs';
 import { evaluate, verifyQuote } from './pricing-core.mjs';
-import { FRAME_COLORS, PRODUCTS, MAX_LINES, MAX_QTY } from './config.mjs';
+import { FRAME_COLORS, PRODUCTS, MAX_LINES, MAX_QTY, PAGES } from './config.mjs';
 import { buildItemPayload } from './salla-admin.mjs';
 
 const MAX_BODY = 16384, MAX_WEBHOOK_BODY = 131072;
@@ -24,12 +24,13 @@ export function checkLine(raw) {
   if (!Number.isInteger(quantity) || quantity < 1 || quantity > MAX_QTY) return { code: 422, error: 'bad_quantity' };
   const r = evaluate({ lengthRaw: length, widthRaw: width, framed });
   if (r.status !== 'ok') return { code: 422, error: r.status };
-  const q = verifyQuote({ lengthRaw: length, widthRaw: width, framed, claimedPrice });
-  if (!q.ok) return { code: 409, error: 'price_mismatch', expected: q.expected };
+  const pieces = PRODUCTS[pid].pieces || 1;
+  const unit = r.price, setPrice = unit * pieces;   // الطقم: كل قطعة تُقرَّب على حدة ثم تُضرب
+  if (Number(claimedPrice) !== setPrice) return { code: 409, error: 'price_mismatch', expected: setPrice };
   // الاتجاه مهم للإنتاج: 80×120 ليس 120×80، فلا يُرتَّب المفتاح
-  const key = `${pid}|${r.lengthCm}x${r.widthCm}|${framed ? 'f:' + frameColor : 'u'}|${r.price}`;
-  const payload = buildItemPayload({ productName: PRODUCTS[pid].name, lengthCm: r.lengthCm, widthCm: r.widthCm, framed, frameLabel: color?.label, price: r.price });
-  return { line: { key, payload, quantity, price: r.price, productName: PRODUCTS[pid].name, lengthCm: r.lengthCm, widthCm: r.widthCm, framed, frameLabel: color?.label } };
+  const key = `${pid}|${r.lengthCm}x${r.widthCm}|${framed ? 'f:' + frameColor : 'u'}|${setPrice}`;
+  const payload = buildItemPayload({ productName: PRODUCTS[pid].name, lengthCm: r.lengthCm, widthCm: r.widthCm, framed, frameLabel: color?.label, price: setPrice });
+  return { line: { key, payload, quantity, price: setPrice, pieces, unitPrice: unit, productName: PRODUCTS[pid].name, lengthCm: r.lengthCm, widthCm: r.widthCm, framed, frameLabel: color?.label } };
 }
 
 const STATIC_TYPES = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.otf': 'font/otf', '.woff2': 'font/woff2', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.ico': 'image/x-icon' };
@@ -100,11 +101,13 @@ export function createApp({ salla = null, store, tap = null, publicBaseUrl = '',
 
   function serveStatic(req, res, pathname) {
     if (!staticDir || (req.method !== 'GET' && req.method !== 'HEAD')) return send(res, 404, { error: 'not_found' });
-    const rel = pathname === '/' ? indexFile : decodeURIComponent(pathname).replace(/^\/+/, '');
+    const clean = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+    const rel = Object.hasOwn(PAGES, clean) ? (clean === '/' ? indexFile : PAGES[clean]) : decodeURIComponent(pathname).replace(/^\/+/, '');
+    const pageFiles = new Set([indexFile, ...Object.values(PAGES).filter((f) => f !== 'index.html')]);
     const file = path.resolve(staticDir, rel);
     const type = STATIC_TYPES[path.extname(file).toLowerCase()];
     // صفحة واحدة فقط تُخدم؛ أي HTML آخر قديم في المجلد لا يظهر
-    if (type && type.startsWith('text/html') && rel !== indexFile) return send(res, 404, { error: 'not_found' });
+    if (type && type.startsWith('text/html') && !pageFiles.has(rel)) return send(res, 404, { error: 'not_found' });
     if (!file.startsWith(path.resolve(staticDir) + path.sep) || !type || !fs.existsSync(file) || !fs.statSync(file).isFile()) return send(res, 404, { error: 'not_found' });
     const h = { 'Content-Type': type, 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Cache-Control': type.startsWith('text/html') ? 'no-cache' : 'public, max-age=86400' };
@@ -170,7 +173,7 @@ export function createApp({ salla = null, store, tap = null, publicBaseUrl = '',
         const total = c.lines.reduce((s, l) => s + l.price * l.quantity, 0);
         if (body.claimedTotal !== undefined && Number(body.claimedTotal) !== total) return send(res, 409, { error: 'price_mismatch', expected: total }, o);
         const order = newOrderRef(now());
-        const charge = await tap.client.createCharge(buildChargePayload({ lines: c.lines, customer: cu.customer, orderRef: order, baseUrl: publicBaseUrl }));
+        const charge = await tap.client.createCharge(buildChargePayload({ lines: c.lines, customer: cu.customer, orderRef: order, baseUrl: publicBaseUrl, returnPath: Object.hasOwn(PAGES, body.page) ? body.page : '/' }));
         log(`TAP CREATED order=${order} charge=${charge.id} amount=${total} SAR lines=${c.lines.length}`);
         return send(res, 200, { url: charge.url, order, total, currency: 'SAR' }, o);
       }
