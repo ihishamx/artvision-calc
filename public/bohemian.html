@@ -484,19 +484,15 @@ let lastGood = { l:80, w:50 };
 function drawViz(cur){
  if(cur.ok) lastGood = { l:cur.l, w:cur.w };
  const L = lastGood.l, W = lastGood.w, U0 = 400 / ROOM_CM, totW = 3 * W + 2 * GAP;
- const k = Math.max(0.35, Math.min(1, 372 / (totW * U0), 386 / ((1 - SOFA_TOP) * 400 + (HANG + L) * U0)));
- const s = U0 * k, ph = L * s, pw = W * s, g = GAP * s, tot = 3 * pw + 2 * g, x0 = (400 - tot) / 2;
- const rs = 400 * k, rx = (400 - rs) / 2, ry = 400 - rs;           /* موضع صورة الغرفة */
- const sofaY = ry + SOFA_TOP * rs, yb = sofaY - HANG * s, y0 = yb - ph;
+ /* صورة الغرفة ثابتة بلا تكبير أو تصغير؛ إن كبر الطقم عن الجدار يُصغَّر الطقم وحده ليظهر كاملًا */
+ const sofaY = SOFA_TOP * 400;
+ const sc = Math.min(U0, 372 / totW, (sofaY - 14) / (HANG + L)), shrunk = sc < U0 * 0.995;
+ const s = sc, ph = L * s, pw = W * s, g = GAP * s, tot = 3 * pw + 2 * g, x0 = (400 - tot) / 2;
+ const yb = sofaY - HANG * s, y0 = yb - ph;
  const col = COLORS.find(c => c.k === st.color), fr = st.framed, t = fr ? 1.7 * s : 0; /* عرض الإطار الحقيقي 1.7 سم */
  const R = CFG.ROOM;
  let o = `<defs><filter id="vs" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0" dy="${(1.6*s).toFixed(2)}" stdDeviation="${(1.4*s).toFixed(2)}" flood-color="#2a2420" flood-opacity=".38"/></filter></defs>`;
- if(k < 1){ /* تمديد الأطراف عند التصغير بتكرار حواف الصورة */
-  o += `<svg x="0" y="0" width="400" height="${ry.toFixed(1)}" viewBox="0 0 1254 2" preserveAspectRatio="none"><image href="${R}" width="1254" height="1254"/></svg>`
-     + `<svg x="0" y="${ry.toFixed(1)}" width="${rx.toFixed(1)}" height="${rs.toFixed(1)}" viewBox="0 0 2 1254" preserveAspectRatio="none"><image href="${R}" width="1254" height="1254"/></svg>`
-     + `<svg x="${(rx + rs).toFixed(1)}" y="${ry.toFixed(1)}" width="${rx.toFixed(1)}" height="${rs.toFixed(1)}" viewBox="1252 0 2 1254" preserveAspectRatio="none"><image href="${R}" x="-1252" width="1254" height="1254"/></svg>`;
- }
- o += `<image href="${R}" x="${rx.toFixed(1)}" y="${ry.toFixed(1)}" width="${rs.toFixed(1)}" height="${rs.toFixed(1)}"/>`;
+ o += `<image href="${R}" x="0" y="0" width="400" height="400"/>`;
  for(let i = 0; i < 3; i++){
   const x = x0 + i * (pw + g);
   o += `<g filter="url(#vs)">`;
@@ -506,7 +502,7 @@ function drawViz(cur){
   o += `</g>`;
  }
  $('viz').innerHTML = o;
- $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار');
+ $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار') + (shrunk ? ' · الرسم مصغّر لإظهار الطقم كاملًا' : '');
  const vb = $('vizBox'); vb.classList.remove('pop'); void vb.offsetWidth; vb.classList.add('pop');
 }
 function buildUI(){
