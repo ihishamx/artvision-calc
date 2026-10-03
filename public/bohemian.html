@@ -68,8 +68,8 @@ main,footer{position:relative;z-index:1}
 /* Hero */
 .hero{padding-top:18px;text-align:center}
 .stage{position:relative;margin:0 auto 16px;max-width:420px;border-radius:24px;padding:10px;background:linear-gradient(160deg,#fff,var(--bg2))}
-.crop{position:relative;aspect-ratio:808/744;overflow:hidden;border-radius:16px;direction:ltr;background:var(--bg2)}
-.crop img{position:absolute;width:123.76%;height:auto;max-width:none;left:-11.88%;top:-17.2%;animation:slow 16s ease-in-out infinite alternate}
+.crop{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:16px;background:var(--bg2)}
+.crop img{display:block;width:100%;height:100%;object-fit:cover;animation:slow 16s ease-in-out infinite alternate}
 @keyframes slow{to{transform:scale(1.045)}}
 .badge{position:absolute;inset-inline-start:14px;bottom:14px;background:rgba(255,255,255,.92);border:1px solid var(--line);color:var(--wine);font-weight:900;font-size:14px;padding:5px 12px;border-radius:999px}
 .sub{color:var(--muted);font-size:18px;margin:10px auto 14px;max-width:30ch}
@@ -81,14 +81,14 @@ main,footer{position:relative;z-index:1}
 .buy h2{font-size:24px;text-align:center;margin-bottom:2px}
 .buy .hint{text-align:center;color:var(--muted);font-size:15px;margin-bottom:12px}
 .viz{border-radius:18px;overflow:hidden;background:linear-gradient(#e9e2da,#d9d0c6);border:1px solid var(--line);position:relative}
-.viz svg{display:block;width:100%;height:auto}
-.viz.pop svg{animation:pop .5s ease-out}
+.viz>svg{display:block;width:100%;height:auto}
+.viz.pop>svg{animation:pop .5s ease-out}
 @keyframes pop{0%{transform:scale(.97);opacity:.7}100%{transform:none;opacity:1}}
 .vcap{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:7px 12px;background:rgba(255,255,255,.7);font-size:14px;font-weight:700}
 .vcap{font-size:13.5px;justify-content:center}.vtag{position:absolute;top:8px;inset-inline-start:8px;z-index:2;background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:12px;color:var(--muted)}
 .lbl{font-weight:700;font-size:15px;margin:14px 0 8px;display:flex;justify-content:space-between;align-items:center}
 .lbl small{font-weight:400;color:var(--muted)}
-.sizes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sizes label,.fr label,.sw label{position:relative;cursor:pointer}
 .sizes input,.fr input,.sw input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
 .opt{display:block;text-align:center;padding:11px 8px;border-radius:14px;border:1.5px solid var(--line);background:rgba(255,255,255,.7);font-weight:700;font-size:16px;line-height:1.35;transition:.2s}
@@ -274,7 +274,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  <h1>ثلاث لوحات بالطابع البوهيمي تمنح جدارك حضورًا مميزًا</h1>
  <p class="sub">طقم متناسق من ثلاث لوحات كانفس، تختار له المقاس والإطار ويظهر لك التصور والسعر فورًا.</p>
  <div class="stage glass glow rise">
-  <div class="crop"><img id="heroImg" src="https://cdn.salla.sa/apNwz/04c3a8ea-de3b-4b1c-9f36-95a8c65ae9ea-1000x1000-wGbl1sRLFo2Gf9iiVQJaaYRsDi931SaLFpz2SJuh.png" alt="طقم ثلاث لوحات كانفس بوهيمي فوق كنب بيج" width="1000" height="1000" fetchpriority="high" decoding="async"></div>
+  <div class="crop"><img id="heroImg" src="images/boho-hero.jpg" alt="طقم ثلاث لوحات كانفس بوهيمي فوق كنب بيج" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
   <span class="badge">3 لوحات</span>
  </div>
  <ul class="chips">
@@ -289,19 +289,19 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  <div class="buy glass glow rise">
   <h2>اختر مقاس طقمك وإطاره</h2>
   <p class="hint">يتغير التصور والسعر فور اختيارك.</p>
-  <div class="viz" id="vizBox"><svg id="viz" viewBox="0 0 400 250" role="img" aria-label="تصور الطقم فوق الكنب بالمقاس المختار"></svg>
+  <div class="viz" id="vizBox"><svg id="viz" viewBox="0 0 400 400" role="img" aria-label="تصور الطقم فوق الكنب بالمقاس المختار"></svg>
    <span class="vtag">تصور توضيحي</span><div class="vcap"><span id="vcap">—</span></div></div>
-  <div class="lbl">مقاس اللوحة الواحدة <small>بالسنتيمتر</small></div>
+  <div class="lbl">١ · اختر الإطار <small>مجوف بعرض 1.7 سم</small></div>
+  <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
+  <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
+  <div class="lbl">٢ · اختر المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
-  <div class="custom" id="custom2" hidden>
-   <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="80" aria-label="الطول بالسنتيمتر"></label>
-   <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="50" aria-label="العرض بالسنتيمتر"></label>
-   <p class="note">أدخل مقاس اللوحة الواحدة (الأدنى 20×20 سم)، وننتج الثلاث بالمقاس نفسه.</p>
+  <div class="custom" id="custom2">
+   <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="الطول" aria-label="الطول بالسنتيمتر"></label>
+   <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="العرض" aria-label="العرض بالسنتيمتر"></label>
+   <p class="note">أو اكتب مقاسك الخاص للوحة الواحدة (الأدنى 20×20 سم)، وننتج الثلاث بالمقاس نفسه.</p>
   </div>
   <p class="err" id="err" role="alert"></p>
-  <div class="lbl">الإطار</div>
-  <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
-  <div class="sw" id="sw" hidden role="radiogroup" aria-label="لون الإطار"></div>
   <div class="res" id="res" aria-live="polite">
    <div class="t">سعر الطقم ( 3 لوحات )</div>
    <div class="tot" id="tot">—</div>
@@ -453,7 +453,9 @@ window.AV_CONFIG = Object.assign({
   PAGE: '/bohemian',
   PRODUCT_ID: '1181218623',
   PIECES: 3,
-  HERO: 'https://cdn.salla.sa/apNwz/04c3a8ea-de3b-4b1c-9f36-95a8c65ae9ea-1000x1000-wGbl1sRLFo2Gf9iiVQJaaYRsDi931SaLFpz2SJuh.png',
+  HERO: 'images/boho-hero.jpg',
+  ROOM: 'images/boho-room.jpg',
+  ART: ['images/boho-art-1.jpg','images/boho-art-2.jpg','images/boho-art-3.jpg'],
   PAY_METHODS: ['مدى','Visa','Mastercard','Apple Pay'],  /* STAFF-VERIFY: المفعّل فعلًا في حساب Tap */
   WHATSAPP: '966503639342',
   PRESETS: [[80,50],[90,60],[100,70]]
@@ -465,7 +467,7 @@ const COLORS = [
 const $ = (id) => document.getElementById(id);
 const MSG = { invalid_input:'أدخل الطول والعرض بالسنتيمتر بقيم رقمية.', too_small:'أصغر مقاس للوحة 20×20 سم.', too_large_framed:'هذا المقاس أكبر من المتاح مع الإطار. جرّب مقاسًا أصغر أو راسلنا.', too_large_unframed:'هذا المقاس أكبر من المتاح. جرّب مقاسًا أصغر أو راسلنا.' };
 const money = (n) => Number(n).toLocaleString('en-US') + ' ر.س';
-const st = { size:'80x50', l:'', w:'', framed:false, color:'black' };
+const st = { size:'80x50', l:'', w:'', framed:true, color:'gold' };
 const track = (e) => { try{ (window.dataLayer = window.dataLayer || []).push({ event:e }); }catch(x){} };
 const api = (p) => (CFG.API_BASE || '').replace(/\/$/, '') + p;
 const dims = () => st.size === 'custom' ? [st.l, st.w] : st.size.split('x');
@@ -475,36 +477,42 @@ function calc(framed){
  const r = evaluate({ lengthRaw: l, widthRaw: w, framed });
  return r.status === 'ok' ? { ok:true, set:r.price * CFG.PIECES, l:r.lengthCm, w:r.widthCm } : { ok:false, status:r.status };
 }
-/* ===== التصور: الطقم فوق كنب بمقياس رسم حقيقي (الكنب 210 سم) ===== */
-const CROPS = [[172,186,176,268],[398,186,176,268],[630,186,176,268]];
+/* ===== التصور: صورة غرفة حقيقية (جدار فارغ فوق كنب) والطقم بمقياس الرسم ===== */
+/* معايرة الصورة: عرضها ≈ 209 سم (ارتفاع ظهر الكنب ≈ 82 سم)، وأعلى الكنب عند 55.8% من ارتفاعها */
+const ROOM_CM = 209, SOFA_TOP = 0.558, HANG = 25, GAP = 4;
 let lastGood = { l:80, w:50 };
 function drawViz(cur){
  if(cur.ok) lastGood = { l:cur.l, w:cur.w };
- const L = lastGood.l, W = lastGood.w, FLOOR = 232, SOFA_H = 85, SOFA_W = 210, GAP = 4, ABOVE = 28;
- const s = Math.min(1.7, 372 / (3 * W + 2 * GAP), (FLOOR - 10) / (SOFA_H + ABOVE + L));
- const pw = W * s, ph = L * s, g = GAP * s, tot = 3 * pw + 2 * g, x0 = (400 - tot) / 2;
- const yb = FLOOR - (SOFA_H + ABOVE) * s, y0 = yb - ph;
+ const L = lastGood.l, W = lastGood.w, U0 = 400 / ROOM_CM, totW = 3 * W + 2 * GAP;
+ const k = Math.max(0.35, Math.min(1, 372 / (totW * U0), 386 / ((1 - SOFA_TOP) * 400 + (HANG + L) * U0)));
+ const s = U0 * k, ph = L * s, pw = W * s, g = GAP * s, tot = 3 * pw + 2 * g, x0 = (400 - tot) / 2;
+ const rs = 400 * k, rx = (400 - rs) / 2, ry = 400 - rs;           /* موضع صورة الغرفة */
+ const sofaY = ry + SOFA_TOP * rs, yb = sofaY - HANG * s, y0 = yb - ph;
  const col = COLORS.find(c => c.k === st.color), fr = st.framed, t = fr ? 1.7 * s : 0; /* عرض الإطار الحقيقي 1.7 سم */
- let o = `<defs><linearGradient id="vw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ece5dd"/><stop offset="1" stop-color="#d6ccc1"/></linearGradient>
-  <filter id="vs" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="${(2.5*s).toFixed(1)}" stdDeviation="${(2*s).toFixed(1)}" flood-color="#3b1226" flood-opacity=".32"/></filter></defs>
-  <rect width="400" height="250" fill="url(#vw)"/><rect y="${FLOOR}" width="400" height="18" fill="#b9ab9b"/><rect y="${FLOOR}" width="400" height="2" fill="#a89a8a"/>`;
- const sw = SOFA_W * s, sx = (400 - sw) / 2;
- o += `<g fill="#cdbca6"><rect x="${sx+6*s}" y="${FLOOR-SOFA_H*s}" width="${sw-12*s}" height="${52*s}" rx="${16*s}" fill="#d8caba"/><rect x="${sx}" y="${FLOOR-52*s}" width="${sw}" height="${44*s}" rx="${12*s}"/><rect x="${sx-2*s}" y="${FLOOR-60*s}" width="${20*s}" height="${58*s}" rx="${10*s}" fill="#c6b49c"/><rect x="${sx+sw-18*s}" y="${FLOOR-60*s}" width="${20*s}" height="${58*s}" rx="${10*s}" fill="#c6b49c"/></g>`;
- CROPS.forEach((c, i) => {
+ const R = CFG.ROOM;
+ let o = `<defs><filter id="vs" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0" dy="${(1.6*s).toFixed(2)}" stdDeviation="${(1.4*s).toFixed(2)}" flood-color="#2a2420" flood-opacity=".38"/></filter></defs>`;
+ if(k < 1){ /* تمديد الأطراف عند التصغير بتكرار حواف الصورة */
+  o += `<svg x="0" y="0" width="400" height="${ry.toFixed(1)}" viewBox="0 0 1254 2" preserveAspectRatio="none"><image href="${R}" width="1254" height="1254"/></svg>`
+     + `<svg x="0" y="${ry.toFixed(1)}" width="${rx.toFixed(1)}" height="${rs.toFixed(1)}" viewBox="0 0 2 1254" preserveAspectRatio="none"><image href="${R}" width="1254" height="1254"/></svg>`
+     + `<svg x="${(rx + rs).toFixed(1)}" y="${ry.toFixed(1)}" width="${rx.toFixed(1)}" height="${rs.toFixed(1)}" viewBox="1252 0 2 1254" preserveAspectRatio="none"><image href="${R}" x="-1252" width="1254" height="1254"/></svg>`;
+ }
+ o += `<image href="${R}" x="${rx.toFixed(1)}" y="${ry.toFixed(1)}" width="${rs.toFixed(1)}" height="${rs.toFixed(1)}"/>`;
+ for(let i = 0; i < 3; i++){
   const x = x0 + i * (pw + g);
   o += `<g filter="url(#vs)">`;
-  if(fr) o += `<rect x="${x.toFixed(1)}" y="${y0.toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" fill="${col.hex}"/><rect x="${x.toFixed(1)}" y="${y0.toFixed(1)}" width="${pw.toFixed(1)}" height="${ph.toFixed(1)}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".5"/><rect x="${(x+t).toFixed(1)}" y="${(y0+t).toFixed(1)}" width="${(pw-2*t).toFixed(1)}" height="${(ph-2*t).toFixed(1)}" fill="none" stroke="rgba(0,0,0,.45)" stroke-width="${Math.max(.5,.5*s).toFixed(2)}"/>`;
-  o += `<svg x="${(x + t).toFixed(1)}" y="${(y0 + t).toFixed(1)}" width="${(pw - 2*t).toFixed(1)}" height="${(ph - 2*t).toFixed(1)}" viewBox="${c.join(' ')}" preserveAspectRatio="xMidYMid slice"><image href="${CFG.HERO}" width="1000" height="1000"/></svg></g>`;
- });
+  if(fr) o += `<rect x="${x.toFixed(2)}" y="${y0.toFixed(2)}" width="${pw.toFixed(2)}" height="${ph.toFixed(2)}" fill="${col.hex}"/><rect x="${x.toFixed(2)}" y="${y0.toFixed(2)}" width="${pw.toFixed(2)}" height="${ph.toFixed(2)}" fill="none" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><rect x="${(x+t).toFixed(2)}" y="${(y0+t).toFixed(2)}" width="${(pw-2*t).toFixed(2)}" height="${(ph-2*t).toFixed(2)}" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="${Math.max(.5, .5 * s).toFixed(2)}"/>`;
+  o += `<svg class="pn" x="${(x + t).toFixed(2)}" y="${(y0 + t).toFixed(2)}" width="${(pw - 2*t).toFixed(2)}" height="${(ph - 2*t).toFixed(2)}" viewBox="0 0 320 482" preserveAspectRatio="xMidYMid slice"><image href="${CFG.ART[i]}" width="320" height="482"/></svg>`;
+  if(!fr) o += `<rect x="${x.toFixed(2)}" y="${y0.toFixed(2)}" width="${pw.toFixed(2)}" height="${ph.toFixed(2)}" fill="none" stroke="rgba(0,0,0,.2)" stroke-width=".5"/>`;
+  o += `</g>`;
+ }
  $('viz').innerHTML = o;
  $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار');
  const vb = $('vizBox'); vb.classList.remove('pop'); void vb.offsetWidth; vb.classList.add('pop');
 }
 function buildUI(){
- $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt tap"><bdi dir="ltr">${l}×${w}</bdi><small>للوحة الواحدة</small></span></label>`).join('')
-  + `<label><input type="radio" name="sz" value="custom"><span class="opt tap">مقاس خاص<small>أدخل مقاسك</small></span></label>`;
- $('fr').innerHTML = `<label><input type="radio" name="fr" value="u" checked><span class="opt tap">بدون إطار<b id="pU">—</b></span></label><label><input type="radio" name="fr" value="f"><span class="opt tap">بإطار<b id="pF">—</b></span></label>`;
- $('sw').innerHTML = COLORS.map((c,i) => `<label><input type="radio" name="cl" value="${c.k}" ${i===0?'checked':''}><span class="opt tap"><i style="background:${c.hex}"></i>${c.n}</span></label>`).join('');
+ $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt tap"><bdi dir="ltr">${l}×${w}</bdi><small>للوحة الواحدة</small></span></label>`).join('');
+ $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt tap">بإطار<b id="pF">—</b></span></label><label><input type="radio" name="fr" value="u"><span class="opt tap">بدون إطار<b id="pU">—</b></span></label>`;
+ $('sw').innerHTML = COLORS.map((c,i) => `<label><input type="radio" name="cl" value="${c.k}" ${c.k==='gold'?'checked':''}><span class="opt tap"><i style="background:${c.hex}"></i>${c.n}</span></label>`).join('');
  $('payM').innerHTML = CFG.PAY_METHODS.map(m => `<li>${m}</li>`).join('');
  $('faqPay').textContent = 'الدفع إلكتروني آمن عبر Tap Payments: ' + CFG.PAY_METHODS.join('، ') + '.';
  $('waCustom').href = 'https://wa.me/' + CFG.WHATSAPP + '?text=' + encodeURIComponent('السلام عليكم، أرغب بتصميم خاص للوحاتي. هذه فكرتي:');
@@ -512,11 +520,10 @@ function buildUI(){
 const sumText = () => { const c = calc(st.framed), col = COLORS.find(x => x.k === st.color); return `3 لوحات · كل لوحة \u2066${c.l}×${c.w}\u2069 سم · ` + (st.framed ? 'بإطار ' + col.n : 'بدون إطار'); };
 let lastTot = null, lastKey = '';
 function render(){
- $('custom2').hidden = st.size !== 'custom';
  $('sw').hidden = !st.framed;
  const u = calc(false), f = calc(true), cur = calc(st.framed);
  $('pU').textContent = u.ok ? money(u.set) : '—'; $('pF').textContent = f.ok ? money(f.set) : '—';
- $('err').textContent = !cur.ok && !(st.size === 'custom' && !st.l && !st.w) ? (MSG[cur.status] || '') : '';
+ $('err').textContent = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '';
  const tot = $('tot'), btn = $('payBtn');
  if(cur.ok){
   tot.innerHTML = Number(cur.set).toLocaleString('en-US') + '<small>ر.س</small>';
@@ -533,13 +540,14 @@ function render(){
 function bind(){
  document.addEventListener('change', (e) => {
   const t = e.target; if(!t.name) return;
-  if(t.name === 'sz'){ st.size = t.value; track('select_size'); if(t.value === 'custom') setTimeout(() => $('inL').focus({ preventScroll:true }), 60); }
+  if(t.name === 'sz'){ st.size = t.value; st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; track('select_size'); }
   if(t.name === 'fr'){ st.framed = t.value === 'f'; track('select_frame'); }
   if(t.name === 'cl'){ st.color = t.value; }
   render();
  });
- $('inL').addEventListener('input', (e) => { st.l = e.target.value; render(); });
- $('inW').addEventListener('input', (e) => { st.w = e.target.value; render(); });
+ const custom = () => { st.size = 'custom'; document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
+ $('inL').addEventListener('input', (e) => { st.l = e.target.value; custom(); });
+ $('inW').addEventListener('input', (e) => { st.w = e.target.value; custom(); });
  $('payBtn').addEventListener('click', openSheet);
  $('barBtn').addEventListener('click', () => { const c = calc(st.framed); if(c.ok) openSheet(); else goBuy(); });
  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', (e) => { e.preventDefault(); track('cta_go_buy'); goBuy(); }));
