@@ -230,6 +230,21 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .rise{opacity:1;transform:none;transition:opacity .7s,transform .7s}
 .rise.pre{opacity:0;transform:translateY(22px)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rise.pre{opacity:1;transform:none}}
+
+/* ===== عنوان الصفحة في صندوق مميّز ===== */
+.ttl{position:relative;margin:2px auto 12px;max-width:520px;padding:20px 16px 16px;border-radius:24px;border:1.5px solid rgba(132,31,72,.3);background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(228,203,186,.38));box-shadow:inset 0 1px 0 #fff,0 14px 34px rgba(132,31,72,.12)}
+.ttl::before{content:"";position:absolute;top:-1.5px;left:50%;width:84px;height:5px;transform:translateX(-50%);border-radius:0 0 8px 8px;background:var(--wine)}
+.ttl::after{content:"";position:absolute;inset:6px;border-radius:19px;border:1px dashed rgba(132,31,72,.22);pointer-events:none}
+.ttl h1{font-size:clamp(25px,7vw,40px)}
+/* ===== كل ما يلمسه العميل: يتحدد ويكبر ويتوهّج بهدوء ===== */
+.opt,.nav a,.top a,.chips li,summary,.rc,.btn,.glass,.custom input{transition:transform .22s cubic-bezier(.2,.8,.3,1.25),box-shadow .25s,border-color .2s,background .2s}
+input:checked+.opt{transform:scale(1.04);box-shadow:0 0 0 3px rgba(132,31,72,.2),0 10px 26px rgba(132,31,72,.26)}
+.sw input:checked+.opt i{box-shadow:0 0 0 2px #fff,0 0 12px rgba(132,31,72,.55)}
+@media(hover:hover){.opt:hover,.nav a:hover,.top a:hover,.chips li:hover,summary:hover,.custom input:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 0 2px rgba(132,31,72,.14),0 12px 26px rgba(132,31,72,.2)}}
+.opt:active,input:active+.opt,.nav a:active,.top a:active,.chips li:active,summary:active,.rc:active,.glass.tap:active,.btn:active{transform:scale(1.05)!important;box-shadow:0 0 0 4px rgba(132,31,72,.2),0 0 22px rgba(228,203,186,.95),0 8px 24px rgba(132,31,72,.32)!important}
+.custom input:focus{outline:none;border-color:var(--wine);transform:scale(1.02);box-shadow:0 0 0 4px rgba(132,31,72,.16),0 0 20px rgba(132,31,72,.2)}
+details[open]{box-shadow:0 0 0 2px rgba(132,31,72,.16),0 12px 30px rgba(132,31,72,.14)}
+.tapped{animation:ping .7s ease-out}
 </style>
 </head>
 <body>
@@ -271,7 +286,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 
 <main>
 <section class="hero wrap" style="padding-bottom:8px">
- <h1>ثلاث لوحات بالطابع البوهيمي تمنح جدارك حضورًا مميزًا</h1>
+ <div class="ttl rise"><h1>ثلاث لوحات بالطابع البوهيمي تمنح جدارك حضورًا مميزًا</h1></div>
  <p class="sub">طقم متناسق من ثلاث لوحات كانفس، تختار له المقاس والإطار ويظهر لك التصور والسعر فورًا.</p>
  <div class="stage glass glow rise">
   <div class="crop"><img id="heroImg" src="images/boho-hero.jpg" alt="طقم ثلاث لوحات كانفس بوهيمي فوق كنب بيج" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
@@ -658,7 +673,7 @@ function fx(){
   new IntersectionObserver((es, o) => { if(!es[0].isIntersecting) return; o.disconnect(); const t0 = performance.now();
    const step = (t) => { const p = Math.min(1, (t - t0) / 1500); n.textContent = Math.round(98 * (1 - Math.pow(1 - p, 3))); if(p < 1) requestAnimationFrame(step); else n.textContent = '98'; }; requestAnimationFrame(step); }, { threshold:.6 }).observe(n);
  }
- const SEL = '.tap,.glass,.chips li,.rc';
+ const SEL = '.tap,.glass,.chips li,.rc,.opt,.nav a,.top a,summary,.btn';
  document.addEventListener('pointerdown', (e) => { let t = e.target.closest && e.target.closest(SEL); if(!t && e.target.tagName === 'INPUT' && e.target.nextElementSibling) t = e.target.nextElementSibling; if(!t) return; t.classList.remove('tapped'); void t.offsetWidth; t.classList.add('tapped'); setTimeout(() => t.classList.remove('tapped'), 800); }, { passive:true });
  $('heroImg').addEventListener('error', () => { $('heroImg').closest('.stage').style.display = 'none'; });
 }
