@@ -1,13 +1,27 @@
 // خادم المقاس الحر: يعيد حساب السعر من التسعيرة ثم يجهّز عنصرًا مخفيًا في سلة ويعيد معرّفه للواجهة.
 // لا بطاقات ولا بيانات عملاء هنا. الدفع كله في Checkout سلة.
 import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
 import { evaluate, verifyQuote } from './pricing-core.mjs';
 import { FRAME_COLORS, stockKey } from './config.mjs';
 import { buildItemPayload } from './salla-admin.mjs';
 
 const MAX_BODY = 2048;
+const MIME = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.png': 'image/png', '.otf': 'font/otf', '.woff2': 'font/woff2', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
+function serveStatic(root, pathname, res) {
+  let rel; try { rel = decodeURIComponent(pathname); } catch { res.writeHead(400); return res.end(); }
+  if (rel === '/' || rel === '') rel = '/index.html';
+  const file = path.join(root, path.normalize(rel));
+  if (!file.startsWith(path.resolve(root) + path.sep) && file !== path.resolve(root)) { res.writeHead(403); return res.end(); }
+  fs.readFile(file, (err, buf) => {
+    if (err) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('not found'); }
+    res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'public, max-age=3600', 'X-Content-Type-Options': 'nosniff' });
+    res.end(buf);
+  });
+}
 
-export function createApp({ salla, store, allowedOrigins = [], rate = { windowMs: 60000, max: 20 }, dailyCap = 200, trustProxy = false, now = () => Date.now() }) {
+export function createApp({ salla, store, allowedOrigins = [], rate = { windowMs: 60000, max: 20 }, dailyCap = 200, trustProxy = false, now = () => Date.now(), publicDir = null }) {
   const hits = new Map();
   let day = { d: new Date(now()).toISOString().slice(0, 10), n: 0 };
 
@@ -41,6 +55,7 @@ export function createApp({ salla, store, allowedOrigins = [], rate = { windowMs
     try {
       const url = new URL(req.url, 'http://x');
       if (url.pathname === '/api/health' && req.method === 'GET') return send(res, 200, { ok: true }, o);
+      if (publicDir && req.method === 'GET' && !url.pathname.startsWith('/api/')) return serveStatic(publicDir, url.pathname, res);
       if (url.pathname !== '/api/free-size') return send(res, 404, { error: 'not_found' }, o);
       if (!originOk) return send(res, 403, { error: 'origin_not_allowed' });
       if (req.method === 'OPTIONS') {
