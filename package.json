@@ -1,1 +1,3 @@
-{ "name": "art-vision-free-size", "version": "0.1.0", "type": "module", "private": true, "scripts": { "start": "node index.mjs", "test": "node --test" }, "engines": { "node": ">=20" } }
+{ "name": "artvision-landing", "version": "1.0.0", "type": "module", "private": true,
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node index.mjs", "test": "node --test" } }

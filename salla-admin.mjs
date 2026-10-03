@@ -2,10 +2,10 @@
 // STAFF-VERIFY: عنوان الإنشاء، أسماء الحقول (status/product_type/quantity/require_shipping)، وشكل الاستجابة data.id.
 import { SALLA_API_BASE } from './config.mjs';
 
-export function buildItemPayload({ lengthCm, widthCm, framed, frameLabel, price }) {
+export function buildItemPayload({ productName, lengthCm, widthCm, framed, frameLabel, price }) {
   const spec = framed ? `بإطار ${frameLabel}` : 'بدون إطار';
   return {
-    name: `لوحة ركن القهوة — مقاس خاص ${lengthCm}×${widthCm} سم — ${spec}`,
+    name: `${productName} — مقاس ${lengthCm}×${widthCm} سم — ${spec}`,
     price,                        // ريال سعودي، محسوب من تسعيرة آرت فيجن (السعر يشمل الشحن المجاني)
     product_type: 'product',
     status: 'hidden',             // غير ظاهر في المتجر، يُضاف للسلة عبر المعرّف فقط
@@ -13,7 +13,8 @@ export function buildItemPayload({ lengthCm, widthCm, framed, frameLabel, price 
     require_shipping: true,
     weight: 0.5,
     weight_type: 'kg',
-    description: `طلب مقاس خاص من حاسبة صفحة الهبوط: ${lengthCm}×${widthCm} سم، ${spec}. الشحن مجاني داخل المملكة.`,
+    // STAFF-VERIFY: إضافة صورة المنتج الأصلي للعنصر حتى تظهر في سلة العميل (اسم الحقل/المسار في API الحي)
+    description: `${productName}. طلب من حاسبة صفحة الهبوط: ${lengthCm}×${widthCm} سم، ${spec}. الشحن مجاني داخل المملكة.`,
   };
 }
 

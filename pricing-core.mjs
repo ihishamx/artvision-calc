@@ -1,7 +1,8 @@
-// مصدر واحد للتسعير والتحقق — 04 §3 + إقرار Art 2 أكتوبر 2026
+// مصدر واحد للتسعير والتحقق — إقرار Art الرسمي 3 أكتوبر 2026 (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
+// بإطار: (L×W×400/10000)+25 · بدون إطار: ((L+2)×(W+2)×200/10000)+25 · تقريب واحد لأقرب ريال
 export const RATE = Object.freeze({ framed: 400, unframed: 200 });
 export const EMBEDDED_SHIPPING = 25;
-export const UNFRAMED_PAD_MM = 40; // داخلي، لا يُعرض
+export const UNFRAMED_PAD_MM = 20; // +2 سم لكل بُعد في سعر بدون إطار فقط (يلغي +4 السابق)
 export const MIN_SIDE_CM = 20;
 export const LIMITS = Object.freeze({
   framed:   { long: 290, short: 150 },
