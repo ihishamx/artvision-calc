@@ -250,6 +250,13 @@ details[open]{box-shadow:0 0 0 2px rgba(132,31,72,.16),0 12px 30px rgba(132,31,7
 .tg{animation:tglow .85s ease-out;border-radius:12px}
 @keyframes tglow{0%{transform:scale(1);background-color:rgba(228,203,186,0);box-shadow:0 0 0 0 rgba(228,203,186,0)}28%{transform:scale(1.025);background-color:rgba(228,203,186,.5);box-shadow:0 0 0 7px rgba(228,203,186,.5),0 0 22px 6px rgba(132,31,72,.12)}100%{transform:scale(1);background-color:rgba(228,203,186,0);box-shadow:0 0 0 0 rgba(228,203,186,0)}}
 main p:active,main h1:active,main h2:active,main h3:active,main li:active,main small:active,main blockquote:active,.lbl:active,.res:active,.viz:active,.secure:active,.vcap:active{transform:scale(1.02);transition:transform .15s}
+.tgb{animation:tglowb .9s ease-out}
+@keyframes tglowb{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(132,31,72,0)}30%{transform:scale(1.018);box-shadow:0 0 0 5px rgba(228,203,186,.65),0 0 34px 8px rgba(132,31,72,.2)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(132,31,72,0)}}
+.desc{max-width:520px;margin:2px auto 14px;padding:16px 16px 12px;border-radius:22px;text-align:start}
+.desc p{margin:0 0 10px;font-size:17px;line-height:1.9;color:var(--text)}
+.pts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pts li{display:flex;gap:10px;align-items:center;font-size:15.5px;font-weight:500;padding:7px 10px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
+.pts .ico{color:var(--wine);font-size:20px}
 </style>
 </head>
 <body>
@@ -296,6 +303,15 @@ main p:active,main h1:active,main h2:active,main h3:active,main li:active,main s
  <div class="stage glass glow rise">
   <div class="crop"><img id="heroImg" src="images/boho-hero.jpg" alt="طقم ثلاث لوحات كانفس بوهيمي فوق كنب بيج" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
   <span class="badge">3 لوحات</span>
+ </div>
+<div class="desc glass tap">
+  <p>ثلاث لوحات متناسقة تحوّل جدارك إلى مشهد فني واحد متكامل. درجات ترابية دافئة بين العنابي والبيج والأزرق الداكن مع لمسات ذهبية، تمنح مكانك حضورًا هادئًا وراقيًا. اختر المقاس والإطار الذي يناسب جدارك، وشاهد التصور والسعر فورًا قبل أن تطلب.</p>
+  <ul class="pts">
+   <li><svg class="ico"><use href="#i-palette"/></svg>ألوان تنسجم مع أغلب ألوان الأثاث</li>
+   <li><svg class="ico"><use href="#i-canvas"/></svg>كانفس قطن 100% وقابل للرسم عليه</li>
+   <li><svg class="ico"><use href="#i-frames"/></svg>إطار مجوف بعرض 1.7 سم بستة ألوان</li>
+   <li><svg class="ico"><use href="#i-ruler"/></svg>مقاسات جاهزة أو مقاسك الخاص</li>
+  </ul>
  </div>
  <ul class="chips">
   <li><svg class="ico"><use href="#i-truck"/></svg>شحن مجاني</li>
@@ -678,9 +694,17 @@ function fx(){
   new IntersectionObserver((es, o) => { if(!es[0].isIntersecting) return; o.disconnect(); const t0 = performance.now();
    const step = (t) => { const p = Math.min(1, (t - t0) / 1500); n.textContent = Math.round(98 * (1 - Math.pow(1 - p, 3))); if(p < 1) requestAnimationFrame(step); else n.textContent = '98'; }; requestAnimationFrame(step); }, { threshold:.6 }).observe(n);
  }
- const SEL = '.tap,.glass,.chips li,.rc,.opt,.nav a,.top a,summary,.btn';
- const TXT = 'p,h1,h2,h3,li,small,blockquote,figcaption,.lbl,.res,.viz,.secure,.vcap,.satt,.seal,.sec-h,.hint,.note,.err,.t,.tot,.pr,footer,.final,.cs';
- document.addEventListener('pointerdown', (e) => { let t = e.target.closest && e.target.closest(SEL); if(!t && e.target.closest){ const x = e.target.closest(TXT); if(x && !e.target.closest('input,button,a,textarea')){ x.classList.remove('tg'); void x.offsetWidth; x.classList.add('tg'); setTimeout(() => x.classList.remove('tg'), 900); return; } } if(!t && e.target.tagName === 'INPUT' && e.target.nextElementSibling) t = e.target.nextElementSibling; if(!t) return; t.classList.remove('tapped'); void t.offsetWidth; t.classList.add('tapped'); setTimeout(() => t.classList.remove('tapped'), 800); }, { passive:true });
+ const SEL = '.tap,.chips li,.rc,.opt,.nav a,.top a,summary,.btn';
+ const BIG = '.ttl,.stage,.buy,.viz,.cs,.desc,.final';
+ const TXT = 'p,h1,h2,h3,li,small,blockquote,figcaption,.lbl,.res,.secure,.vcap,.satt,.seal,.sec-h,.hint,.note,.err,.pr,footer';
+ const ALL = SEL + ',' + BIG + ',' + TXT + ',.glass';
+ document.addEventListener('pointerdown', (e) => {
+  let t = e.target.closest && e.target.closest(ALL);
+  if(!t && e.target.tagName === 'INPUT' && e.target.nextElementSibling) t = e.target.nextElementSibling;
+  if(!t || e.target.closest('button,a,textarea')) { if(!t) return; }
+  const cls = t.matches(SEL) || t.matches('.glass.tap') ? 'tapped' : (t.matches(BIG) ? 'tgb' : 'tg');
+  t.classList.remove('tapped','tg','tgb'); void t.offsetWidth; t.classList.add(cls); setTimeout(() => t.classList.remove(cls), 900);
+ }, { passive:true });
  $('heroImg').addEventListener('error', () => { $('heroImg').closest('.stage').style.display = 'none'; });
 }
 function init(){
