@@ -34,9 +34,9 @@ export function newOrderRef(now = Date.now()) {
 }
 
 // lines: [{ productName, lengthCm, widthCm, framed, frameLabel, quantity, price }]
-export function buildChargePayload({ lines, customer, orderRef, baseUrl }) {
+export function buildChargePayload({ lines, customer, orderRef, baseUrl, returnPath = '/' }) {
   const total = lines.reduce((s, l) => s + l.price * l.quantity, 0);
-  const lineText = (l) => `${l.quantity}× ${l.productName} ${l.lengthCm}×${l.widthCm} سم ${l.framed ? 'بإطار ' + l.frameLabel : 'بدون إطار'} (${l.price} ر.س)`;
+  const lineText = (l) => `${l.quantity}× ${l.productName} ${l.pieces > 1 ? 'كل لوحة ' : ''}${l.lengthCm}×${l.widthCm} سم ${l.framed ? 'بإطار ' + l.frameLabel : 'بدون إطار'} (${l.price} ر.س)`;
   const [first, ...rest] = customer.name.split(' ');
   const metadata = { order: orderRef, city: customer.city, address: customer.address };
   if (customer.notes) metadata.notes = customer.notes;
@@ -58,7 +58,7 @@ export function buildChargePayload({ lines, customer, orderRef, baseUrl }) {
     },
     source: { id: 'src_all' },
     post: { url: `${base}/api/tap/webhook` },
-    redirect: { url: `${base}/?paid=1` },
+    redirect: { url: `${base}${returnPath === '/' ? '' : returnPath}/?paid=1` },
   };
 }
 
