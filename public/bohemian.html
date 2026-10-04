@@ -39,7 +39,6 @@ main,footer{position:relative;z-index:1}
 .glow::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--a),transparent 0 62%,rgba(132,31,72,.85) 80%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 7s linear infinite}
 @keyframes spin{to{--a:360deg}}
 .tap{transition:transform .25s,box-shadow .25s}
-.tap.tapped{animation:ping .7s ease-out}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(132,31,72,.4)}100%{box-shadow:0 0 0 18px rgba(132,31,72,0)}}
 @media(hover:hover){.tap:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #fff,0 22px 46px rgba(132,31,72,.22)}}
 .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;padding:12px 22px;border:0;border-radius:16px;font-weight:900;font-size:19px;cursor:pointer;text-decoration:none;position:relative;overflow:hidden;transition:transform .2s,opacity .2s}
@@ -236,27 +235,28 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .ttl::before{content:"";position:absolute;top:-1.5px;left:50%;width:84px;height:5px;transform:translateX(-50%);border-radius:0 0 8px 8px;background:var(--wine)}
 .ttl::after{content:"";position:absolute;inset:6px;border-radius:19px;border:1px dashed rgba(132,31,72,.22);pointer-events:none}
 .ttl h1{font-size:clamp(25px,7vw,40px)}
-/* ===== كل ما يلمسه العميل: يتحدد ويكبر ويتوهّج بهدوء ===== */
-.opt,.nav a,.top a,.chips li,summary,.rc,.btn,.glass,.custom input{transition:transform .22s cubic-bezier(.2,.8,.3,1.25),box-shadow .25s,border-color .2s,background .2s}
+/* ===== اللمس: أي صندوق أو جملة تتحدد وتكبر وتتوهّج بخفة وهي مضغوطة ===== */
+*{-webkit-tap-highlight-color:transparent}
+.opt,.nav a,.top a,.chips li,.rc,.btn,.tile,.custom input{transition:transform .22s cubic-bezier(.2,.8,.3,1.25),box-shadow .25s,border-color .2s,background .2s}
 input:checked+.opt{transform:scale(1.04);box-shadow:0 0 0 3px rgba(132,31,72,.2),0 10px 26px rgba(132,31,72,.26)}
 .sw input:checked+.opt i{box-shadow:0 0 0 2px #fff,0 0 12px rgba(132,31,72,.55)}
-@media(hover:hover){.opt:hover,.nav a:hover,.top a:hover,.chips li:hover,summary:hover,.custom input:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 0 2px rgba(132,31,72,.14),0 12px 26px rgba(132,31,72,.2)}}
-.opt:active,input:active+.opt,.nav a:active,.top a:active,.chips li:active,summary:active,.rc:active,.glass.tap:active,.btn:active{transform:scale(1.05)!important;box-shadow:0 0 0 4px rgba(132,31,72,.2),0 0 22px rgba(228,203,186,.95),0 8px 24px rgba(132,31,72,.32)!important}
+@media(hover:hover){.opt:hover,.nav a:hover,.top a:hover,.chips li:hover,.tile:hover,.custom input:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 0 2px rgba(132,31,72,.14),0 12px 26px rgba(132,31,72,.2)}}
 .custom input:focus{outline:none;border-color:var(--wine);transform:scale(1.02);box-shadow:0 0 0 4px rgba(132,31,72,.16),0 0 20px rgba(132,31,72,.2)}
 details[open]{box-shadow:0 0 0 2px rgba(132,31,72,.16),0 12px 30px rgba(132,31,72,.14)}
-.tapped{animation:ping .7s ease-out}
-
-/* ===== أي جملة أو صندوق ينضغط ويتوهّج بخفة ===== */
-.tg{animation:tglow .85s ease-out;border-radius:12px}
-@keyframes tglow{0%{transform:scale(1);background-color:rgba(228,203,186,0);box-shadow:0 0 0 0 rgba(228,203,186,0)}28%{transform:scale(1.025);background-color:rgba(228,203,186,.5);box-shadow:0 0 0 7px rgba(228,203,186,.5),0 0 22px 6px rgba(132,31,72,.12)}100%{transform:scale(1);background-color:rgba(228,203,186,0);box-shadow:0 0 0 0 rgba(228,203,186,0)}}
-main p:active,main h1:active,main h2:active,main h3:active,main li:active,main small:active,main blockquote:active,.lbl:active,.res:active,.viz:active,.secure:active,.vcap:active{transform:scale(1.02);transition:transform .15s}
-.tgb{animation:tglowb .9s ease-out}
-@keyframes tglowb{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(132,31,72,0)}30%{transform:scale(1.018);box-shadow:0 0 0 5px rgba(228,203,186,.65),0 0 34px 8px rgba(132,31,72,.2)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(132,31,72,0)}}
-.desc{max-width:520px;margin:2px auto 14px;padding:16px 16px 12px;border-radius:22px;text-align:start}
-.desc p{margin:0 0 10px;font-size:17px;line-height:1.9;color:var(--text)}
-.pts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.pts li{display:flex;gap:10px;align-items:center;font-size:15.5px;font-weight:500;padding:7px 10px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
-.pts .ico{color:var(--wine);font-size:20px}
+summary{outline:none;-webkit-user-select:none;user-select:none}
+summary:focus-visible{outline:2px solid var(--wine);outline-offset:-2px;border-radius:14px}
+.pz{transform:scale(var(--ps,1.04))!important;box-shadow:0 0 0 5px rgba(228,203,186,.85),0 0 30px 6px rgba(132,31,72,.26)!important;position:relative;z-index:3;transition:transform .16s cubic-bezier(.2,.9,.3,1.3),box-shadow .16s,background-color .16s!important}
+.pz.tx{background-color:rgba(228,203,186,.5);border-radius:12px}
+.rel{animation:settle .35s ease-out}
+@keyframes settle{0%{transform:scale(1.04)}55%{transform:scale(.99)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.rel{animation:none}}
+/* بطاقات الفكرة تحت الهيرو */
+.tsh{max-width:520px;margin:4px auto 10px;text-align:center;font-weight:900;font-size:19px;color:var(--deep)}
+.tiles{list-style:none;max-width:520px;margin:0 auto 14px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:14px 8px 12px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(228,203,186,.4));border:1px solid var(--line);box-shadow:0 8px 20px rgba(132,31,72,.08);cursor:pointer}
+.tile .ico{color:var(--wine);font-size:30px;margin-bottom:2px}
+.tile b{font-size:16.5px;font-weight:900;line-height:1.4;color:var(--deep)}
+.tile span{font-size:14px;color:var(--muted,#6b5a62);line-height:1.5}
 </style>
 </head>
 <body>
@@ -304,15 +304,13 @@ main p:active,main h1:active,main h2:active,main h3:active,main li:active,main s
   <div class="crop"><img id="heroImg" src="images/boho-hero.jpg" alt="طقم ثلاث لوحات كانفس بوهيمي فوق كنب بيج" width="1200" height="1200" fetchpriority="high" decoding="async"></div>
   <span class="badge">3 لوحات</span>
  </div>
-<div class="desc glass tap">
-  <p>ثلاث لوحات متناسقة تحوّل جدارك إلى مشهد فني واحد متكامل. درجات ترابية دافئة بين العنابي والبيج والأزرق الداكن مع لمسات ذهبية، تمنح مكانك حضورًا هادئًا وراقيًا. اختر المقاس والإطار الذي يناسب جدارك، وشاهد التصور والسعر فورًا قبل أن تطلب.</p>
-  <ul class="pts">
-   <li><svg class="ico"><use href="#i-palette"/></svg>ألوان تنسجم مع أغلب ألوان الأثاث</li>
-   <li><svg class="ico"><use href="#i-canvas"/></svg>كانفس قطن 100% وقابل للرسم عليه</li>
-   <li><svg class="ico"><use href="#i-frames"/></svg>إطار مجوف بعرض 1.7 سم بستة ألوان</li>
-   <li><svg class="ico"><use href="#i-ruler"/></svg>مقاسات جاهزة أو مقاسك الخاص</li>
-  </ul>
- </div>
+<div class="tsh">كل ما تحتاج معرفته قبل أن تطلب</div>
+ <ul class="tiles">
+  <li class="tile"><svg class="ico"><use href="#i-palette"/></svg><b>ألوان تنسجم مع أغلب الأثاث</b><span>ترابية دافئة بلمسات ذهبية</span></li>
+  <li class="tile"><svg class="ico"><use href="#i-canvas"/></svg><b>قطن 100%</b><span>كانفس قابل للرسم عليه</span></li>
+  <li class="tile"><svg class="ico"><use href="#i-frames"/></svg><b>إطار مجوف بستة ألوان</b><span>أو بدون إطار</span></li>
+  <li class="tile"><svg class="ico"><use href="#i-ruler"/></svg><b>مقاسك أنت</b><span>مقاس جاهز أو خاص</span></li>
+ </ul>
  <ul class="chips">
   <li><svg class="ico"><use href="#i-truck"/></svg>شحن مجاني</li>
   <li><svg class="ico"><use href="#i-shield"/></svg>ضمان مدى الحياة</li>
@@ -327,7 +325,7 @@ main p:active,main h1:active,main h2:active,main h3:active,main li:active,main s
   <p class="hint">يتغير التصور والسعر فور اختيارك.</p>
   <div class="viz" id="vizBox"><svg id="viz" viewBox="0 0 400 400" role="img" aria-label="تصور الطقم فوق الكنب بالمقاس المختار"></svg>
    <span class="vtag">تصور توضيحي</span><div class="vcap"><span id="vcap">—</span></div></div>
-  <div class="lbl">١ · اختر الإطار <small>مجوف بعرض 1.7 سم</small></div>
+  <div class="lbl">١ · اختر الإطار</div>
   <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
   <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
   <div class="lbl">٢ · اختر المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
@@ -694,17 +692,28 @@ function fx(){
   new IntersectionObserver((es, o) => { if(!es[0].isIntersecting) return; o.disconnect(); const t0 = performance.now();
    const step = (t) => { const p = Math.min(1, (t - t0) / 1500); n.textContent = Math.round(98 * (1 - Math.pow(1 - p, 3))); if(p < 1) requestAnimationFrame(step); else n.textContent = '98'; }; requestAnimationFrame(step); }, { threshold:.6 }).observe(n);
  }
- const SEL = '.tap,.chips li,.rc,.opt,.nav a,.top a,summary,.btn';
- const BIG = '.ttl,.stage,.buy,.viz,.cs,.desc,.final';
- const TXT = 'p,h1,h2,h3,li,small,blockquote,figcaption,.lbl,.res,.secure,.vcap,.satt,.seal,.sec-h,.hint,.note,.err,.pr,footer';
- const ALL = SEL + ',' + BIG + ',' + TXT + ',.glass';
+ const TARGETS = '.tile,.chips li,.rc,.opt,.nav a,.top a,.btn,.ttl,.stage,.buy,.viz,.cs,.final,.glass,p,h1,h2,h3,li,small,blockquote,figcaption,.lbl,.res,.secure,.vcap,.satt,.seal,.sec-h,.hint,.note,.err,footer';
+ const BIGS = '.ttl,.stage,.buy,.viz,.cs,.final,details,.glass';
+ const held = new Map();
  document.addEventListener('pointerdown', (e) => {
-  let t = e.target.closest && e.target.closest(ALL);
-  if(!t && e.target.tagName === 'INPUT' && e.target.nextElementSibling) t = e.target.nextElementSibling;
-  if(!t || e.target.closest('button,a,textarea')) { if(!t) return; }
-  const cls = t.matches(SEL) || t.matches('.glass.tap') ? 'tapped' : (t.matches(BIG) ? 'tgb' : 'tg');
-  t.classList.remove('tapped','tg','tgb'); void t.offsetWidth; t.classList.add(cls); setTimeout(() => t.classList.remove(cls), 900);
+  const el = e.target; if(!el.closest) return;
+  if(el.closest('.custom') || el.tagName === 'TEXTAREA') return;
+  let t = el.closest('details');
+  if(!t && el.tagName === 'INPUT' && el.nextElementSibling) t = el.nextElementSibling;
+  if(!t) t = el.closest(TARGETS);
+  if(!t) return;
+  const big = t.matches(BIGS);
+  t.style.setProperty('--ps', big ? '1.02' : '1.04');
+  t.classList.remove('rel'); t.classList.add('pz');
+  if(!big && !t.matches('.tile,.chips li,.rc,.opt,.nav a,.top a,.btn')) t.classList.add('tx');
+  held.set(e.pointerId, { t, at: performance.now() });
  }, { passive:true });
+ const letGo = (e) => {
+  const h = held.get(e.pointerId); if(!h) return; held.delete(e.pointerId);
+  const wait = Math.max(0, 170 - (performance.now() - h.at));
+  setTimeout(() => { h.t.classList.remove('pz','tx'); void h.t.offsetWidth; h.t.classList.add('rel'); setTimeout(() => h.t.classList.remove('rel'), 400); }, wait);
+ };
+ ['pointerup','pointercancel'].forEach(n => document.addEventListener(n, letGo, { passive:true }));
  $('heroImg').addEventListener('error', () => { $('heroImg').closest('.stage').style.display = 'none'; });
 }
 function init(){
