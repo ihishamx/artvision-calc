@@ -23,7 +23,7 @@
 {"@type":"Organization","@id":"https://artvisionksa.com/#org","name":"آرت فيجن","alternateName":"Art Vision","url":"https://artvisionksa.com/"},
 {"@type":"Product","@id":"https://artvision-free-size.onrender.com/bohemian#product","name":"طقم 3 لوحات كانفس بوهيمي","description":"طقم من ثلاث لوحات كانفس قطن بطابع بوهيمي وألوان ترابية ولمسات ذهبية، يُنفَّذ بالمقاس الذي يختاره العميل، بإطار مجوف بستة ألوان أو بدون إطار.","image":["https://artvision-free-size.onrender.com/images/bh-og.jpg","https://artvision-free-size.onrender.com/images/bh-s1.webp"],"brand":{"@id":"https://artvisionksa.com/#org"},"sku":"1181218623","material":"كانفس قطن","offers":{"@type":"AggregateOffer","priceCurrency":"SAR","lowPrice":"105","offerCount":"2","availability":"https://schema.org/InStock","url":"https://artvision-free-size.onrender.com/bohemian","seller":{"@id":"https://artvisionksa.com/#org"},"shippingDetails":{"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"SAR"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"SA"},"deliveryTime":{"@type":"ShippingDeliveryTime","transitTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":7,"unitCode":"DAY"}}}}},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"ما الفرق بين بإطار وبدون إطار، وماذا أختار؟","acceptedAnswer":{"@type":"Answer","text":"بإطار: كل لوحة داخل إطار مجوف بلون تختاره، فتبدو الثلاث مكتملة وجاهزة للتعليق. بدون إطار: كانفس مشدود بحواف نظيفة لمظهر أخف وأبسط. الاختيار حسب ذوقك وطابع المكان."}},
+{"@type":"Question","name":"كيف أرى الطقم على جداري قبل الطلب؟","acceptedAnswer":{"@type":"Answer","text":"في بطاقة الطلب ارفع صورة مكانك، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط."}},
 {"@type":"Question","name":"كم تستغرق مدة الوصول؟","acceptedAnswer":{"@type":"Answer","text":"من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة."}},
 {"@type":"Question","name":"هل أستطيع اختيار مقاس خاص؟","acceptedAnswer":{"@type":"Answer","text":"نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا."}},
 {"@type":"Question","name":"ماذا يغطي الضمان؟","acceptedAnswer":{"@type":"Answer","text":"ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام."}}]}]}</script>
@@ -32,6 +32,7 @@
 @font-face{font-family:"Thmanyah Sans";font-weight:400;font-display:swap;src:local("Thmanyah Sans Regular"),url("fonts/ThmanyahSans-Regular.otf") format("opentype")}
 @font-face{font-family:"Thmanyah Sans";font-weight:700;font-display:swap;src:local("Thmanyah Sans Bold"),url("fonts/ThmanyahSans-Bold.otf") format("opentype")}
 @font-face{font-family:"Thmanyah Sans";font-weight:900;font-display:swap;src:local("Thmanyah Sans Black"),url("fonts/ThmanyahSans-Black.otf") format("opentype")}
+video,source{font-family:var(--font)}
 @property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
 /* الهوية: العنابي #841F48 والبيج #E4CBBA فقط، والدرجات الأخرى أدوار مشتقة منهما */
 :root{--wine:#841f48;--deep:#5a1632;--ink:#2b0c19;--sand:#e4cbba;--ivory:#f8efe7;--text:#2e1420;--muted:#6c5560;
@@ -43,7 +44,7 @@ body{margin:0;color:var(--text);font-family:var(--font);font-size:17px;line-heig
  background-color:var(--ivory);
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .33 0 0 0 0 .27 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
   linear-gradient(180deg,#2b0c19 0,#2b0c19 560px,#efe0d4 760px,#f8efe7 1100px,#f6ebe1 28%,#ecd9cb 42%,#f8efe7 52%,#f4e7dc 66%,#efdfd2 80%,#e9d4c4 100%)}
-.bgx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bgx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,rgba(250,243,236,.42),rgba(246,236,226,.5)),url("data:image/webp;base64,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") center/cover}
 .bgx i{position:absolute;inset:-30% -60%;background:repeating-linear-gradient(115deg,transparent 0 70px,rgba(255,248,240,.22) 70px 120px,transparent 120px 200px);filter:blur(18px);mix-blend-mode:soft-light;animation:rays 26s ease-in-out infinite alternate}
 .bgx b{position:absolute;width:520px;height:520px;top:-140px;inset-inline-end:-160px;border-radius:50%;background:radial-gradient(circle,rgba(255,247,238,.75),transparent 65%);animation:glowd 18s ease-in-out infinite alternate}
 @keyframes rays{to{transform:translate3d(-8%,4%,0)}}
@@ -123,6 +124,8 @@ main,footer{position:relative;z-index:1}
 @keyframes kb1{from{transform:scale(1.0) translate3d(0,0,0)}to{transform:scale(1.1) translate3d(0,-2%,0)}}
 @keyframes kb2{from{transform:scale(1.1) translate3d(2.5%,0,0)}to{transform:scale(1.02) translate3d(-2%,-1%,0)}}
 @keyframes kb3{from{transform:scale(1.12) translate3d(0,2%,0)}to{transform:scale(1.0) translate3d(0,0,0)}}
+.hv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:0;transition:opacity 1.2s ease;will-change:transform}
+.hv.on{opacity:1}
 .hero .sweep{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,transparent 30%,rgba(255,244,230,.22) 45%,transparent 60%);transform:translateX(120%);animation:sweep 7.5s ease-in-out infinite;mix-blend-mode:soft-light;pointer-events:none}
 @keyframes sweep{0%,30%{transform:translateX(120%)}75%,100%{transform:translateX(-120%)}}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(43,12,25,.25) 0,rgba(43,12,25,0) 16%,rgba(43,12,25,0) 40%,rgba(43,12,25,.62) 64%,rgba(43,12,25,.95) 100%);pointer-events:none}
@@ -171,6 +174,7 @@ main,footer{position:relative;z-index:1}
 .up.has .rm{display:block}
 .ctl{display:none;margin-top:8px;padding:10px 12px;border-radius:18px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.85);font-size:13px}
 .ctl.on{display:block}
+.ctl [hidden],.ctl label[hidden],.ctl .row[hidden]{display:none!important}
 .ctl label{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--deep)}
 .ctl input[type=range]{flex:1;accent-color:var(--wine)}
 .ctl .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
@@ -339,6 +343,24 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .rise.pre{opacity:0;transform:translateY(26px)}
 @media(min-width:700px){.hero{height:min(86vh,760px)}.htx{bottom:90px}.band,.final{max-width:560px;margin-inline:auto}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rise.pre{opacity:1;transform:none}.htx>*{opacity:1;transform:none}.sl{opacity:0}.sl:first-child{opacity:1}}
+
+.dl{display:grid;gap:10px}
+.dr{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px;border-radius:22px;align-items:center}
+.dr:nth-child(2){grid-template-columns:1fr 120px}.dr:nth-child(2) .im{order:2}
+.dr .im{position:relative;aspect-ratio:1;border-radius:16px;overflow:hidden}
+.dr .im img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s var(--ease)}
+.dr.on .im img{transform:scale(1.08)}
+.dr .im .tag{bottom:6px;inset-inline-start:6px;font-size:9.5px;font-weight:700;padding:0 7px;background:rgba(30,12,20,.78)}
+.dr .n{position:absolute;top:6px;inset-inline-end:6px;font-size:12px;font-weight:900;color:#fff;background:rgba(132,31,72,.85);border-radius:999px;padding:0 8px;line-height:1.7}
+.dr h3{font-size:16.5px;font-weight:900;color:var(--deep);margin-bottom:3px}
+.dr p{font-size:13.5px;line-height:1.7;color:#5c4450;margin:0 0 5px}
+.dr ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.dr li{font-size:12.5px;font-weight:700;color:var(--text);display:flex;gap:6px;align-items:center}
+.dr li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--wine);flex:none}
+.qc{display:flex;gap:12px;align-items:flex-start;margin-top:10px;padding:14px;border-radius:22px}
+.qc .ci{margin:0;flex:none}
+.qc b{display:block;font-size:15px;color:var(--deep)}
+.qc p{font-size:13px;color:var(--muted);margin:2px 0 0;line-height:1.7}
 </style>
 </head>
 <body>
@@ -387,6 +409,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <img class="sl" data-src="images/bh-s2.webp" alt="الطقم البوهيمي فوق كنب دائري بيج في مجلس فاخر" width="900" height="1350" decoding="async">
   <img class="sl" data-src="images/bh-s3.webp" alt="الطقم البوهيمي في صالة دافئة بإضاءة خشبية" width="900" height="1350" decoding="async">
  </div>
+ <video class="hv" id="hv" muted playsinline loop preload="none" aria-hidden="true" disablepictureinpicture></video>
  <span class="sweep" aria-hidden="true"></span>
  <div class="hdots" id="hdots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
  <span class="tag">تصور</span>
@@ -419,7 +442,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
    <div class="row" id="dragRow"><span>اسحب داخل المعاينة لتحريك:</span><div class="seg2" role="group" aria-label="ما الذي يتحرك"><button type="button" id="dSet" aria-pressed="true">الطقم</button><button type="button" id="dArt" aria-pressed="false">التصميم</button></div></div>
    <label id="scRow">حجم الطقم في الصورة<input type="range" id="sc" min="40" max="260" value="100" aria-label="حجم الطقم في صورة المكان"></label>
    <label id="zmRow">تكبير التصميم (القص)<input type="range" id="zm" min="100" max="300" value="100" aria-label="تكبير التصميم داخل اللوحات"></label>
-   <p id="ctlNote">المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك. بعد الدفع ترسل لنا تصميمك عبر واتساب برقم طلبك. برفع تصميمك تؤكد أنه ملكك أو لديك حق طباعته.</p>
+   <p id="ctlNote">اسحب بإصبع واحد للتحريك، وبإصبعين للتكبير والتصغير. المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك. بعد الدفع ترسل لنا تصميمك عبر واتساب برقم طلبك. برفع تصميمك تؤكد أنه ملكك أو لديك حق طباعته.</p>
   </div>
   <p class="err" id="upErr" role="alert"></p>
   <div class="lbl">١ · اختر الإطار <small>إطار مجوف بستة ألوان</small></div>
@@ -472,9 +495,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   </div>
  </div>
  <div class="rv" id="rv" tabindex="0" aria-label="تقييمات العملاء">
-  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«جميله ومرتبه واحلى من الصوره»</blockquote><figcaption><span>من تقييمات العملاء</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
-  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«جميله جداً احلى من الصور بكثير الله يبارك لكم»</blockquote><figcaption><span>من تقييمات العملاء</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
-  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«والله انها على الواقع جميلة جدًا مثل الصورة وأجمل تبارك الرحمن الله يعطيكم العافية»</blockquote><figcaption><span>من تقييمات العملاء</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
+  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«جميله ومرتبه واحلى من الصوره»</blockquote><figcaption><span>الاء ظفر</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
+  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«جميله جداً احلى من الصور بكثير الله يبارك لكم»</blockquote><figcaption><span>شهد الشهري</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
+  <figure class="rc" role="button" tabindex="0" aria-label="تكبير التقييم"><div class="stars" aria-label="5 نجوم">★★★★★</div><blockquote>«والله انها على الواقع جميلة جدًا مثل الصورة وأجمل تبارك الرحمن الله يعطيكم العافية»</blockquote><figcaption><span>لمياء محمد</span><svg class="ico"><use href="#i-spark"/></svg></figcaption></figure>
  </div>
  <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
  <div class="rvn">اضغط على أي تقييم لتكبيره</div>
@@ -484,12 +507,16 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 <div class="cta-w" style="padding-top:18px"><a class="btn p" href="#buy" data-go><svg class="ico"><use href="#i-spark"/></svg>اطلب طقمك الآن</a></div>
 
 <section class="wrap" id="detail">
- <div class="sec-h"><h2>التفاصيل التي تصنع الفرق</h2><p>طباعة وكانفس وإطار، عن قرب قبل أن تقرر</p></div>
- <div class="tri">
-  <div class="glass tc rise"><div class="im"><img src="images/bh-m-print.webp" alt="لقطة قريبة لتفاصيل الطباعة على قماش الكانفس" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span></div><b>طباعة غنية</b><span>تفاصيل الألوان كما في التصميم</span></div>
-  <div class="glass tc rise"><div class="im"><img src="images/bh-m-canvas.webp" alt="لقطة قريبة لنسيج قماش الكانفس القطني" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span></div><b>كانفس قطن</b><span>قطن 100% وقابل للرسم عليه</span></div>
-  <div class="glass tc rise"><div class="im"><img src="images/bh-m-frame.webp" alt="لقطة قريبة لزاوية إطار مجوف حول لوحة كانفس" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span></div><b>إطار مجوف</b><span>حافة أنيقة تحيط باللوحة</span></div>
+ <div class="sec-h"><h2>التفاصيل التي تصنع الفرق</h2><p>ما تراه على جدارك يبدأ بعناية: نطبع ونشد ونجهّز الإطار ونفحص كل لوحة قبل أن تصلك</p></div>
+ <div class="dl">
+  <article class="dr glass tc rise"><div class="im"><img src="images/bh-m-print.webp" alt="لقطة قريبة لتفاصيل الطباعة على قماش الكانفس" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span><b class="n">01</b></div>
+   <div class="tx2"><h3>طباعة تحفظ تفاصيل التصميم</h3><p>نطبع كل لوحة بعناية، فتظهر التدرجات الترابية واللمسات الذهبية بوضوح كما في التصميم.</p><ul><li>مراجعة الألوان قبل الطباعة</li><li>فحص وضوح التفاصيل بعدها</li></ul></div></article>
+  <article class="dr glass tc rise"><div class="im"><img src="images/bh-m-canvas.webp" alt="لقطة قريبة لنسيج قماش الكانفس القطني" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span><b class="n">02</b></div>
+   <div class="tx2"><h3>كانفس قطن مشدود بإتقان</h3><p>قماش قطن 100% وقابل للرسم عليه، نقصّه ونشدّه بعناية، فيبقى سطح اللوحة مستويًا وحوافها نظيفة.</p><ul><li>قص وشد بعناية لكل لوحة</li><li>فحص استواء الشد ونظافة الحواف</li></ul></div></article>
+  <article class="dr glass tc rise"><div class="im"><img src="images/bh-m-frame.webp" alt="لقطة قريبة لزاوية إطار مجوف حول لوحة كانفس" width="560" height="560" loading="lazy" decoding="async"><span class="tag">صورة توضيحية</span><b class="n">03</b></div>
+   <div class="tx2"><h3>إطار مجوف يُكمل اللوحة</h3><p>يحيط الإطار المجوف باللوحة دون أن يغطي أطرافها، فيبرز حوافها ويمنح الطقم مظهرًا مكتملًا.</p><ul><li>ستة ألوان: أسود، أبيض، بني، ذهبي، شامبين، فل شامبين</li><li>لون الإطار لا يغيّر السعر</li><li>تصل اللوحة جاهزة للتعليق</li><li>أو اخترها بدون إطار لمظهر أخف</li></ul></div></article>
  </div>
+ <div class="qc glass rise"><span class="ci"><svg class="ico"><use href="#i-shield"/></svg></span><div><b>فحص قبل التغليف، وتغليف يحمي الطقم</b><p>نفحص ألوان الطباعة ووضوح التفاصيل وشد الكانفس وسلامة الإطار، ثم نغلّف الطقم بعناية ليصلك سليمًا. مصممة لتدوم سنوات مع المحافظة على جودة الطباعة والتنفيذ.</p></div></div>
  <a class="nx" href="#ba">شاهد الفرق على الجدار<svg class="ico"><use href="#i-down"/></svg></a>
 </section>
 
@@ -527,8 +554,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 
 <section class="wrap" id="faq" style="padding-top:6px">
  <div class="sec-h"><h2>الأسئلة الشائعة</h2></div>
- <details class="glass" open><summary><span class="qi"><svg class="ico"><use href="#i-frames"/></svg></span><span>ما الفرق بين بإطار وبدون إطار، وماذا أختار؟</span></summary><p>بإطار: كل لوحة داخل إطار مجوف بلون تختاره، فتبدو الثلاث مكتملة وجاهزة للتعليق. بدون إطار: كانفس مشدود بحواف نظيفة لمظهر أخف وأبسط. الاختيار حسب ذوقك وطابع المكان، وإن احترت راسلنا عبر واتساب ونساعدك.</p></details>
- <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-up"/></svg></span><span>كيف أرى الطقم على جداري قبل الطلب؟</span></summary><p>في بطاقة الطلب اضغط «ارفع صورة مكانك»، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك.</p></details>
+ <details class="glass" open><summary><span class="qi"><svg class="ico"><use href="#i-up"/></svg></span><span>كيف أرى الطقم على جداري قبل الطلب؟</span></summary><p>في بطاقة الطلب اضغط «ارفع صورة مكانك»، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-pen"/></svg></span><span>هل أطبع تصميمي الخاص بدل تصميم الطقم؟</span></summary><p>نعم، اضغط «ارفع تصميمك» وشاهده على اللوحات الثلاث بنفس السعر حسب المقاس والإطار. بعد الدفع ترسل لنا الملف عبر واتساب برقم طلبك، ونراجع جودته قبل الطباعة.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-hang"/></svg></span><span>كيف أعلّق اللوحات؟</span></summary>
   <div><p style="padding:0 0 4px">تصل كل لوحة مجهزة بوسيلة تعليق، وتحتاج إلى تثبيت مسامير في الجدار.</p>
@@ -625,6 +651,7 @@ window.AV_CONFIG = Object.assign({
   ROOM: 'images/bh-room.webp',
   ART: ['images/boho-art-1.jpg','images/boho-art-2.jpg','images/boho-art-3.jpg'],
   SLIDES: ['images/bh-s2.webp','images/bh-s3.webp'],
+  VIDEO: ['images/bh-hero.mp4','images/bh-hero.webm'],
   PAY_METHODS: ['مدى','Visa','Mastercard','Apple Pay'],  /* STAFF-VERIFY: المفعّل فعلًا في حساب Tap */
   WHATSAPP: '966503639342',
   PRESETS: [[80,50],[90,60],[100,70]]
@@ -791,20 +818,33 @@ let hintT = 0;
 function hint(t){ const h = $('vhint'); h.textContent = t; h.hidden = false; h.style.opacity = 1; clearTimeout(hintT); hintT = setTimeout(() => { h.style.opacity = 0; setTimeout(() => { h.hidden = true; }, 600); }, 3500); }
 /* سحب داخل المعاينة: يحرّك الطقم في صورة المكان أو يضبط قص التصميم */
 function dragViz(){
- const box = $('vizBox'); let p0 = null;
+ // إصبع واحد: سحب (الطقم في صورة المكان، أو قص التصميم). إصبعان: تكبير/تصغير بالقرص.
+ const box = $('vizBox'), pts = new Map(); let p0 = null, pinch = null;
+ const two = () => { const [a, b] = [...pts.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
+ const pinchTarget = () => (st.drag === 'set' && st.mode === 'place' && st.place) ? 'k' : 'z';
  box.addEventListener('pointerdown', (e) => {
   if(!box.classList.contains('drag')) return;
-  const r = box.querySelector('svg').getBoundingClientRect(); p0 = { x:e.clientX, y:e.clientY, r, cx:st.cx, cy:st.cy, ox:st.ox, oy:st.oy };
-  box.setPointerCapture(e.pointerId);
+  try{ box.setPointerCapture(e.pointerId); }catch(x){}
+  pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+  const r = box.querySelector('svg').getBoundingClientRect();
+  if(pts.size === 1){ p0 = { x:e.clientX, y:e.clientY, r, cx:st.cx, cy:st.cy, ox:st.ox, oy:st.oy }; pinch = null; }
+  else if(pts.size === 2){ p0 = null; const t = pinchTarget(); pinch = { d:two(), t, v: t === 'k' ? st.k : st.z }; }
  });
  box.addEventListener('pointermove', (e) => {
+  if(!pts.has(e.pointerId)) return; pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+  if(pinch && pts.size >= 2){
+   const f = two() / pinch.d;
+   if(pinch.t === 'k'){ st.k = Math.min(2.6, Math.max(.4, pinch.v * f)); $('sc').value = Math.round(st.k * 100); }
+   else { st.z = Math.min(3, Math.max(1, pinch.v * f)); $('zm').value = Math.round(st.z * 100); }
+   return schedule();
+  }
   if(!p0) return;
   const dx = (e.clientX - p0.x) / p0.r.width, dy = (e.clientY - p0.y) / p0.r.height;
   if(st.drag === 'set' && st.mode === 'place'){ st.cx = Math.min(.95, Math.max(.05, p0.cx + dx)); st.cy = Math.min(.95, Math.max(.05, p0.cy + dy)); }
-  else { st.ox = Math.min(1, Math.max(-1, p0.ox - dx * 4)); st.oy = Math.min(1, Math.max(-1, p0.oy - dy * 4)); }
+  else { const k = 2 / Math.max(.25, (st.z - 1) + .5); st.ox = Math.min(1, Math.max(-1, p0.ox - dx * k)); st.oy = Math.min(1, Math.max(-1, p0.oy - dy * k)); }
   schedule();
  });
- const end = () => { if(p0){ p0 = null; track('preview_drag'); } };
+ const end = (e) => { pts.delete(e.pointerId); if(pts.size < 2) pinch = null; if(pts.size === 0 && p0){ p0 = null; track('preview_drag'); } if(pts.size === 1){ const [q] = [...pts.values()]; p0 = { x:q.x, y:q.y, r:box.querySelector('svg').getBoundingClientRect(), cx:st.cx, cy:st.cy, ox:st.ox, oy:st.oy }; } };
  box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
 }
 let raf = 0; const schedule = () => { if(raf) return; raf = requestAnimationFrame(() => { raf = 0; const v = $('vizBox'); v.classList.remove('pop'); drawVizQuiet(); }); };
@@ -943,10 +983,12 @@ function reviews(){
 function hero(){
  const sl = [...document.querySelectorAll('.sl')], dots = [...$('hdots').children]; let i = 0;
  $('heroImg') && 0;
+ let vidOn = false;
  const start = () => {
   sl.forEach(im => { if(im.dataset.src){ im.src = im.dataset.src; im.removeAttribute('data-src'); } });
-  if(RM) return;
-  setInterval(() => { if(document.visibilityState !== 'visible') return; const n = (i + 1) % sl.length; if(!sl[n].complete) return;
+  // فيديو سينمائي للمشهد (يُحمَّل بعد اكتمال الصفحة)؛ إن تعذّر تشغيله (وضع توفير الطاقة مثلًا) تبقى اللقطات المتحركة
+  const v = $('hv'); if(v && CFG.VIDEO){ v.innerHTML = `<source src="${CFG.VIDEO[0]}" type="video/mp4"><source src="${CFG.VIDEO[1]}" type="video/webm">`; v.muted = true; v.load(); v.addEventListener('playing', () => { vidOn = true; v.classList.add('on'); $('hdots').style.display = 'none'; }, { once:true }); const p = v.play(); if(p && p.catch) p.catch(() => {}); }
+  setInterval(() => { if(vidOn || document.visibilityState !== 'visible') return; const n = (i + 1) % sl.length; if(!sl[n].complete) return;
    sl[i].classList.remove('on'); void sl[n].offsetWidth; sl[n].classList.add('on'); dots[i].classList.remove('on'); dots[n].classList.add('on'); i = n; }, 6000);
  };
  if(document.readyState === 'complete') setTimeout(start, 600); else addEventListener('load', () => setTimeout(start, 600));
@@ -972,7 +1014,7 @@ function fx(){
  if('IntersectionObserver' in window){ const vo = new IntersectionObserver(es => es.forEach(x => x.target.classList.toggle('vis', x.isIntersecting))); document.querySelectorAll('.glass').forEach(g => vo.observe(g)); }
  else document.querySelectorAll('.glass').forEach(g => g.classList.add('vis'));
  // اللمس الناعم: رفعة خفيفة وتلوين هادئ أثناء الضغط ثم هالة تتلاشى
- const SEL = '.tc,.opt,.nav a,.top a,.btn,.rc,.up,.seg2 button,details,.nx';
+ const SEL = '.tc,.dr,.opt,.nav a,.top a,.btn,.rc,.up,.seg2 button,details,.nx';
  const TXT = 'p,h1,h2,h3,li,small,blockquote,.lbl,.sec-h,.note';
  const held = new Map();
  document.addEventListener('pointerdown', (e) => {
