@@ -26,6 +26,7 @@
 {"@type":"Question","name":"كيف أرى الطقم على جداري قبل الطلب؟","acceptedAnswer":{"@type":"Answer","text":"في بطاقة الطلب ارفع صورة مكانك، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط."}},
 {"@type":"Question","name":"كم تستغرق مدة الوصول؟","acceptedAnswer":{"@type":"Answer","text":"من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة."}},
 {"@type":"Question","name":"هل أستطيع اختيار مقاس خاص؟","acceptedAnswer":{"@type":"Answer","text":"نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا."}},
+{"@type":"Question","name":"ماذا لو وصل الطقم متضررًا؟","acceptedAnswer":{"@type":"Answer","text":"إذا تضررت لوحة بسبب الشحن نعوّضك بلوحة جديدة مجانًا، وإذا كان هناك خطأ منّا نعوّضك مجانًا أيضًا."}},
 {"@type":"Question","name":"ماذا يغطي الضمان؟","acceptedAnswer":{"@type":"Answer","text":"ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام."}}]}]}</script>
 <style>
 /* الخط: ثمانية سانس حصرًا (ملفات OTF من Art دون تعديل). ثلاثة أوزان فقط لتخفيف التحميل. */
@@ -223,7 +224,9 @@ input:focus-visible+.opt{outline:3px solid var(--wine);outline-offset:2px}
 .pay-m li{border:1px solid rgba(255,255,255,.9);border-radius:10px;padding:2px 10px;background:rgba(255,255,255,.65)}
 
 /* ===== باقي الأقسام ===== */
-.trust{list-style:none;margin:0;padding:14px 4px;display:grid;grid-template-columns:repeat(4,1fr)}
+.trust{margin:0;padding:14px 4px 10px}.tr4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.comp{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 8px 0;padding:8px 12px;border-radius:16px;background:rgba(228,203,186,.35);font-size:13px;font-weight:700;color:var(--deep);text-align:center;line-height:1.6}.comp .ico{color:var(--ok);font-size:17px;flex:none}
+.satt .rc2{display:block;font-size:13px;color:rgba(251,241,234,.85);font-weight:700}
 .trust li{text-align:center;font-size:12px;font-weight:700;line-height:1.45;padding:4px 3px;border-radius:16px}
 .ci{width:46px;height:46px;border-radius:50%;margin:0 auto 7px;display:grid;place-items:center;background:rgba(255,255,255,.75);border:1px solid #fff;color:var(--wine);font-size:21px;box-shadow:0 6px 14px -8px rgba(60,20,30,.45);animation:flo 4.2s ease-in-out infinite}
 li:nth-child(2) .ci,div:nth-child(2)>.ci{animation-delay:-1s}li:nth-child(3) .ci,div:nth-child(3)>.ci{animation-delay:-2s}li:nth-child(4) .ci,div:nth-child(4)>.ci{animation-delay:-3s}
@@ -361,6 +364,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .qc .ci{margin:0;flex:none}
 .qc b{display:block;font-size:15px;color:var(--deep)}
 .qc p{font-size:13px;color:var(--muted);margin:2px 0 0;line-height:1.7}
+.ff .hint{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--muted)}
+#cuAddr{letter-spacing:.06em;text-align:left;text-transform:uppercase}
+#cuAddr::placeholder{letter-spacing:0;text-align:right}
 </style>
 </head>
 <body>
@@ -425,7 +431,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  <div class="buy glass rise">
   <div class="ph">
    <div><h2>لوحة كانفس بوهيمي</h2>
-    <div class="rate"><span class="st" aria-label="5 نجوم">★★★★★</span>124 تقييم</div>
+    <div class="rate"><span class="st" aria-label="تقييم 5 نجوم">★★★★★</span></div>
     <p>طقم من ثلاث لوحات بألوان ترابية دافئة ولمسات ذهبية، قطن 100% وقابل للرسم عليه.</p></div>
   </div>
   <div class="sbar">
@@ -457,7 +463,6 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <div class="custom" id="custom2">
    <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="مثلًا 120" aria-label="الطول بالسنتيمتر"></label>
    <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="مثلًا 80" aria-label="العرض بالسنتيمتر"></label>
-   <p class="note">أو اكتب مقاسك الخاص للوحة الواحدة (الأدنى 20×20 سم)، وننتج الثلاث بالمقاس نفسه.</p>
   </div>
   <p class="err" id="err" role="alert"></p>
   <div class="res" id="res" aria-live="polite">
@@ -471,12 +476,12 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 </section>
 
 <section class="wrap" style="padding-top:4px" aria-label="مزايا الطلب">
- <ul class="trust glass rise">
+ <div class="trust glass rise"><ul class="tr4">
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-truck"/></svg></span>شحن مجاني<small>داخل السعودية</small></li>
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-shield"/></svg></span>ضمان<small>مدى الحياة</small></li>
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-clock"/></svg></span>التسليم<small>5–7 أيام عمل</small></li>
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-card"/></svg></span>دفع آمن<small>مدى · Apple Pay</small></li>
- </ul>
+ </ul><p class="comp tc"><svg class="ico"><use href="#i-check"/></svg>إذا وصل الطقم متضررًا من الشحن، أو كان فيه خطأ منّا، نعوّضك مجانًا.</p></div>
 </section>
 
 <section class="band glass" id="proof">
@@ -491,7 +496,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
      <path d="M52 29l17 6.5v13.5c0 11-7 19-17 22.5-10-3.5-17-11.5-17-22.5V35.5z" fill="#841f48"/><path d="M43.5 50l6.5 6.5L61.5 44" fill="none" stroke="#fbeee0" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
    </div>
-   <div class="satt"><div class="satn"><span id="satNum">98</span><sup>%</sup></div><b>رضا العملاء</b><span class="st" aria-hidden="true">★★★★★</span></div>
+   <div class="satt"><div class="satn"><span id="satNum">98</span><sup>%</sup></div><b>رضا العملاء</b><span class="st" aria-label="تقييم 5 نجوم">★★★★★</span></div>
   </div>
  </div>
  <div class="rv" id="rv" tabindex="0" aria-label="تقييمات العملاء">
@@ -567,6 +572,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-card"/></svg></span><span>ما طرق الدفع؟</span></summary><p id="faqPay">الدفع الإلكتروني الآمن عبر Tap Payments.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس فراسلنا عبر واتساب قبل الطلب.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-shield"/></svg></span><span>ماذا يغطي الضمان؟</span></summary><p>ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام.</p></details>
+ <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>ماذا لو وصل الطقم متضررًا؟</span></summary><p>إذا تضررت لوحة بسبب الشحن نعوّضك بلوحة جديدة مجانًا، وإذا كان هناك خطأ منّا في المقاس أو التصميم أو الإطار أو الطباعة نعوّضك مجانًا أيضًا.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-clock"/></svg></span><span>هل أغيّر المقاس بعد الدفع؟</span></summary><p>المقاس الذي تختاره هو ما ننتجه، لذا تأكد منه قبل الدفع. وللمساعدة في الاختيار راسلنا قبل الطلب.</p></details>
 </section>
 
@@ -594,8 +600,8 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <div class="ff"><label for="cuName">الاسم</label><input id="cuName" autocomplete="name"></div>
   <div class="ff"><label for="cuPhone">رقم الجوال</label><input id="cuPhone" inputmode="tel" autocomplete="tel" placeholder="05XXXXXXXX"></div>
   <div class="ff"><label for="cuCity">المدينة</label><input id="cuCity" autocomplete="address-level2"></div>
-  <div class="ff"><label for="cuAddr">العنوان (الحي والشارع)</label><input id="cuAddr" autocomplete="street-address"></div>
-  <div class="ff"><label for="cuEmail">البريد الإلكتروني (اختياري)</label><input id="cuEmail" inputmode="email" autocomplete="email"></div>
+  <div class="ff"><label for="cuEmail">البريد الإلكتروني (اختياري)</label><input id="cuEmail" inputmode="email" autocomplete="email" dir="ltr" placeholder="name@example.com"></div>
+  <div class="ff"><label for="cuAddr">العنوان الوطني المختصر</label><input id="cuAddr" dir="ltr" maxlength="9" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="مثال: RRRD2929" aria-describedby="cuAddrH"><small class="hint" id="cuAddrH">4 أحرف إنجليزية ثم 4 أرقام، وتجده في تطبيق «سبل» أو «توكلنا»</small></div>
   <div class="ff"><label for="cuNotes">ملاحظات (اختياري)</label><input id="cuNotes"></div>
   <p class="err" id="cuErr" role="alert"></p>
   <button class="btn p" id="goPay" type="button">ادفع الآن</button>
@@ -894,16 +900,16 @@ function openSheet(){
  $('sheet').hidden = false; document.body.style.overflow = 'hidden'; setTimeout(() => $('cuName').focus(), 80);
 }
 function closeSheet(){ $('sheet').hidden = true; document.body.style.overflow = ''; }
-const CU_ERR = { bad_name:'اكتب اسمك.', bad_phone:'اكتب رقم جوال سعودي صحيح يبدأ بـ 05.', bad_email:'تحقق من البريد الإلكتروني.', bad_city:'اكتب المدينة.', bad_address:'اكتب العنوان بالتفصيل (الحي والشارع).' };
+const CU_ERR = { bad_name:'اكتب اسمك.', bad_phone:'اكتب رقم جوال سعودي صحيح يبدأ بـ 05.', bad_email:'تحقق من البريد الإلكتروني.', bad_city:'اكتب المدينة.', bad_address:'اكتب العنوان الوطني المختصر: 4 أحرف إنجليزية ثم 4 أرقام، مثل RRRD2929' };
 const CU_FIELD = { bad_name:'cuName', bad_phone:'cuPhone', bad_email:'cuEmail', bad_city:'cuCity', bad_address:'cuAddr' };
 function readCustomer(){
  const v = (id) => $(id).value.trim();
- const c = { name:v('cuName'), phone:v('cuPhone'), email:v('cuEmail'), city:v('cuCity'), address:v('cuAddr'), notes:v('cuNotes') };
+ const c = { name:v('cuName'), phone:v('cuPhone'), email:v('cuEmail'), city:v('cuCity'), address:v('cuAddr').replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[\s\-]/g, '').toUpperCase(), notes:v('cuNotes') };
  const ph = c.phone.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[\s\-()]/g, '').replace(/^(\+|00)966/, '').replace(/^0/, '');
  let err = null;
  if(c.name.length < 2) err = 'bad_name'; else if(!/^5\d{8}$/.test(ph)) err = 'bad_phone';
  else if(c.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.email)) err = 'bad_email';
- else if(c.city.length < 2) err = 'bad_city'; else if(c.address.length < 5) err = 'bad_address';
+ else if(c.city.length < 2) err = 'bad_city'; else if(!/^[A-Z]{4}\d{4}$/.test(c.address)) err = 'bad_address';
  // تصميم العميل: علامة في الملاحظات ليعرف الفريق أن الملف سيصل عبر واتساب (لا تُرفع الصور للخادم)
  if(custom()) c.notes = ('[تصميم خاص من العميل: ' + (st.design.length === 1 ? 'صورة واحدة مقسّمة على 3 لوحات' : '3 صور، صورة لكل لوحة') + '، يرسله عبر واتساب] ' + c.notes).trim();
  return { c, err };
