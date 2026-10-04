@@ -33,7 +33,7 @@ export function checkLine(raw) {
   return { line: { key, payload, quantity, price: setPrice, pieces, unitPrice: unit, productName: PRODUCTS[pid].name, lengthCm: r.lengthCm, widthCm: r.widthCm, framed, frameLabel: color?.label } };
 }
 
-const STATIC_TYPES = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.otf': 'font/otf', '.woff2': 'font/woff2', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.ico': 'image/x-icon' };
+const STATIC_TYPES = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.otf': 'font/otf', '.woff2': 'font/woff2', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.ico': 'image/x-icon', '.mp4': 'video/mp4', '.webm': 'video/webm' };
 
 export function createApp({ salla = null, store, tap = null, publicBaseUrl = '', staticDir = null, indexFile = 'index.html', allowedOrigins = [], rate = { windowMs: 60000, max: 20 }, dailyCap = 200, trustProxy = false, now = () => Date.now(), log = (m) => console.log(m) }) {
   const hits = new Map();
@@ -112,6 +112,20 @@ export function createApp({ salla = null, store, tap = null, publicBaseUrl = '',
     const h = { 'Content-Type': type, 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin',
       'Cache-Control': type.startsWith('text/html') ? 'no-cache' : 'public, max-age=86400' };
     if (type.startsWith('text/html')) { h['X-Frame-Options'] = 'SAMEORIGIN'; h['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()'; }
+    // دعم Range للفيديو (يتطلبه Safari/iOS لتشغيل mp4)
+    const size = fs.statSync(file).size;
+    h['Accept-Ranges'] = 'bytes';
+    const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (m && (m[1] !== '' || m[2] !== '')) {
+      let start = m[1] === '' ? Math.max(0, size - Number(m[2])) : Number(m[1]);
+      let end = m[1] !== '' && m[2] !== '' ? Math.min(Number(m[2]), size - 1) : size - 1;
+      if (start > end || start >= size) { res.writeHead(416, { 'Content-Range': `bytes */${size}` }); return res.end(); }
+      h['Content-Range'] = `bytes ${start}-${end}/${size}`; h['Content-Length'] = end - start + 1;
+      res.writeHead(206, h);
+      if (req.method === 'HEAD') return res.end();
+      return fs.createReadStream(file, { start, end }).pipe(res);
+    }
+    h['Content-Length'] = size;
     res.writeHead(200, h);
     if (req.method === 'HEAD') return res.end();
     fs.createReadStream(file).pipe(res);
