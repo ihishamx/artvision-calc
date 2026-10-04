@@ -238,21 +238,22 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 /* ===== اللمس: أي صندوق أو جملة تتحدد وتكبر وتتوهّج بخفة وهي مضغوطة ===== */
 *{-webkit-tap-highlight-color:transparent}
 .opt,.nav a,.top a,.chips li,.rc,.btn,.tile,.custom input{transition:transform .22s cubic-bezier(.2,.8,.3,1.25),box-shadow .25s,border-color .2s,background .2s}
-input:checked+.opt{transform:scale(1.04);box-shadow:0 0 0 3px rgba(132,31,72,.2),0 10px 26px rgba(132,31,72,.26)}
+input:checked+.opt{transform:scale(1.04);box-shadow:0 0 0 3px rgba(132,31,72,.28),0 10px 26px rgba(132,31,72,.32)}
 .sw input:checked+.opt i{box-shadow:0 0 0 2px #fff,0 0 12px rgba(132,31,72,.55)}
 @media(hover:hover){.opt:hover,.nav a:hover,.top a:hover,.chips li:hover,.tile:hover,.custom input:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 0 2px rgba(132,31,72,.14),0 12px 26px rgba(132,31,72,.2)}}
 .custom input:focus{outline:none;border-color:var(--wine);transform:scale(1.02);box-shadow:0 0 0 4px rgba(132,31,72,.16),0 0 20px rgba(132,31,72,.2)}
 details[open]{box-shadow:0 0 0 2px rgba(132,31,72,.16),0 12px 30px rgba(132,31,72,.14)}
 summary{outline:none;-webkit-user-select:none;user-select:none}
 summary:focus-visible{outline:2px solid var(--wine);outline-offset:-2px;border-radius:14px}
-.pz{transform:scale(var(--ps,1.04))!important;box-shadow:0 0 0 5px rgba(228,203,186,.85),0 0 30px 6px rgba(132,31,72,.26)!important;position:relative;z-index:3;transition:transform .16s cubic-bezier(.2,.9,.3,1.3),box-shadow .16s,background-color .16s!important}
+.pz{transform:scale(var(--ps,1.05))!important;box-shadow:0 0 0 6px rgba(228,203,186,.95),0 0 32px 8px rgba(132,31,72,.4)!important;position:relative;z-index:3;transition:transform .16s cubic-bezier(.2,.9,.3,1.3),box-shadow .16s,background-color .16s!important}
 .pz.tx{background-color:rgba(228,203,186,.5);border-radius:12px}
 .rel{animation:settle .35s ease-out}
-@keyframes settle{0%{transform:scale(1.04)}55%{transform:scale(.99)}100%{transform:scale(1)}}
+@keyframes settle{0%{transform:scale(1.09)}55%{transform:scale(.98)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.rel{animation:none}}
 /* بطاقات الفكرة تحت الهيرو */
 .tsh{max-width:520px;margin:4px auto 10px;text-align:center;font-weight:900;font-size:19px;color:var(--deep)}
 .tiles{list-style:none;max-width:520px;margin:0 auto 14px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.finfo{margin:12px 2px 2px;padding:10px 12px;border-radius:14px;background:rgba(228,203,186,.35);border:1px dashed rgba(132,31,72,.3);font-size:15px;line-height:1.7;color:var(--text)}
 .tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:14px 8px 12px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(228,203,186,.4));border:1px solid var(--line);box-shadow:0 8px 20px rgba(132,31,72,.08);cursor:pointer}
 .tile .ico{color:var(--wine);font-size:30px;margin-bottom:2px}
 .tile b{font-size:16.5px;font-weight:900;line-height:1.4;color:var(--deep)}
@@ -328,6 +329,7 @@ summary:focus-visible{outline:2px solid var(--wine);outline-offset:-2px;border-r
   <div class="lbl">١ · اختر الإطار</div>
   <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
   <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
+  <p class="finfo" id="finfo"></p>
   <div class="lbl">٢ · اختر المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
   <div class="custom" id="custom2">
@@ -551,6 +553,7 @@ const sumText = () => { const c = calc(st.framed), col = COLORS.find(x => x.k ==
 let lastTot = null, lastKey = '';
 function render(){
  $('sw').hidden = !st.framed;
+ $('finfo').textContent = st.framed ? 'بإطار: كل لوحة داخل إطار مجوف بلون تختاره، فتبدو الثلاث متناسقة ومكتملة على الجدار.' : 'بدون إطار: ثلاث لوحات كانفس بسعر أقل، مناسبة لمن يفضّل مظهرًا بسيطًا أو يملك إطاراته الخاصة.';
  const u = calc(false), f = calc(true), cur = calc(st.framed);
  $('pU').textContent = u.ok ? money(u.set) : '—'; $('pF').textContent = f.ok ? money(f.set) : '—';
  $('err').textContent = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '';
@@ -703,14 +706,14 @@ function fx(){
   if(!t) t = el.closest(TARGETS);
   if(!t) return;
   const big = t.matches(BIGS);
-  t.style.setProperty('--ps', big ? '1.02' : '1.04');
+  t.style.setProperty('--ps', big ? '1.02' : (t.matches('.opt') ? '1.09' : '1.05'));
   t.classList.remove('rel'); t.classList.add('pz');
   if(!big && !t.matches('.tile,.chips li,.rc,.opt,.nav a,.top a,.btn')) t.classList.add('tx');
   held.set(e.pointerId, { t, at: performance.now() });
  }, { passive:true });
  const letGo = (e) => {
   const h = held.get(e.pointerId); if(!h) return; held.delete(e.pointerId);
-  const wait = Math.max(0, 170 - (performance.now() - h.at));
+  const wait = Math.max(0, 320 - (performance.now() - h.at));
   setTimeout(() => { h.t.classList.remove('pz','tx'); void h.t.offsetWidth; h.t.classList.add('rel'); setTimeout(() => h.t.classList.remove('rel'), 400); }, wait);
  };
  ['pointerup','pointercancel'].forEach(n => document.addEventListener(n, letGo, { passive:true }));
