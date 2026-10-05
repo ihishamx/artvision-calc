@@ -205,7 +205,15 @@ input:focus-visible+.opt{outline:3px solid var(--wine);outline-offset:2px}
 .custom input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 4px rgba(132,31,72,.14),0 0 18px rgba(132,31,72,.16)}
 .custom .note{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin:0;text-align:center}
 .err{color:var(--no);font-size:14px;font-weight:700;margin:6px 0 0;text-align:center}
-.res{margin-top:14px;padding:10px 16px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(228,203,186,.45));border:1px solid rgba(255,255,255,.85)}
+.res{margin-top:14px;padding:8px 8px 12px;overflow:hidden;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(228,203,186,.45));border:1px solid rgba(255,255,255,.85)}
+.rrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 0}
+.rsv{position:relative;height:132px;border-radius:14px;overflow:hidden;background:#e9e2da;border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(60,20,30,.04)}
+.rsv>svg{display:block;width:100%;height:100%}
+.res.pop .rsv>svg{animation:vpop .6s var(--ease)}
+.rtag{position:absolute;top:7px;inset-inline-start:8px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:rgba(30,12,20,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:2px 9px;border-radius:999px}
+.rtag i{width:7px;height:7px;border-radius:50%;background:#7fd19b;box-shadow:0 0 0 3px rgba(127,209,155,.3);animation:live 1.8s ease-in-out infinite}
+@keyframes live{50%{box-shadow:0 0 0 6px rgba(127,209,155,0)}}
+.rsz{position:absolute;top:7px;inset-inline-end:8px;font-size:13px;font-weight:900;color:var(--deep);background:rgba(255,248,242,.88);padding:3px 11px;border-radius:999px;box-shadow:0 4px 10px -6px rgba(60,20,30,.5)}
 .res .t{font-size:14px;color:var(--muted);font-weight:700;line-height:1.4}
 .res .t small{display:block;font-weight:400;font-size:12px}
 .res .tot{font-size:38px;font-weight:900;color:var(--wine);line-height:1.15;white-space:nowrap}
@@ -366,7 +374,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .dock.on{opacity:1;transform:none;pointer-events:auto}
 .dk{display:flex;align-items:center;gap:10px;width:100%;max-width:536px;margin-inline:auto;padding:6px 8px 6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.9);background:rgba(255,248,242,.82);-webkit-backdrop-filter:blur(18px) saturate(130%);backdrop-filter:blur(18px) saturate(130%);box-shadow:0 14px 30px -16px rgba(60,20,30,.55);font:inherit;color:var(--text);text-align:start;cursor:pointer}
 .dkv{flex:none;width:132px;height:74px;border-radius:14px;overflow:hidden;background:#e9e2da;border:1px solid rgba(255,255,255,.9)}
-.dkv svg{display:block;width:100%;height:100%}
+.dkv>svg{display:block;width:100%;height:100%}
 .dock.pop .dkv{animation:vpop .6s var(--ease)}
 .dkt{flex:1;min-width:0;line-height:1.35}
 .dkt b{display:block;font-size:17px;white-space:nowrap;font-weight:900;color:var(--deep)}
@@ -470,8 +478,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   </div>
   <p class="err" id="err" role="alert"></p>
   <div class="res" id="res" aria-live="polite">
-   <div class="t">سعر الطقم ( 3 لوحات )<small id="dsn">تصميم الطقم البوهيمي</small></div>
-   <div class="tot" id="tot">—</div>
+   <div class="rsv" aria-hidden="true"><svg id="resSvg" preserveAspectRatio="xMidYMid slice"></svg><span class="rtag"><i></i>معاينة حيّة</span><span class="rsz" id="rsz">—</span></div>
+   <div class="rrow"><div class="t">سعر الطقم ( 3 لوحات )<small id="dsn">تصميم الطقم البوهيمي</small></div>
+   <div class="tot" id="tot">—</div></div>
   </div>
   <button class="btn p" id="payBtn" type="button" disabled>اختر المقاس أولًا</button>
   <div class="secure"><svg class="ico"><use href="#i-lock"/></svg>دفع آمن عبر Tap Payments</div>
@@ -745,9 +754,13 @@ function drawViz(cur){
  }
  svg.innerHTML = o;
  { const m = Math.max(ph * .2, 8), dw = 3 * pw + 2 * gp + 2 * m, dh = ph + 2 * m, ds = $('dockSvg');
-   const ar = 132 / 74, w2 = Math.max(dw, dh * ar), h2 = w2 / ar, cx = g.x0 + (3 * pw + 2 * gp) / 2, cy = g.y0 + ph / 2;
-   ds.setAttribute('viewBox', `${(cx - w2 / 2).toFixed(1)} ${(cy - h2 / 2).toFixed(1)} ${w2.toFixed(1)} ${h2.toFixed(1)}`); ds.innerHTML = o.replace('id="vs"', 'id="vs2"').replace(/url\(#vs\)/g, 'url(#vs2)');
-   const dk = $('dock'); dk.classList.remove('pop'); void dk.offsetWidth; dk.classList.add('pop'); }
+   const ar = 132 / 74, w2 = Math.max(vbW, dw, dh * ar), h2 = w2 / ar, cx = g.x0 + (3 * pw + 2 * gp) / 2, cy = g.y0 + ph / 2;
+   const c2 = (v, sz, max) => sz <= max ? Math.min(Math.max(v, 0), max - sz) : v; ds.setAttribute('viewBox', `${c2(cx - w2 / 2, w2, vbW).toFixed(1)} ${c2(cy - h2 / 2, h2, vbH).toFixed(1)} ${w2.toFixed(1)} ${h2.toFixed(1)}`); ds.innerHTML = o.replace('id="vs"', 'id="vs2"').replace(/url\(#vs\)/g, 'url(#vs2)');
+   const rs = $('resSvg'), rb = rs.getBoundingClientRect(), ra = rb.width > 0 ? rb.width / rb.height : 2.7, m3 = 10, w3 = Math.max(vbW, 3 * pw + 2 * gp + 2 * m3, (ph + 2 * m3) * ra), h3 = w3 / ra; /* عرض ثابت للجدار كاملًا ليظهر فرق المقاسات */
+   const cl = (v, sz, max) => sz <= max ? Math.min(Math.max(v, 0), max - sz) : v, x3 = cl(cx - w3 / 2, w3, vbW), y3 = cl(cy - h3 / 2, h3, vbH);
+   rs.setAttribute('viewBox', `${x3.toFixed(1)} ${y3.toFixed(1)} ${w3.toFixed(1)} ${h3.toFixed(1)}`); rs.innerHTML = o.replace('id="vs"', 'id="vs3"').replace(/url\(#vs\)/g, 'url(#vs3)');
+   $('rsz').innerHTML = `<bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n.replace(' مجوف', '') : 'بدون إطار');
+   const dk = $('dock'), re = $('res'); [dk, re].forEach(e => { e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); }); }
  $('vtag').textContent = place ? 'معاينة تقريبية' : 'تصور';
  $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار') + (g.shrunk ? ' · الرسم مصغّر لإظهار الطقم كاملًا' : '');
  const vb = $('vizBox'); vb.classList.remove('pop'); void vb.offsetWidth; vb.classList.add('pop');
@@ -908,9 +921,10 @@ function closeLb(){ $('lb').hidden = true; }
  const meas = () => { H = hd.offsetHeight; document.documentElement.style.setProperty('--hdh', H + 'px'); };
  const upd = () => { raf = 0; if(!$('sheet').hidden){ dock.classList.remove('on'); return; }
   const v = vb.getBoundingClientRect(), p = pb.getBoundingClientRect();
-  const on = v.bottom < H + 40 && p.top > H + 110; dock.classList.toggle('on', on); dock.setAttribute('aria-hidden', on ? 'false' : 'true'); $('dockBtn').tabIndex = on ? 0 : -1; };
+  const r = $('res').getBoundingClientRect(), ae = document.activeElement, typing = ae && ae.tagName === 'INPUT' && ae.type !== 'radio' && ae.type !== 'range';
+  const on = v.bottom < H + 40 && p.top > H + 110 && !typing && !(r.top < innerHeight - 40 && r.bottom > H + 90); dock.classList.toggle('on', on); dock.setAttribute('aria-hidden', on ? 'false' : 'true'); $('dockBtn').tabIndex = on ? 0 : -1; };
  const q = () => { if(!raf) raf = requestAnimationFrame(upd); };
- meas(); addEventListener('resize', () => { meas(); q(); }, { passive:true }); addEventListener('scroll', q, { passive:true });
+ meas(); document.addEventListener('focusin', q); document.addEventListener('focusout', q); addEventListener('resize', () => { meas(); q(); }, { passive:true }); addEventListener('scroll', q, { passive:true });
  $('dockBtn').addEventListener('click', () => { const y = vb.getBoundingClientRect().top + scrollY - H - 64; scrollTo({ top: Math.max(0, y), behavior: RM ? 'auto' : 'smooth' }); });
 })();
 function openSheet(){
