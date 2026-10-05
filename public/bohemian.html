@@ -205,15 +205,8 @@ input:focus-visible+.opt{outline:3px solid var(--wine);outline-offset:2px}
 .custom input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 4px rgba(132,31,72,.14),0 0 18px rgba(132,31,72,.16)}
 .custom .note{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin:0;text-align:center}
 .err{color:var(--no);font-size:14px;font-weight:700;margin:6px 0 0;text-align:center}
-.res{margin-top:14px;padding:8px 8px 12px;overflow:hidden;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(228,203,186,.45));border:1px solid rgba(255,255,255,.85)}
+.res{margin-top:16px;padding:4px 8px 12px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(228,203,186,.45));border:1px solid rgba(255,255,255,.85)}
 .rrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 0}
-.rsv{position:relative;height:132px;border-radius:14px;overflow:hidden;background:#e9e2da;border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(60,20,30,.04)}
-.rsv>svg{display:block;width:100%;height:100%}
-.res.pop .rsv>svg{animation:vpop .6s var(--ease)}
-.rtag{position:absolute;top:7px;inset-inline-start:8px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:rgba(30,12,20,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:2px 9px;border-radius:999px}
-.rtag i{width:7px;height:7px;border-radius:50%;background:#7fd19b;box-shadow:0 0 0 3px rgba(127,209,155,.3);animation:live 1.8s ease-in-out infinite}
-@keyframes live{50%{box-shadow:0 0 0 6px rgba(127,209,155,0)}}
-.rsz{position:absolute;top:7px;inset-inline-end:8px;font-size:13px;font-weight:900;color:var(--deep);background:rgba(255,248,242,.88);padding:3px 11px;border-radius:999px;box-shadow:0 4px 10px -6px rgba(60,20,30,.5)}
 .res .t{font-size:14px;color:var(--muted);font-weight:700;line-height:1.4}
 .res .t small{display:block;font-weight:400;font-size:12px}
 .res .tot{font-size:38px;font-weight:900;color:var(--wine);line-height:1.15;white-space:nowrap}
@@ -370,18 +363,30 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .ff .hint{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--muted)}
 #cuAddr{letter-spacing:.06em;text-align:left;text-transform:uppercase}
 #cuAddr::placeholder{letter-spacing:0;text-align:right}
-.dock{position:fixed;top:var(--hdh,120px);inset-inline:0;z-index:35;padding:6px 12px 0;pointer-events:none;opacity:0;transform:translateY(-14px);transition:opacity .35s var(--ease),transform .45s var(--ease)}
-.dock.on{opacity:1;transform:none;pointer-events:auto}
-.dk{display:flex;align-items:center;gap:10px;width:100%;max-width:536px;margin-inline:auto;padding:6px 8px 6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.9);background:rgba(255,248,242,.82);-webkit-backdrop-filter:blur(18px) saturate(130%);backdrop-filter:blur(18px) saturate(130%);box-shadow:0 14px 30px -16px rgba(60,20,30,.55);font:inherit;color:var(--text);text-align:start;cursor:pointer}
-.dkv{flex:none;width:132px;height:74px;border-radius:14px;overflow:hidden;background:#e9e2da;border:1px solid rgba(255,255,255,.9)}
-.dkv>svg{display:block;width:100%;height:100%}
-.dock.pop .dkv{animation:vpop .6s var(--ease)}
-.dkt{flex:1;min-width:0;line-height:1.35}
-.dkt b{display:block;font-size:17px;white-space:nowrap;font-weight:900;color:var(--deep)}
-.dkt small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dkp{flex:none;font-size:18px;font-weight:900;color:var(--wine)}
-.dku{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(132,31,72,.1);color:var(--wine);font-size:15px}
-@media(prefers-reduced-motion:reduce){.dock{transition:none}}
+.sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.sizes .opt{padding:7px 2px 8px;font-size:14.5px;border-radius:16px;line-height:1.3}
+.sizes .opt .fx{display:block;margin:0 auto 3px;height:16px;width:auto}
+.sizes .opt .fx2{display:block;margin:0 auto 3px;font-size:16px;color:var(--wine)}
+.sizes label:last-child .opt{font-size:12.5px}
+.custom[hidden]{display:none}
+.fr .opt{display:flex;align-items:center;justify-content:space-between;gap:6px;text-align:start;padding:9px 12px;font-size:15px}
+.fr .opt .on1 small{font-size:11.5px}
+.fr .opt b{font-size:18px!important;margin:0!important;white-space:nowrap}
+.swl{margin:10px 2px 6px;font-size:13px;color:var(--muted)}
+.swl b{color:var(--deep)}
+.swl[hidden]{display:none}
+.sw{display:flex!important;justify-content:space-between;gap:6px;margin-top:0!important}
+.sw label{flex:1;display:flex;justify-content:center}
+.sw .opt{width:40px;height:40px;padding:0!important;border-radius:50%!important;display:grid!important;place-items:center}
+.sw i{width:26px!important;height:26px!important}
+.sw .cn{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sw[hidden]{display:none!important}
+.ups{gap:6px;margin-top:8px}
+.up{min-height:48px;padding:6px 8px;gap:7px;border-radius:16px}
+.up .ui{width:30px;height:30px;border-radius:10px;font-size:16px}
+.up b{font-size:12.5px}
+.up small{font-size:10.5px}
+.lbl{margin:14px 2px 7px}
 </style>
 </head>
 <body>
@@ -442,7 +447,6 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  </div>
 </section>
 
-<div class="dock" id="dock" aria-hidden="true"><button type="button" class="dk" id="dockBtn" tabindex="-1" aria-label="العودة إلى المعاينة"><span class="dkv"><svg id="dockSvg" preserveAspectRatio="xMidYMid slice"></svg></span><span class="dkt"><b id="dkSz">—</b><small id="dkFr">—</small></span><span class="dkp" id="dkPr">—</span><span class="dku"><svg class="ico"><use href="#i-eye"/></svg></span></button></div>
 <section class="wrap" id="buy">
  <div class="buy glass rise">
   <div class="ph">
@@ -457,7 +461,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <div class="viz" id="vizBox"><svg id="viz" viewBox="0 0 400 400" role="img" aria-label="معاينة الطقم بالمقاس المختار"></svg>
    <span class="tag" id="vtag">تصور</span><span class="hint" id="vhint" hidden></span><span class="vcap" id="vcap">—</span></div>
   <div class="ups">
-   <label class="up" id="upD"><input type="file" id="fD" accept="image/*" multiple aria-label="ارفع تصميمك"><span class="ui"><svg class="ico"><use href="#i-up"/></svg></span><span><b>ارفع تصميمك</b><small>صورة واحدة تُقسَّم على الثلاث، أو ثلاث صور</small></span><button class="rm" type="button" id="rmD" aria-label="إزالة التصميم">✕</button></label>
+   <label class="up" id="upD"><input type="file" id="fD" accept="image/*" multiple aria-label="ارفع تصميمك"><span class="ui"><svg class="ico"><use href="#i-up"/></svg></span><span><b>ارفع تصميمك</b><small>صورة واحدة أو ثلاث صور</small></span><button class="rm" type="button" id="rmD" aria-label="إزالة التصميم">✕</button></label>
    <label class="up" id="upP"><input type="file" id="fP" accept="image/*" aria-label="ارفع صورة مكانك"><span class="ui"><svg class="ico"><use href="#i-home"/></svg></span><span><b>ارفع صورة مكانك</b><small>صوّر الجدار من الأمام</small></span><button class="rm" type="button" id="rmP" aria-label="إزالة صورة المكان">✕</button></label>
   </div>
   <div class="ctl" id="ctl">
@@ -467,18 +471,18 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
    <p id="ctlNote">اسحب بإصبع واحد للتحريك، وبإصبعين للتكبير والتصغير. المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك. بعد الدفع ترسل لنا تصميمك عبر واتساب برقم طلبك. برفع تصميمك تؤكد أنه ملكك أو لديك حق طباعته.</p>
   </div>
   <p class="err" id="upErr" role="alert"></p>
-  <div class="lbl">١ · اختر الإطار <small>السعر للطقم كاملًا</small></div>
-  <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
-  <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
-  <div class="lbl">٢ · اختر المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
+  <div class="lbl">١ · المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
-  <div class="custom" id="custom2">
-   <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="مثلًا 120" aria-label="الطول بالسنتيمتر"></label>
-   <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="مثلًا 80" aria-label="العرض بالسنتيمتر"></label>
+  <div class="custom" id="custom2" hidden>
+   <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="سم" aria-label="الطول بالسنتيمتر"></label>
+   <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="سم" aria-label="العرض بالسنتيمتر"></label>
   </div>
+  <div class="lbl">٢ · الإطار <small>السعر للطقم كاملًا</small></div>
+  <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
+  <div class="swl" id="swl">لون الإطار: <b id="swName">ذهبي</b></div>
+  <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
   <p class="err" id="err" role="alert"></p>
   <div class="res" id="res" aria-live="polite">
-   <div class="rsv" aria-hidden="true"><svg id="resSvg" preserveAspectRatio="xMidYMid slice"></svg><span class="rtag"><i></i>معاينة حيّة</span><span class="rsz" id="rsz">—</span></div>
    <div class="rrow"><div class="t">سعر الطقم ( 3 لوحات )<small id="dsn">تصميم الطقم البوهيمي</small></div>
    <div class="tot" id="tot">—</div></div>
   </div>
@@ -721,7 +725,7 @@ function drawViz(cur){
  const L = lastGood.l, W = lastGood.w;
  const place = st.mode === 'place' && st.place;
  vbW = 400; vbH = place ? Math.round(400 * Math.min(1.6, Math.max(.6, st.place.h / st.place.w))) : 400;
- const svg = $('viz'); svg.setAttribute('viewBox', `0 0 ${vbW} ${vbH}`);
+ const svg = $('viz'); svg.setAttribute('viewBox', `0 0 ${vbW} ${place ? vbH : 300}`); /* غرفة العرض: نقص الأرضية لتقريب المقاسات من المعاينة */
  const g = geom(L, W, vbW, vbH), s = g.s, ph = L * s, pw = W * s, gp = GAP * s;
  const col = COLORS.find(c => c.k === st.color), fr = st.framed, t = fr ? Math.max(1.2, 1.7 * s) : 0;
  let o = `<defs><filter id="vs" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0" dy="${(1.6*s).toFixed(2)}" stdDeviation="${(1.4*s).toFixed(2)}" flood-color="#2a2420" flood-opacity=".38"/></filter></defs>`;
@@ -753,24 +757,16 @@ function drawViz(cur){
   }
  }
  svg.innerHTML = o;
- { const m = Math.max(ph * .2, 8), dw = 3 * pw + 2 * gp + 2 * m, dh = ph + 2 * m, ds = $('dockSvg');
-   const ar = 132 / 74, w2 = Math.max(vbW, dw, dh * ar), h2 = w2 / ar, cx = g.x0 + (3 * pw + 2 * gp) / 2, cy = g.y0 + ph / 2;
-   const c2 = (v, sz, max) => sz <= max ? Math.min(Math.max(v, 0), max - sz) : v; ds.setAttribute('viewBox', `${c2(cx - w2 / 2, w2, vbW).toFixed(1)} ${c2(cy - h2 / 2, h2, vbH).toFixed(1)} ${w2.toFixed(1)} ${h2.toFixed(1)}`); ds.innerHTML = o.replace('id="vs"', 'id="vs2"').replace(/url\(#vs\)/g, 'url(#vs2)');
-   const rs = $('resSvg'), rb = rs.getBoundingClientRect(), ra = rb.width > 0 ? rb.width / rb.height : 2.7, m3 = 10, w3 = Math.max(vbW, 3 * pw + 2 * gp + 2 * m3, (ph + 2 * m3) * ra), h3 = w3 / ra; /* عرض ثابت للجدار كاملًا ليظهر فرق المقاسات */
-   const cl = (v, sz, max) => sz <= max ? Math.min(Math.max(v, 0), max - sz) : v, x3 = cl(cx - w3 / 2, w3, vbW), y3 = cl(cy - h3 / 2, h3, vbH);
-   rs.setAttribute('viewBox', `${x3.toFixed(1)} ${y3.toFixed(1)} ${w3.toFixed(1)} ${h3.toFixed(1)}`); rs.innerHTML = o.replace('id="vs"', 'id="vs3"').replace(/url\(#vs\)/g, 'url(#vs3)');
-   $('rsz').innerHTML = `<bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n.replace(' مجوف', '') : 'بدون إطار');
-   const dk = $('dock'), re = $('res'); [dk, re].forEach(e => { e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); }); }
  $('vtag').textContent = place ? 'معاينة تقريبية' : 'تصور';
- $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار') + (g.shrunk ? ' · الرسم مصغّر لإظهار الطقم كاملًا' : '');
+ $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? 'إطار ' + col.n.replace(' مجوف', '') : 'بدون إطار') + (g.shrunk ? ' · العرض مصغّر' : '');
  const vb = $('vizBox'); vb.classList.remove('pop'); void vb.offsetWidth; vb.classList.add('pop');
 }
 /* أيقونة مصغّرة لنسبة الطقم في خانة المقاس */
 const mini = (l, w) => { const h = 26, pw = h * w / l, g = 2, W = 3 * pw + 2 * g; let r = ''; for(let i = 0; i < 3; i++) r += `<rect x="${(i*(pw+g)).toFixed(1)}" y="0" width="${pw.toFixed(1)}" height="${h}" rx="1.5" fill="currentColor" opacity="${.55 + i*.15}"/>`; return `<svg class="fx" viewBox="0 0 ${W.toFixed(1)} ${h}" width="${W.toFixed(0)}" height="${h}" style="color:#841f48" aria-hidden="true">${r}</svg>`; };
 function buildUI(){
- $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt">${mini(l,w)}<bdi dir="ltr">${l}×${w}</bdi><small>للوحة الواحدة</small></span></label>`).join('');
- $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt">بإطار<b id="pF">—</b><small>إطار مجوف · 6 ألوان</small></span></label><label><input type="radio" name="fr" value="u"><span class="opt">بدون إطار<b id="pU">—</b><small>كانفس مشدود</small></span></label>`;
- $('sw').innerHTML = COLORS.map(c => `<label><input type="radio" name="cl" value="${c.k}" ${c.k==='gold'?'checked':''}><span class="opt"><i style="background:${c.hex}"></i>${c.n.replace(' مجوف','')}</span></label>`).join('');
+ $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt">${mini(l,w)}<bdi dir="ltr">${l}×${w}</bdi></span></label>`).join('') + `<label><input type="radio" name="sz" value="custom" id="szC"><span class="opt"><svg class="ico fx2"><use href="#i-ruler"/></svg>مقاس خاص</span></label>`;
+ $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt"><span class="on1">بإطار<small>إطار مجوف</small></span><b id="pF">—</b></span></label><label><input type="radio" name="fr" value="u"><span class="opt"><span class="on1">بدون إطار<small>كانفس مشدود</small></span><b id="pU">—</b></span></label>`;
+ $('sw').innerHTML = COLORS.map(c => `<label title="${c.n.replace(' مجوف','')}"><input type="radio" name="cl" value="${c.k}" ${c.k==='gold'?'checked':''} aria-label="${c.n.replace(' مجوف','')}"><span class="opt"><i style="background:${c.hex}"></i><span class="cn">${c.n.replace(' مجوف','')}</span></span></label>`).join('');
  $('payM').innerHTML = CFG.PAY_METHODS.map(m => `<li>${m}</li>`).join('');
  $('faqPay').textContent = 'الدفع إلكتروني آمن عبر Tap Payments: ' + CFG.PAY_METHODS.join('، ') + '.';
  $('waCustom').href = 'https://wa.me/' + CFG.WHATSAPP + '?text=' + encodeURIComponent('السلام عليكم، أرغب بتصميم خاص للوحاتي. هذه فكرتي:');
@@ -778,7 +774,7 @@ function buildUI(){
 const sumText = () => { const c = calc(st.framed), col = COLORS.find(x => x.k === st.color); return `3 لوحات · كل لوحة ⁦${c.l}×${c.w}⁩ سم · ` + (st.framed ? 'بإطار ' + col.n : 'بدون إطار') + ' · ' + designName(); };
 let lastTot = null, lastKey = '';
 function render(force){
- $('sw').hidden = !st.framed;
+ $('sw').hidden = !st.framed; $('swl').hidden = !st.framed; { const col = COLORS.find(c => c.k === st.color); $('swName').textContent = col.n.replace(' مجوف', ''); }
  const u = calc(false), f = calc(true), cur = calc(st.framed);
  $('pU').textContent = u.ok ? money(u.set) : '—'; $('pF').textContent = f.ok ? money(f.set) : '—';
  $('err').textContent = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '';
@@ -793,7 +789,6 @@ function render(force){
   tot.textContent = '—'; btn.disabled = true; btn.textContent = st.size === 'custom' ? 'أدخل مقاسك أولًا' : 'اختر المقاس أولًا';
   $('barPr').textContent = '—'; $('barBtn').textContent = 'اختر مقاسك'; lastTot = null;
  }
- { const col = COLORS.find(c => c.k === st.color); $('dkSz').innerHTML = cur.ok ? `<bdi dir="ltr">${cur.l}×${cur.w}</bdi> سم` : 'أدخل مقاسك'; $('dkFr').textContent = 'كل لوحة · ' + (st.framed ? 'إطار ' + col.n.replace(' مجوف', '') : 'بدون إطار'); $('dkPr').textContent = cur.ok ? money(cur.set) : '—'; }
  const key = [cur.ok ? cur.l + 'x' + cur.w : 'x', st.framed, st.color, st.mode, st.art, st.design.length, !!st.place].join('|');
  if(force || key !== lastKey){ lastKey = key; drawViz(cur); }
  controls();
@@ -880,16 +875,16 @@ function drawVizQuiet(){ const v = $('vizBox'); drawViz(calc(st.framed)); v.clas
 function bind(){
  document.addEventListener('change', (e) => {
   const t = e.target; if(!t.name) return;
-  if(t.name === 'sz'){ st.size = t.value; st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; track('select_size'); }
+  if(t.name === 'sz'){ st.size = t.value; const c = t.value === 'custom'; $('custom2').hidden = !c; if(c){ st.l = $('inL').value; st.w = $('inW').value; setTimeout(() => $('inL').focus(), 60); } else { st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; } track('select_size'); }
   if(t.name === 'fr'){ st.framed = t.value === 'f'; track('select_frame'); }
   if(t.name === 'cl'){ st.color = t.value; }
   render();
  });
- const cust = () => { st.size = 'custom'; document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
+ const cust = () => { st.size = 'custom'; $('szC').checked = true; render(); };
  $('inL').addEventListener('input', (e) => { st.l = e.target.value; cust(); });
  $('inW').addEventListener('input', (e) => { st.w = e.target.value; cust(); });
  $('fD').addEventListener('change', onDesign); $('fP').addEventListener('change', onPlace);
- $('rmD').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); st.design.forEach(d => URL.revokeObjectURL(d.url)); st.design = []; resetUp('upD','i-up','ارفع تصميمك','صورة واحدة تُقسَّم على الثلاث، أو ثلاث صور'); render(true); });
+ $('rmD').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); st.design.forEach(d => URL.revokeObjectURL(d.url)); st.design = []; resetUp('upD','i-up','ارفع تصميمك','صورة واحدة أو ثلاث صور'); render(true); });
  $('rmP').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); if(st.place) URL.revokeObjectURL(st.place.url); st.place = null; st.mode = 'room'; resetUp('upP','i-home','ارفع صورة مكانك','صوّر الجدار من الأمام'); render(true); });
  $('mRoom').addEventListener('click', () => { st.mode = 'room'; render(); });
  $('mPlace').addEventListener('click', () => { if(!st.place){ $('fP').click(); return; } st.mode = 'place'; render(); });
@@ -914,19 +909,6 @@ function bind(){
 function goBuy(){ $('buy').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block:'start' }); }
 function openLb(c){ $('lbq').textContent = c.querySelector('blockquote').textContent; $('lbn').textContent = '— ' + c.querySelector('figcaption span').textContent; $('lb').hidden = false; track('review_zoom'); $('lbx').focus(); }
 function closeLb(){ $('lb').hidden = true; }
-/* المعاينة المصغّرة الثابتة: تبقى أمام العميل أثناء اختيار الإطار والمقاس */
-(function(){
- const hd = document.querySelector('.hd'), dock = $('dock'), vb = $('vizBox'), buy = document.querySelector('.buy'), pb = $('payBtn');
- let raf = 0, H = 0;
- const meas = () => { H = hd.offsetHeight; document.documentElement.style.setProperty('--hdh', H + 'px'); };
- const upd = () => { raf = 0; if(!$('sheet').hidden){ dock.classList.remove('on'); return; }
-  const v = vb.getBoundingClientRect(), p = pb.getBoundingClientRect();
-  const r = $('res').getBoundingClientRect(), ae = document.activeElement, typing = ae && ae.tagName === 'INPUT' && ae.type !== 'radio' && ae.type !== 'range';
-  const on = v.bottom < H + 40 && p.top > H + 110 && !typing && !(r.top < innerHeight - 40 && r.bottom > H + 90); dock.classList.toggle('on', on); dock.setAttribute('aria-hidden', on ? 'false' : 'true'); $('dockBtn').tabIndex = on ? 0 : -1; };
- const q = () => { if(!raf) raf = requestAnimationFrame(upd); };
- meas(); document.addEventListener('focusin', q); document.addEventListener('focusout', q); addEventListener('resize', () => { meas(); q(); }, { passive:true }); addEventListener('scroll', q, { passive:true });
- $('dockBtn').addEventListener('click', () => { const y = vb.getBoundingClientRect().top + scrollY - H - 64; scrollTo({ top: Math.max(0, y), behavior: RM ? 'auto' : 'smooth' }); });
-})();
 function openSheet(){
  const c = calc(st.framed); if(!c.ok) return;
  track('begin_checkout');
