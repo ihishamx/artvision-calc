@@ -26,7 +26,7 @@
 {"@type":"Question","name":"كيف أرى الطقم على جداري قبل الطلب؟","acceptedAnswer":{"@type":"Answer","text":"في بطاقة الطلب ارفع صورة مكانك، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط."}},
 {"@type":"Question","name":"كم تستغرق مدة الوصول؟","acceptedAnswer":{"@type":"Answer","text":"من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة."}},
 {"@type":"Question","name":"هل أستطيع اختيار مقاس خاص؟","acceptedAnswer":{"@type":"Answer","text":"نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا."}},
-{"@type":"Question","name":"ماذا لو وصل الطقم متضررًا؟","acceptedAnswer":{"@type":"Answer","text":"إذا تضررت لوحة بسبب الشحن نعوّضك بلوحة جديدة مجانًا، وإذا كان هناك خطأ منّا نعوّضك مجانًا أيضًا."}},
+{"@type":"Question","name":"ماذا لو تضررت لوحة أثناء الشحن؟","acceptedAnswer":{"@type":"Answer","text":"نستبدلها بلوحة جديدة دون أي تكلفة عليك، وكذلك إذا ظهر فيها خطأ في التنفيذ من جهتنا."}},
 {"@type":"Question","name":"ماذا يغطي الضمان؟","acceptedAnswer":{"@type":"Answer","text":"ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام."}}]}]}</script>
 <style>
 /* الخط: ثمانية سانس حصرًا (ملفات OTF من Art دون تعديل). ثلاثة أوزان فقط لتخفيف التحميل. */
@@ -199,11 +199,6 @@ input:focus-visible+.opt{outline:3px solid var(--wine);outline-offset:2px}
 .sw .opt{display:flex;align-items:center;justify-content:center;gap:6px;padding:7px 6px;font-size:13px;font-weight:700;border-radius:999px}
 .sw i{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,.22);flex:none;box-shadow:inset 0 1px 2px rgba(255,255,255,.5)}
 .sw input:checked+.opt i{box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--wine)}
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0}
-.vs .tile{align-items:flex-start;text-align:start;padding:10px 12px;border-radius:18px}
-.vs .tile .ico{font-size:22px}
-.vs .tile b{font-size:15px}
-.vs .tile span{font-size:12.5px}
 .custom{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .custom label{font-size:13px;color:var(--muted);text-align:center}
 .custom input{display:block;width:100%;margin-top:3px;height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.62);padding:0 14px;font-size:19px;font-weight:700;text-align:center;direction:ltr;box-shadow:inset 0 2px 5px rgba(60,20,30,.08);transition:box-shadow .35s,border-color .35s}
@@ -225,7 +220,7 @@ input:focus-visible+.opt{outline:3px solid var(--wine);outline-offset:2px}
 
 /* ===== باقي الأقسام ===== */
 .trust{margin:0;padding:14px 4px 10px}.tr4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
-.comp{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 8px 0;padding:8px 12px;border-radius:16px;background:rgba(228,203,186,.35);font-size:13px;font-weight:700;color:var(--deep);text-align:center;line-height:1.6}.comp .ico{color:var(--ok);font-size:17px;flex:none}
+.comp{display:flex;align-items:center;gap:12px;margin:14px 4px 0;padding:12px 14px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.7),rgba(228,203,186,.45));border:1px solid rgba(255,255,255,.9);text-align:start;line-height:1.6}.comp .ci{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--wine);color:var(--sand);font-size:19px;box-shadow:0 6px 14px -6px rgba(132,31,72,.55)}.comp b{display:block;font-size:15px;font-weight:900;color:var(--deep)}.comp span:not(.ci){display:block;font-size:13px;color:var(--muted)}
 .satt .rc2{display:block;font-size:13px;color:rgba(251,241,234,.85);font-weight:700}
 .trust li{text-align:center;font-size:12px;font-weight:700;line-height:1.45;padding:4px 3px;border-radius:16px}
 .ci{width:46px;height:46px;border-radius:50%;margin:0 auto 7px;display:grid;place-items:center;background:rgba(255,255,255,.75);border:1px solid #fff;color:var(--wine);font-size:21px;box-shadow:0 6px 14px -8px rgba(60,20,30,.45);animation:flo 4.2s ease-in-out infinite}
@@ -367,6 +362,18 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .ff .hint{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--muted)}
 #cuAddr{letter-spacing:.06em;text-align:left;text-transform:uppercase}
 #cuAddr::placeholder{letter-spacing:0;text-align:right}
+.dock{position:fixed;top:var(--hdh,120px);inset-inline:0;z-index:35;padding:6px 12px 0;pointer-events:none;opacity:0;transform:translateY(-14px);transition:opacity .35s var(--ease),transform .45s var(--ease)}
+.dock.on{opacity:1;transform:none;pointer-events:auto}
+.dk{display:flex;align-items:center;gap:10px;width:100%;max-width:536px;margin-inline:auto;padding:6px 8px 6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.9);background:rgba(255,248,242,.82);-webkit-backdrop-filter:blur(18px) saturate(130%);backdrop-filter:blur(18px) saturate(130%);box-shadow:0 14px 30px -16px rgba(60,20,30,.55);font:inherit;color:var(--text);text-align:start;cursor:pointer}
+.dkv{flex:none;width:132px;height:74px;border-radius:14px;overflow:hidden;background:#e9e2da;border:1px solid rgba(255,255,255,.9)}
+.dkv svg{display:block;width:100%;height:100%}
+.dock.pop .dkv{animation:vpop .6s var(--ease)}
+.dkt{flex:1;min-width:0;line-height:1.35}
+.dkt b{display:block;font-size:17px;white-space:nowrap;font-weight:900;color:var(--deep)}
+.dkt small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dkp{flex:none;font-size:18px;font-weight:900;color:var(--wine)}
+.dku{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(132,31,72,.1);color:var(--wine);font-size:15px}
+@media(prefers-reduced-motion:reduce){.dock{transition:none}}
 </style>
 </head>
 <body>
@@ -427,6 +434,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  </div>
 </section>
 
+<div class="dock" id="dock" aria-hidden="true"><button type="button" class="dk" id="dockBtn" tabindex="-1" aria-label="العودة إلى المعاينة"><span class="dkv"><svg id="dockSvg" preserveAspectRatio="xMidYMid slice"></svg></span><span class="dkt"><b id="dkSz">—</b><small id="dkFr">—</small></span><span class="dkp" id="dkPr">—</span><span class="dku"><svg class="ico"><use href="#i-eye"/></svg></span></button></div>
 <section class="wrap" id="buy">
  <div class="buy glass rise">
   <div class="ph">
@@ -451,13 +459,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
    <p id="ctlNote">اسحب بإصبع واحد للتحريك، وبإصبعين للتكبير والتصغير. المعاينة تقريبية وتتم على جهازك فقط، ولا نحفظ صورك. بعد الدفع ترسل لنا تصميمك عبر واتساب برقم طلبك. برفع تصميمك تؤكد أنه ملكك أو لديك حق طباعته.</p>
   </div>
   <p class="err" id="upErr" role="alert"></p>
-  <div class="lbl">١ · اختر الإطار <small>إطار مجوف بستة ألوان</small></div>
+  <div class="lbl">١ · اختر الإطار <small>السعر للطقم كاملًا</small></div>
   <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
   <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
-  <div class="vs">
-   <div class="tile tc"><svg class="ico"><use href="#i-frames"/></svg><b>بإطار</b><span>كل لوحة داخل إطار مجوف بلون تختاره، فتبدو الثلاث متناسقة ومكتملة.</span></div>
-   <div class="tile tc"><svg class="ico"><use href="#i-canvas"/></svg><b>بدون إطار</b><span>كانفس مشدود بحواف نظيفة لمظهر أخف وأبسط.</span></div>
-  </div>
   <div class="lbl">٢ · اختر المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
   <div class="custom" id="custom2">
@@ -481,7 +485,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-shield"/></svg></span>ضمان<small>مدى الحياة</small></li>
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-clock"/></svg></span>التسليم<small>5–7 أيام عمل</small></li>
   <li class="tc"><span class="ci"><svg class="ico"><use href="#i-card"/></svg></span>دفع آمن<small>مدى · Apple Pay</small></li>
- </ul><p class="comp tc"><svg class="ico"><use href="#i-check"/></svg>إذا وصل الطقم متضررًا من الشحن، أو كان فيه خطأ منّا، نعوّضك مجانًا.</p></div>
+ </ul><div class="comp tc"><span class="ci"><svg class="ico"><use href="#i-shield"/></svg></span><div><b>وصول آمن مضمون</b><span>نستبدل أي لوحة تتلف أثناء الشحن أو يظهر فيها خطأ في التنفيذ، دون أي تكلفة عليك.</span></div></div></div>
 </section>
 
 <section class="band glass" id="proof">
@@ -572,7 +576,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-card"/></svg></span><span>ما طرق الدفع؟</span></summary><p id="faqPay">الدفع الإلكتروني الآمن عبر Tap Payments.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس فراسلنا عبر واتساب قبل الطلب.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-shield"/></svg></span><span>ماذا يغطي الضمان؟</span></summary><p>ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام.</p></details>
- <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>ماذا لو وصل الطقم متضررًا؟</span></summary><p>إذا تضررت لوحة بسبب الشحن نعوّضك بلوحة جديدة مجانًا، وإذا كان هناك خطأ منّا في المقاس أو التصميم أو الإطار أو الطباعة نعوّضك مجانًا أيضًا.</p></details>
+ <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>ماذا لو تضررت لوحة أثناء الشحن؟</span></summary><p>نستبدلها بلوحة جديدة دون أي تكلفة عليك، وكذلك إذا ظهر فيها خطأ في التنفيذ من جهتنا.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-clock"/></svg></span><span>هل أغيّر المقاس بعد الدفع؟</span></summary><p>المقاس الذي تختاره هو ما ننتجه، لذا تأكد منه قبل الدفع. وللمساعدة في الاختيار راسلنا قبل الطلب.</p></details>
 </section>
 
@@ -740,6 +744,10 @@ function drawViz(cur){
   }
  }
  svg.innerHTML = o;
+ { const m = Math.max(ph * .2, 8), dw = 3 * pw + 2 * gp + 2 * m, dh = ph + 2 * m, ds = $('dockSvg');
+   const ar = 132 / 74, w2 = Math.max(dw, dh * ar), h2 = w2 / ar, cx = g.x0 + (3 * pw + 2 * gp) / 2, cy = g.y0 + ph / 2;
+   ds.setAttribute('viewBox', `${(cx - w2 / 2).toFixed(1)} ${(cy - h2 / 2).toFixed(1)} ${w2.toFixed(1)} ${h2.toFixed(1)}`); ds.innerHTML = o.replace('id="vs"', 'id="vs2"').replace(/url\(#vs\)/g, 'url(#vs2)');
+   const dk = $('dock'); dk.classList.remove('pop'); void dk.offsetWidth; dk.classList.add('pop'); }
  $('vtag').textContent = place ? 'معاينة تقريبية' : 'تصور';
  $('vcap').innerHTML = `3 لوحات · كل لوحة <bdi dir="ltr">${L}×${W}</bdi> سم · ` + (fr ? col.n : 'بدون إطار') + (g.shrunk ? ' · الرسم مصغّر لإظهار الطقم كاملًا' : '');
  const vb = $('vizBox'); vb.classList.remove('pop'); void vb.offsetWidth; vb.classList.add('pop');
@@ -748,7 +756,7 @@ function drawViz(cur){
 const mini = (l, w) => { const h = 26, pw = h * w / l, g = 2, W = 3 * pw + 2 * g; let r = ''; for(let i = 0; i < 3; i++) r += `<rect x="${(i*(pw+g)).toFixed(1)}" y="0" width="${pw.toFixed(1)}" height="${h}" rx="1.5" fill="currentColor" opacity="${.55 + i*.15}"/>`; return `<svg class="fx" viewBox="0 0 ${W.toFixed(1)} ${h}" width="${W.toFixed(0)}" height="${h}" style="color:#841f48" aria-hidden="true">${r}</svg>`; };
 function buildUI(){
  $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt">${mini(l,w)}<bdi dir="ltr">${l}×${w}</bdi><small>للوحة الواحدة</small></span></label>`).join('');
- $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt">بإطار<b id="pF">—</b></span></label><label><input type="radio" name="fr" value="u"><span class="opt">بدون إطار<b id="pU">—</b></span></label>`;
+ $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt">بإطار<b id="pF">—</b><small>إطار مجوف · 6 ألوان</small></span></label><label><input type="radio" name="fr" value="u"><span class="opt">بدون إطار<b id="pU">—</b><small>كانفس مشدود</small></span></label>`;
  $('sw').innerHTML = COLORS.map(c => `<label><input type="radio" name="cl" value="${c.k}" ${c.k==='gold'?'checked':''}><span class="opt"><i style="background:${c.hex}"></i>${c.n.replace(' مجوف','')}</span></label>`).join('');
  $('payM').innerHTML = CFG.PAY_METHODS.map(m => `<li>${m}</li>`).join('');
  $('faqPay').textContent = 'الدفع إلكتروني آمن عبر Tap Payments: ' + CFG.PAY_METHODS.join('، ') + '.';
@@ -772,6 +780,7 @@ function render(force){
   tot.textContent = '—'; btn.disabled = true; btn.textContent = st.size === 'custom' ? 'أدخل مقاسك أولًا' : 'اختر المقاس أولًا';
   $('barPr').textContent = '—'; $('barBtn').textContent = 'اختر مقاسك'; lastTot = null;
  }
+ { const col = COLORS.find(c => c.k === st.color); $('dkSz').innerHTML = cur.ok ? `<bdi dir="ltr">${cur.l}×${cur.w}</bdi> سم` : 'أدخل مقاسك'; $('dkFr').textContent = 'كل لوحة · ' + (st.framed ? 'إطار ' + col.n.replace(' مجوف', '') : 'بدون إطار'); $('dkPr').textContent = cur.ok ? money(cur.set) : '—'; }
  const key = [cur.ok ? cur.l + 'x' + cur.w : 'x', st.framed, st.color, st.mode, st.art, st.design.length, !!st.place].join('|');
  if(force || key !== lastKey){ lastKey = key; drawViz(cur); }
  controls();
@@ -892,6 +901,18 @@ function bind(){
 function goBuy(){ $('buy').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block:'start' }); }
 function openLb(c){ $('lbq').textContent = c.querySelector('blockquote').textContent; $('lbn').textContent = '— ' + c.querySelector('figcaption span').textContent; $('lb').hidden = false; track('review_zoom'); $('lbx').focus(); }
 function closeLb(){ $('lb').hidden = true; }
+/* المعاينة المصغّرة الثابتة: تبقى أمام العميل أثناء اختيار الإطار والمقاس */
+(function(){
+ const hd = document.querySelector('.hd'), dock = $('dock'), vb = $('vizBox'), buy = document.querySelector('.buy'), pb = $('payBtn');
+ let raf = 0, H = 0;
+ const meas = () => { H = hd.offsetHeight; document.documentElement.style.setProperty('--hdh', H + 'px'); };
+ const upd = () => { raf = 0; if(!$('sheet').hidden){ dock.classList.remove('on'); return; }
+  const v = vb.getBoundingClientRect(), p = pb.getBoundingClientRect();
+  const on = v.bottom < H + 40 && p.top > H + 110; dock.classList.toggle('on', on); dock.setAttribute('aria-hidden', on ? 'false' : 'true'); $('dockBtn').tabIndex = on ? 0 : -1; };
+ const q = () => { if(!raf) raf = requestAnimationFrame(upd); };
+ meas(); addEventListener('resize', () => { meas(); q(); }, { passive:true }); addEventListener('scroll', q, { passive:true });
+ $('dockBtn').addEventListener('click', () => { const y = vb.getBoundingClientRect().top + scrollY - H - 64; scrollTo({ top: Math.max(0, y), behavior: RM ? 'auto' : 'smooth' }); });
+})();
 function openSheet(){
  const c = calc(st.framed); if(!c.ok) return;
  track('begin_checkout');
