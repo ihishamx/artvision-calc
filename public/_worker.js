@@ -67,7 +67,7 @@ const MAX_QTY = 20;       // كمية السطر الواحد (أكبر من ذ�
 const SALLA_API_BASE = 'https://api.salla.dev/admin/v2';
 
 // صفحات الهبوط المخدومة: المسار ← ملف HTML. تُستخدم أيضًا كقائمة بيضاء لمسار العودة من Tap.
-const PAGES = Object.freeze({ '/': 'index.html', '/bohemian': 'bohemian.html', '/terms': 'terms.html', '/refund': 'refund.html', '/privacy': 'privacy.html' });
+const PAGES = Object.freeze({ '/': 'index.html', '/bohemian': 'bohemian.html', '/abstract/gold-leaf': 'abstract/gold-leaf.html', '/terms': 'terms.html', '/refund': 'refund.html', '/privacy': 'privacy.html' });
 
 // ===== Tap (tap.mjs) =====
 // الوحيد الذي يكلّم Tap Payments. المفتاح السري من متغير بيئة فقط (TAP_SECRET_KEY)، ولا يظهر في الواجهة ولا في السجلات.
@@ -126,7 +126,7 @@ function buildChargePayload({ lines, customer, orderRef, baseUrl, returnPath = '
     },
     source: { id: 'src_all' },
     post: { url: `${base}/api/tap/webhook` },
-    redirect: { url: `${base}${returnPath === '/' ? '' : returnPath}/?paid=1` },
+    redirect: { url: `${base}${returnPath === '/' ? '/' : returnPath}?paid=1` },
   };
 }
 
