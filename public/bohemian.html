@@ -391,6 +391,8 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .cust2 label{flex:none}
 @media(max-width:374px){.cust2{flex-wrap:wrap;row-gap:6px}.cust2 .ct{flex-basis:100%;display:flex;align-items:baseline;gap:6px}.cust2 label{flex:1}.cust2 input{width:100%}
 .fr .opt{flex-direction:column;align-items:center;text-align:center;gap:0;padding:8px 6px}.res .tot{font-size:31px}.res .t{font-size:13px}.up small{display:none}.sizes .opt{font-size:14px}}
+footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin-bottom:6px}footer .fl a{color:var(--wine);font-weight:700;text-decoration:none;font-size:13px}
+.agree{font-size:12px;color:var(--muted);text-align:center;margin:8px 4px 8px;line-height:1.7}.agree a{color:var(--wine);font-weight:700}
 </style>
 </head>
 <body>
@@ -607,7 +609,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
  </div>
 </section>
 </main>
-<footer>آرت فيجن · لوحات جدارية سعودية</footer>
+<footer><nav class="fl" aria-label="السياسات"><a href="/terms">الشروط والأحكام</a><a href="/refund">الاستبدال والاسترجاع</a><a href="/privacy">سياسة الخصوصية</a></nav>آرت فيجن · لوحات جدارية سعودية</footer>
 
 <div class="bar" id="bar"><div><span class="pr"><small>سعر الطقم</small><b id="barPr">—</b></span><button class="btn p" id="barBtn" type="button">اختر مقاسك</button></div></div>
 
@@ -624,6 +626,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <div class="ff"><label for="cuAddr">العنوان الوطني المختصر</label><input id="cuAddr" dir="ltr" maxlength="9" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="مثال: RRRD2929" aria-describedby="cuAddrH"><small class="hint" id="cuAddrH">4 أحرف إنجليزية ثم 4 أرقام، وتجده في تطبيق «سبل» أو «توكلنا»</small></div>
   <div class="ff"><label for="cuNotes">ملاحظات (اختياري)</label><input id="cuNotes"></div>
   <p class="err" id="cuErr" role="alert"></p>
+  <p class="agree">بالضغط على «ادفع الآن» توافق على <a href="/terms" target="_blank" rel="noopener">الشروط والأحكام</a> و<a href="/refund" target="_blank" rel="noopener">سياسة الاستبدال والاسترجاع</a>.</p>
   <button class="btn p" id="goPay" type="button">ادفع الآن</button>
   <div class="status" id="coStatus" aria-live="polite"></div>
   <div class="secure"><svg class="ico"><use href="#i-lock"/></svg>تنتقل لصفحة الدفع الآمنة. لا نحفظ بيانات البطاقة.</div>
