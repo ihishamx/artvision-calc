@@ -25,7 +25,7 @@
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"كيف أرى الطقم على جداري قبل الطلب؟","acceptedAnswer":{"@type":"Answer","text":"في بطاقة الطلب ارفع صورة مكانك، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط."}},
 {"@type":"Question","name":"كم تستغرق مدة الوصول؟","acceptedAnswer":{"@type":"Answer","text":"من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة."}},
-{"@type":"Question","name":"هل أستطيع اختيار مقاس خاص؟","acceptedAnswer":{"@type":"Answer","text":"نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا."}},
+{"@type":"Question","name":"هل أستطيع اختيار مقاس خاص؟","acceptedAnswer":{"@type":"Answer","text":"نعم، اكتب الطول والعرض في خانة «مقاسك الخاص» ويظهر لك الطقم على الجدار والسعر فورًا."}},
 {"@type":"Question","name":"ماذا لو تضررت لوحة أثناء الشحن؟","acceptedAnswer":{"@type":"Answer","text":"نستبدلها بلوحة جديدة دون أي تكلفة عليك، وكذلك إذا ظهر فيها خطأ في التنفيذ من جهتنا."}},
 {"@type":"Question","name":"ماذا يغطي الضمان؟","acceptedAnswer":{"@type":"Answer","text":"ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام."}}]}]}</script>
 <style>
@@ -366,15 +366,16 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .sizes .opt{padding:6px 2px 7px;font-size:15px;border-radius:14px;line-height:1.3}
 .sizes .opt .fx{display:block;margin:0 auto 2px;height:14px;width:auto}
-.cust2{display:flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:14px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.45);transition:border-color .3s,box-shadow .3s,background .3s}
+.cust2{display:flex;align-items:flex-end;gap:8px;margin-top:8px;padding:8px 12px 10px;border-radius:14px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.45);transition:border-color .3s,box-shadow .3s,background .3s}
 .cust2.on{border-color:var(--wine);background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(228,203,186,.6));box-shadow:0 0 0 3px rgba(132,31,72,.14)}
-.cust2 .ct{flex:1;font-size:13px;font-weight:700;color:var(--deep);white-space:nowrap}
-.cust2 label{position:relative;display:block}
-.cust2 label span{position:absolute;top:-8px;inset-inline:0;text-align:center;font-size:9.5px;color:var(--muted);line-height:1}
-.cust2 input{width:62px;height:36px;border-radius:10px;border:1px solid rgba(132,31,72,.18);background:rgba(255,255,255,.85);text-align:center;direction:ltr;font:inherit;font-size:16px;font-weight:700;color:var(--deep);padding:0 4px}
-.cust2 input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px rgba(132,31,72,.14)}
-.cust2 b{color:var(--muted);font-weight:400}
-.cust2 .cu{font-size:12.5px;color:var(--muted)}
+.cust2 .ct{flex:1;align-self:center;font-size:14px;font-weight:900;color:var(--deep);line-height:1.3;white-space:nowrap}
+.cust2 .ct small{display:block;font-size:11.5px;font-weight:400;color:var(--muted)}
+.cust2 label{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:text}
+.cust2 label span{font-size:12px;font-weight:700;color:var(--deep);line-height:1.2}
+.cust2 input{width:78px;height:40px;border-radius:11px;border:1px solid rgba(132,31,72,.22);background:#fff;text-align:center;direction:ltr;font:inherit;font-size:17px;font-weight:700;color:var(--deep);padding:0 6px;box-shadow:inset 0 1px 3px rgba(60,20,30,.08)}
+.cust2 input::placeholder{color:#b8a8ae;font-size:13px;font-weight:400}
+.cust2 input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px rgba(132,31,72,.16)}
+.cust2 b{color:var(--muted);font-weight:400;font-size:15px;height:40px;display:flex;align-items:center}
 .fr .opt{display:flex;align-items:center;justify-content:space-between;gap:6px;text-align:start;padding:8px 12px;font-size:14.5px;border-radius:14px}
 .fr .opt .on1 small{font-size:11px}
 .fr .opt b{font-size:17px!important;margin:0!important;white-space:nowrap}
@@ -387,6 +388,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .up b{font-size:12.5px}
 .up small{font-size:10.5px}
 .lbl{margin:12px 2px 6px;font-size:14px}
+.cust2 label{flex:none}
+@media(max-width:374px){.cust2{flex-wrap:wrap;row-gap:6px}.cust2 .ct{flex-basis:100%;display:flex;align-items:baseline;gap:6px}.cust2 label{flex:1}.cust2 input{width:100%}
+.fr .opt{flex-direction:column;align-items:center;text-align:center;gap:0;padding:8px 6px}.res .tot{font-size:31px}.res .t{font-size:13px}.up small{display:none}.sizes .opt{font-size:14px}}
 </style>
 </head>
 <body>
@@ -473,9 +477,9 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <p class="err" id="upErr" role="alert"></p>
   <div class="lbl">١ · المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
-  <div class="cust2" id="custom2"><span class="ct">أو مقاسك الخاص</span>
-   <label><span>الطول</span><input id="inL" inputmode="decimal" autocomplete="off" placeholder="—" aria-label="الطول بالسنتيمتر"></label><b aria-hidden="true">×</b>
-   <label><span>العرض</span><input id="inW" inputmode="decimal" autocomplete="off" placeholder="—" aria-label="العرض بالسنتيمتر"></label><span class="cu">سم</span>
+  <div class="cust2" id="custom2"><span class="ct">مقاسك الخاص<small>بالسنتيمتر</small></span>
+   <label for="inL"><span>الطول</span><input id="inL" inputmode="decimal" autocomplete="off" enterkeyhint="next" placeholder="سم" aria-label="الطول بالسنتيمتر"></label><b aria-hidden="true">×</b>
+   <label for="inW"><span>العرض</span><input id="inW" inputmode="decimal" autocomplete="off" enterkeyhint="done" placeholder="سم" aria-label="العرض بالسنتيمتر"></label>
   </div>
   <div class="lbl">٢ · الإطار <small>السعر للطقم كاملًا</small></div>
   <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
@@ -586,7 +590,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
    </ol></div></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>كم تستغرق مدة الوصول؟</span></summary><p>من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-card"/></svg></span><span>ما طرق الدفع؟</span></summary><p id="faqPay">الدفع الإلكتروني الآمن عبر Tap Payments.</p></details>
- <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، أدخل الطول والعرض في الحاسبة ويظهر لك التصور والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس فراسلنا عبر واتساب قبل الطلب.</p></details>
+ <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، اكتب الطول والعرض في خانة «مقاسك الخاص» ويظهر لك الطقم على الجدار والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس فراسلنا عبر واتساب قبل الطلب.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-shield"/></svg></span><span>ماذا يغطي الضمان؟</span></summary><p>ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>ماذا لو تضررت لوحة أثناء الشحن؟</span></summary><p>نستبدلها بلوحة جديدة دون أي تكلفة عليك، وكذلك إذا ظهر فيها خطأ في التنفيذ من جهتنا.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-clock"/></svg></span><span>هل أغيّر المقاس بعد الدفع؟</span></summary><p>المقاس الذي تختاره هو ما ننتجه، لذا تأكد منه قبل الدفع. وللمساعدة في الاختيار راسلنا قبل الطلب.</p></details>
@@ -884,6 +888,8 @@ function bind(){
  const cust = () => { st.size = 'custom'; $('custom2').classList.add('on'); document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
  $('inL').addEventListener('input', (e) => { st.l = e.target.value; cust(); });
  $('inW').addEventListener('input', (e) => { st.w = e.target.value; cust(); });
+ $('inL').addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); $('inW').focus(); } });
+ $('inW').addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); e.target.blur(); } });
  $('fD').addEventListener('change', onDesign); $('fP').addEventListener('change', onPlace);
  $('rmD').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); st.design.forEach(d => URL.revokeObjectURL(d.url)); st.design = []; resetUp('upD','i-up','ارفع تصميمك','صورة واحدة أو ثلاث صور'); render(true); });
  $('rmP').addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); if(st.place) URL.revokeObjectURL(st.place.url); st.place = null; st.mode = 'room'; resetUp('upP','i-home','ارفع صورة مكانك','صوّر الجدار من الأمام'); render(true); });
