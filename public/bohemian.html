@@ -363,30 +363,30 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .ff .hint{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--muted)}
 #cuAddr{letter-spacing:.06em;text-align:left;text-transform:uppercase}
 #cuAddr::placeholder{letter-spacing:0;text-align:right}
-.sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.sizes .opt{padding:7px 2px 8px;font-size:14.5px;border-radius:16px;line-height:1.3}
-.sizes .opt .fx{display:block;margin:0 auto 3px;height:16px;width:auto}
-.sizes .opt .fx2{display:block;margin:0 auto 3px;font-size:16px;color:var(--wine)}
-.sizes label:last-child .opt{font-size:12.5px}
-.custom[hidden]{display:none}
-.fr .opt{display:flex;align-items:center;justify-content:space-between;gap:6px;text-align:start;padding:9px 12px;font-size:15px}
-.fr .opt .on1 small{font-size:11.5px}
-.fr .opt b{font-size:18px!important;margin:0!important;white-space:nowrap}
-.swl{margin:10px 2px 6px;font-size:13px;color:var(--muted)}
-.swl b{color:var(--deep)}
-.swl[hidden]{display:none}
-.sw{display:flex!important;justify-content:space-between;gap:6px;margin-top:0!important}
-.sw label{flex:1;display:flex;justify-content:center}
-.sw .opt{width:40px;height:40px;padding:0!important;border-radius:50%!important;display:grid!important;place-items:center}
-.sw i{width:26px!important;height:26px!important}
-.sw .cn{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.sw[hidden]{display:none!important}
+.sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.sizes .opt{padding:6px 2px 7px;font-size:15px;border-radius:14px;line-height:1.3}
+.sizes .opt .fx{display:block;margin:0 auto 2px;height:14px;width:auto}
+.cust2{display:flex;align-items:center;gap:6px;margin-top:8px;padding:6px 10px;border-radius:14px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.45);transition:border-color .3s,box-shadow .3s,background .3s}
+.cust2.on{border-color:var(--wine);background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(228,203,186,.6));box-shadow:0 0 0 3px rgba(132,31,72,.14)}
+.cust2 .ct{flex:1;font-size:13px;font-weight:700;color:var(--deep);white-space:nowrap}
+.cust2 label{position:relative;display:block}
+.cust2 label span{position:absolute;top:-8px;inset-inline:0;text-align:center;font-size:9.5px;color:var(--muted);line-height:1}
+.cust2 input{width:62px;height:36px;border-radius:10px;border:1px solid rgba(132,31,72,.18);background:rgba(255,255,255,.85);text-align:center;direction:ltr;font:inherit;font-size:16px;font-weight:700;color:var(--deep);padding:0 4px}
+.cust2 input:focus{outline:none;border-color:var(--wine);box-shadow:0 0 0 3px rgba(132,31,72,.14)}
+.cust2 b{color:var(--muted);font-weight:400}
+.cust2 .cu{font-size:12.5px;color:var(--muted)}
+.fr .opt{display:flex;align-items:center;justify-content:space-between;gap:6px;text-align:start;padding:8px 12px;font-size:14.5px;border-radius:14px}
+.fr .opt .on1 small{font-size:11px}
+.fr .opt b{font-size:17px!important;margin:0!important;white-space:nowrap}
+.sw{grid-template-columns:repeat(3,1fr)!important;gap:6px!important;margin-top:8px!important}
+.sw .opt{padding:5px 4px!important;font-size:12.5px!important;gap:6px!important}
+.sw i{width:15px!important;height:15px!important}
 .ups{gap:6px;margin-top:8px}
-.up{min-height:48px;padding:6px 8px;gap:7px;border-radius:16px}
-.up .ui{width:30px;height:30px;border-radius:10px;font-size:16px}
+.up{min-height:46px;padding:5px 8px;gap:7px;border-radius:14px}
+.up .ui{width:28px;height:28px;border-radius:9px;font-size:15px}
 .up b{font-size:12.5px}
 .up small{font-size:10.5px}
-.lbl{margin:14px 2px 7px}
+.lbl{margin:12px 2px 6px;font-size:14px}
 </style>
 </head>
 <body>
@@ -473,13 +473,12 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
   <p class="err" id="upErr" role="alert"></p>
   <div class="lbl">١ · المقاس <small>للوحة الواحدة بالسنتيمتر</small></div>
   <div class="sizes" id="sizes" role="radiogroup" aria-label="مقاس اللوحة"></div>
-  <div class="custom" id="custom2" hidden>
-   <label>الطول<input id="inL" inputmode="decimal" autocomplete="off" placeholder="سم" aria-label="الطول بالسنتيمتر"></label>
-   <label>العرض<input id="inW" inputmode="decimal" autocomplete="off" placeholder="سم" aria-label="العرض بالسنتيمتر"></label>
+  <div class="cust2" id="custom2"><span class="ct">أو مقاسك الخاص</span>
+   <label><span>الطول</span><input id="inL" inputmode="decimal" autocomplete="off" placeholder="—" aria-label="الطول بالسنتيمتر"></label><b aria-hidden="true">×</b>
+   <label><span>العرض</span><input id="inW" inputmode="decimal" autocomplete="off" placeholder="—" aria-label="العرض بالسنتيمتر"></label><span class="cu">سم</span>
   </div>
   <div class="lbl">٢ · الإطار <small>السعر للطقم كاملًا</small></div>
   <div class="fr" id="fr" role="radiogroup" aria-label="الإطار"></div>
-  <div class="swl" id="swl">لون الإطار: <b id="swName">ذهبي</b></div>
   <div class="sw" id="sw" role="radiogroup" aria-label="لون الإطار"></div>
   <p class="err" id="err" role="alert"></p>
   <div class="res" id="res" aria-live="polite">
@@ -711,13 +710,15 @@ function geom(L, W, VW, VH){
  const totCm = 3 * W + 2 * GAP;
  if(st.mode === 'room' || !st.place){
   const U0 = VW / ROOM_CM, sofaY = SOFA_TOP * VH;
-  const s = Math.min(U0, (VW - 28) / totCm, (sofaY - 14) / (HANG + L));
-  const tot = totCm * s, x0 = (VW - tot) / 2, y0 = sofaY - HANG * s - L * s;
+  const WX0 = 46, WX1 = 364; /* حدود الجدار في صورة الغرفة: الطقم لا يتجاوزها مهما كان المقاس */
+  const s = Math.min(U0, (WX1 - WX0) / totCm, (sofaY - 14) / (HANG + L));
+  const tot = totCm * s, x0 = (WX0 + WX1) / 2 - tot / 2, y0 = sofaY - HANG * s - L * s;
   return { s, x0, y0, shrunk: s < U0 * 0.995 };
  }
  // مكان العميل: افتراضيًا يملأ الطقم 55% من عرض الصورة، ويغيّره العميل بالمنزلق
- const s = (VW * 0.55 / totCm) * st.k, tot = totCm * s, ph = L * s;
- return { s, x0: st.cx * VW - tot / 2, y0: st.cy * VH - ph / 2, shrunk:false };
+ const s = Math.min((VW * 0.55 / totCm) * st.k, VW * 0.96 / totCm, VH * 0.92 / L), tot = totCm * s, ph = L * s;
+ const cl = (v, a, b) => Math.min(Math.max(v, a), b);
+ return { s, x0: cl(st.cx * VW - tot / 2, 0, VW - tot), y0: cl(st.cy * VH - ph / 2, 0, VH - ph), shrunk:false };
 }
 let vbW = 400, vbH = 400;
 function drawViz(cur){
@@ -764,7 +765,7 @@ function drawViz(cur){
 /* أيقونة مصغّرة لنسبة الطقم في خانة المقاس */
 const mini = (l, w) => { const h = 26, pw = h * w / l, g = 2, W = 3 * pw + 2 * g; let r = ''; for(let i = 0; i < 3; i++) r += `<rect x="${(i*(pw+g)).toFixed(1)}" y="0" width="${pw.toFixed(1)}" height="${h}" rx="1.5" fill="currentColor" opacity="${.55 + i*.15}"/>`; return `<svg class="fx" viewBox="0 0 ${W.toFixed(1)} ${h}" width="${W.toFixed(0)}" height="${h}" style="color:#841f48" aria-hidden="true">${r}</svg>`; };
 function buildUI(){
- $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt">${mini(l,w)}<bdi dir="ltr">${l}×${w}</bdi></span></label>`).join('') + `<label><input type="radio" name="sz" value="custom" id="szC"><span class="opt"><svg class="ico fx2"><use href="#i-ruler"/></svg>مقاس خاص</span></label>`;
+ $('sizes').innerHTML = CFG.PRESETS.map(([l,w],i) => `<label><input type="radio" name="sz" value="${l}x${w}" ${i===0?'checked':''}><span class="opt">${mini(l,w)}<bdi dir="ltr">${l}×${w}</bdi></span></label>`).join('');
  $('fr').innerHTML = `<label><input type="radio" name="fr" value="f" checked><span class="opt"><span class="on1">بإطار<small>إطار مجوف</small></span><b id="pF">—</b></span></label><label><input type="radio" name="fr" value="u"><span class="opt"><span class="on1">بدون إطار<small>كانفس مشدود</small></span><b id="pU">—</b></span></label>`;
  $('sw').innerHTML = COLORS.map(c => `<label title="${c.n.replace(' مجوف','')}"><input type="radio" name="cl" value="${c.k}" ${c.k==='gold'?'checked':''} aria-label="${c.n.replace(' مجوف','')}"><span class="opt"><i style="background:${c.hex}"></i><span class="cn">${c.n.replace(' مجوف','')}</span></span></label>`).join('');
  $('payM').innerHTML = CFG.PAY_METHODS.map(m => `<li>${m}</li>`).join('');
@@ -774,7 +775,7 @@ function buildUI(){
 const sumText = () => { const c = calc(st.framed), col = COLORS.find(x => x.k === st.color); return `3 لوحات · كل لوحة ⁦${c.l}×${c.w}⁩ سم · ` + (st.framed ? 'بإطار ' + col.n : 'بدون إطار') + ' · ' + designName(); };
 let lastTot = null, lastKey = '';
 function render(force){
- $('sw').hidden = !st.framed; $('swl').hidden = !st.framed; { const col = COLORS.find(c => c.k === st.color); $('swName').textContent = col.n.replace(' مجوف', ''); }
+ $('sw').hidden = !st.framed;
  const u = calc(false), f = calc(true), cur = calc(st.framed);
  $('pU').textContent = u.ok ? money(u.set) : '—'; $('pF').textContent = f.ok ? money(f.set) : '—';
  $('err').textContent = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '';
@@ -875,12 +876,12 @@ function drawVizQuiet(){ const v = $('vizBox'); drawViz(calc(st.framed)); v.clas
 function bind(){
  document.addEventListener('change', (e) => {
   const t = e.target; if(!t.name) return;
-  if(t.name === 'sz'){ st.size = t.value; const c = t.value === 'custom'; $('custom2').hidden = !c; if(c){ st.l = $('inL').value; st.w = $('inW').value; setTimeout(() => $('inL').focus(), 60); } else { st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; } track('select_size'); }
+  if(t.name === 'sz'){ st.size = t.value; st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; $('custom2').classList.remove('on'); track('select_size'); }
   if(t.name === 'fr'){ st.framed = t.value === 'f'; track('select_frame'); }
   if(t.name === 'cl'){ st.color = t.value; }
   render();
  });
- const cust = () => { st.size = 'custom'; $('szC').checked = true; render(); };
+ const cust = () => { st.size = 'custom'; $('custom2').classList.add('on'); document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
  $('inL').addEventListener('input', (e) => { st.l = e.target.value; cust(); });
  $('inW').addEventListener('input', (e) => { st.w = e.target.value; cust(); });
  $('fD').addEventListener('change', onDesign); $('fP').addEventListener('change', onPlace);
