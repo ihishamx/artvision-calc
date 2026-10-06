@@ -21,7 +21,7 @@
 <link rel="preload" as="image" href="/images/bh-s1.webp" fetchpriority="high">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://artvisionksa.com/#org","name":"آرت فيجن","alternateName":"Art Vision","url":"https://artvisionksa.com/"},
-{"@type":"Product","@id":"https://go.artvisionksa.com/abstract/gold-leaf#product","name":"طقم تجريدي بلمسات ذهبية (3 لوحات)","description":"طقم من ثلاث لوحات كانفس قطن بأسلوب كولاج تجريدي، بألوان العنابي والبيج والكحلي ولمسات من الورق الذهبي، يُنفَّذ بالمقاس الذي يختاره العميل، بإطار مجوف بستة ألوان أو بدون إطار.","image":["https://go.artvisionksa.com/images/bh-og.jpg","https://go.artvisionksa.com//images/bh-s1.webp"],"brand":{"@id":"https://artvisionksa.com/#org"},"sku":"1181218623","material":"كانفس قطن","offers":{"@type":"AggregateOffer","priceCurrency":"SAR","lowPrice":"105","offerCount":"2","availability":"https://schema.org/InStock","url":"https://go.artvisionksa.com/abstract/gold-leaf","seller":{"@id":"https://artvisionksa.com/#org"},"shippingDetails":{"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"SAR"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"SA"},"deliveryTime":{"@type":"ShippingDeliveryTime","transitTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":7,"unitCode":"DAY"}}}}},
+{"@type":"Product","@id":"https://go.artvisionksa.com/abstract/gold-leaf#product","name":"طقم تجريدي بلمسات ذهبية (3 لوحات)","description":"طقم من ثلاث لوحات كانفس قطن بأسلوب كولاج تجريدي، بألوان العنابي والبيج والكحلي ولمسات من الورق الذهبي، يُنفَّذ بالمقاس الذي يختاره العميل، بإطار مجوف بستة ألوان أو بدون إطار.","image":["https://go.artvisionksa.com/images/bh-og.jpg","https://go.artvisionksa.com/images/bh-s1.webp"],"brand":{"@id":"https://artvisionksa.com/#org"},"sku":"1181218623","material":"كانفس قطن","offers":{"@type":"AggregateOffer","priceCurrency":"SAR","lowPrice":"348","highPrice":"915","offerCount":"6","availability":"https://schema.org/InStock","url":"https://go.artvisionksa.com/abstract/gold-leaf","seller":{"@id":"https://artvisionksa.com/#org"},"shippingDetails":{"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"SAR"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"SA"},"deliveryTime":{"@type":"ShippingDeliveryTime","transitTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":7,"unitCode":"DAY"}}}}},
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"كيف أرى الطقم على جداري قبل الطلب؟","acceptedAnswer":{"@type":"Answer","text":"في بطاقة الطلب ارفع صورة مكانك، ثم حرّك الطقم وغيّر حجمه حتى يستقر في مكانه. المعاينة تقريبية وتتم على جهازك فقط."}},
 {"@type":"Question","name":"كم تستغرق مدة الوصول؟","acceptedAnswer":{"@type":"Answer","text":"من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة."}},
@@ -136,7 +136,7 @@ main,footer{position:relative;z-index:1}
 .hdots i.on{width:20px;background:var(--sand)}
 .htx{position:absolute;z-index:2;inset-inline:0;bottom:70px;max-width:560px;margin-inline:auto;padding-inline:22px;color:#fff}
 .htx>*{opacity:0;transform:translateY(16px);animation:rise .9s var(--ease) forwards}
-.htx>:nth-child(2){animation-delay:.15s}.htx>:nth-child(3){animation-delay:.3s}.htx>:nth-child(4){animation-delay:.45s}
+.htx>:nth-child(2){animation-delay:.15s}.htx>:nth-child(3){animation-delay:.3s}.htx>:nth-child(4){animation-delay:.45s}.htx>:nth-child(5){animation-delay:.6s}
 @keyframes rise{to{opacity:1;transform:none}}
 .htx .k{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--sand);background:rgba(255,255,255,.12);border:1px solid rgba(243,214,190,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:2px 12px;border-radius:999px;margin-bottom:10px}
 .htx h1{font-size:clamp(27px,7.6vw,44px);font-weight:900;line-height:1.38;text-shadow:0 2px 18px rgba(20,4,12,.45)}
@@ -333,6 +333,19 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:18px 16px 4px
 .pres{align-items:center;padding:16px}
 .pres .box{text-align:center;border-radius:26px;margin:auto}
 .pres .ic{width:64px;height:64px;border-radius:50%;background:rgba(43,107,73,.12);color:var(--ok);display:grid;place-items:center;font-size:34px;margin:0 auto 10px}
+.pres .ic.wait{background:rgba(132,31,72,.1);color:var(--wine)}.pres .ic.no{background:rgba(163,49,74,.1);color:var(--no)}
+.pres .wa-l{margin:2px auto 12px}
+/* واتساب (P20): مسار استشاري ثانوي هادئ؛ لا يزاحم زر الطلب ولا يدخل حاسبة السعر */
+[hidden]{display:none!important}
+.wa-l{display:flex;width:max-content;max-width:100%;align-items:center;gap:8px;min-height:44px;padding:6px 16px;border-radius:999px;font-size:14.5px;font-weight:700;line-height:1.5;text-decoration:none;color:var(--wine);background:rgba(255,255,255,.6);border:1px solid var(--line);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:transform .3s var(--ease),box-shadow .3s var(--ease),background-color .3s}
+.wa-l .ico{font-size:18px}
+.wa-l u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.wa-l:hover,.wa-l:focus-visible{box-shadow:0 0 0 1px rgba(132,31,72,.18),0 10px 24px -14px rgba(132,31,72,.5)}
+.htx .wa-l{margin-top:12px;color:var(--sand);background:rgba(43,12,25,.38);border-color:rgba(228,203,186,.45)}
+.htx .wa-l:hover,.htx .wa-l:focus-visible{background:rgba(43,12,25,.55);box-shadow:0 0 0 1px rgba(228,203,186,.5),0 0 22px rgba(228,203,186,.25)}
+.wa-w{display:flex;justify-content:center;padding:12px 16px 8px;max-width:560px;margin-inline:auto;position:relative;z-index:1}
+.wa-in{display:inline-block;color:var(--wine);font-weight:700;text-decoration:underline;text-underline-offset:3px;border-radius:8px;padding:0 1px}
+.co-wa{margin-top:10px}
 .pbanner{background:#fbefdf;color:#8a4b12;text-align:center;font-size:14px;padding:8px 14px;position:relative;z-index:41}
 .tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:12px 8px;border-radius:18px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 #fff,0 8px 18px -12px rgba(60,20,30,.45)}
 .tile .ico{color:var(--wine);font-size:26px}
@@ -457,8 +470,9 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
  <div class="htx">
   <span class="k"><svg class="ico"><use href="#i-frames"/></svg>طقم 3 لوحات كانفس</span>
   <h1>ثلاث لوحات تجريدية بلمسات ذهبية تمنح جدارك حضورًا مميزًا</h1>
-  <p>اختر المقاس والإطار، وشاهد الطقم في غرفتنا أو على صورة مكانك قبل أن تطلب.</p>
+  <p>اختر المقاس والإطار، وشاهد الطقم في غرفة نموذجية أو على صورة مكانك قبل أن تطلب.</p>
   <a class="btn p" href="#buy" id="heroCta" data-go>اطلب الآن<span class="ar"><svg class="ico"><use href="#i-arrow"/></svg></span></a>
+  <a class="wa-l" id="waHero" data-wa="hero" href="https://wa.me/966503639342" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg><span>تحتاج مساعدة في المقاس؟ <u>راسلنا</u></span></a>
  </div>
 </section>
 
@@ -466,11 +480,10 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
  <div class="buy glass rise">
   <div class="ph">
    <div><h2>طقم تجريدي بلمسات ذهبية</h2>
-    <div class="rate"><span class="st" aria-label="تقييم 5 نجوم">★★★★★</span></div>
     <p>ثلاث لوحات بأسلوب كولاج، بألوان العنابي والبيج والكحلي ولمسات من الورق الذهبي، قطن 100% وقابل للرسم عليه.</p></div>
   </div>
   <div class="sbar">
-   <div class="seg2" role="group" aria-label="مكان المعاينة"><button type="button" id="mRoom" aria-pressed="true">غرفة العرض</button><button type="button" id="mPlace" aria-pressed="false">مكانك</button></div>
+   <div class="seg2" role="group" aria-label="مكان المعاينة"><button type="button" id="mRoom" aria-pressed="true">غرفة نموذجية</button><button type="button" id="mPlace" aria-pressed="false">مكانك</button></div>
    <div class="seg2" role="group" aria-label="إظهار اللوحة"><button type="button" id="aOn" aria-pressed="true">مع اللوحة</button><button type="button" id="aOff" aria-pressed="false">بدونها</button></div>
   </div>
   <div class="viz" id="vizBox"><svg id="viz" viewBox="0 0 400 400" role="img" aria-label="معاينة الطقم بالمقاس المختار"></svg>
@@ -505,6 +518,7 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
   <ul class="pay-m" id="payM"></ul>
  </div>
 </section>
+<div class="wa-w"><a class="wa-l" id="waBuy" data-wa="under_order" href="https://wa.me/966503639342" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg><span>تحتاج رأينا في المقاس أو الإطار؟ <u>راسلنا عبر واتساب</u></span></a></div>
 
 <section class="wrap" style="padding-top:4px" aria-label="مزايا الطلب">
  <div class="trust glass rise"><ul class="tr4">
@@ -527,7 +541,7 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
      <path d="M52 29l17 6.5v13.5c0 11-7 19-17 22.5-10-3.5-17-11.5-17-22.5V35.5z" fill="#841f48"/><path d="M43.5 50l6.5 6.5L61.5 44" fill="none" stroke="#fbeee0" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
    </div>
-   <div class="satt"><div class="satn"><span id="satNum">98</span><sup>%</sup></div><b>رضا العملاء</b><span class="st" aria-label="تقييم 5 نجوم">★★★★★</span></div>
+   <div class="satt"><div class="satn"><span id="satNum">98</span><sup>%</sup></div><b>رضا العملاء</b></div>
   </div>
  </div>
  <div class="rv" id="rv" tabindex="0" aria-label="تقييمات العملاء">
@@ -593,10 +607,10 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
    </ol></div></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>كم تستغرق مدة الوصول؟</span></summary><p>من 5 إلى 7 أيام عمل، والشحن مجاني لجميع مدن المملكة.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-card"/></svg></span><span>ما طرق الدفع؟</span></summary><p id="faqPay">الدفع الإلكتروني الآمن عبر Tap Payments.</p></details>
- <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، اكتب الطول والعرض في خانة «مقاسك الخاص» ويظهر لك الطقم على الجدار والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس فراسلنا عبر واتساب قبل الطلب.</p></details>
+ <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-ruler"/></svg></span><span>هل أستطيع اختيار مقاس خاص؟</span></summary><p>نعم، اكتب الطول والعرض في خانة «مقاسك الخاص» ويظهر لك الطقم على الجدار والسعر فورًا. وإن احتجت مساعدة في اختيار المقاس <a class="wa-in" data-wa="faq_size" href="https://wa.me/966503639342" target="_blank" rel="noopener">فراسلنا عبر واتساب</a> قبل الطلب.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-shield"/></svg></span><span>ماذا يغطي الضمان؟</span></summary><p>ضمان مدى الحياة على المنتج وجودة التنفيذ، ويستثني سوء الاستخدام.</p></details>
  <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-truck"/></svg></span><span>ماذا لو تضررت لوحة أثناء الشحن؟</span></summary><p>نستبدلها بلوحة جديدة دون أي تكلفة عليك، وكذلك إذا ظهر فيها خطأ في التنفيذ من جهتنا.</p></details>
- <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-clock"/></svg></span><span>هل أغيّر المقاس بعد الدفع؟</span></summary><p>المقاس الذي تختاره هو ما ننتجه، لذا تأكد منه قبل الدفع. وللمساعدة في الاختيار راسلنا قبل الطلب.</p></details>
+ <details class="glass"><summary><span class="qi"><svg class="ico"><use href="#i-clock"/></svg></span><span>هل أغيّر المقاس بعد الدفع؟</span></summary><p>المقاس الذي تختاره هو ما ننتجه، لذا تأكد منه قبل الدفع. وللمساعدة في الاختيار <a class="wa-in" data-wa="faq_change" href="https://wa.me/966503639342" target="_blank" rel="noopener">راسلنا عبر واتساب</a> قبل الطلب.</p></details>
 </section>
 
 <div class="cta-w" style="padding-top:2px"><a class="btn p" href="#buy" data-go><svg class="ico"><use href="#i-check"/></svg>أكمل طلبك الآن</a><small>اختر المقاس والإطار ثم ادفع بأمان</small></div>
@@ -630,18 +644,24 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margi
   <p class="agree">بالضغط على «ادفع الآن» توافق على <a href="/terms" target="_blank" rel="noopener">الشروط والأحكام</a> و<a href="/refund" target="_blank" rel="noopener">سياسة الاستبدال والاسترجاع</a>.</p>
   <button class="btn p" id="goPay" type="button">ادفع الآن</button>
   <div class="status" id="coStatus" aria-live="polite"></div>
+  <a class="btn g co-wa" id="coWa" data-wa="not_ready" href="https://wa.me/966503639342" target="_blank" rel="noopener" hidden><svg class="ico"><use href="#i-wa"/></svg>أكمل طلبك عبر واتساب</a>
   <div class="secure"><svg class="ico"><use href="#i-lock"/></svg>تنتقل لصفحة الدفع الآمنة. لا نحفظ بيانات البطاقة.</div>
  </div>
 </div>
 
-<div class="sheet pres" id="payRes" hidden role="dialog" aria-modal="true" aria-labelledby="prT"><div class="box"><div class="ic"><svg class="ico"><use href="#i-check"/></svg></div><h2 id="prT"></h2><p id="prP"></p><a class="btn g" id="prWa" href="#" hidden rel="noopener" style="margin-bottom:10px"><svg class="ico"><use href="#i-wa"/></svg>أرسل تصميمك عبر واتساب</a><button class="btn p" id="prOk" type="button">تم</button></div></div>
+<div class="sheet pres" id="payRes" hidden role="dialog" aria-modal="true" aria-labelledby="prT" aria-describedby="prP"><div class="box"><div class="ic" id="prIc"><svg class="ico"><use href="#i-check"/></svg></div><h2 id="prT"></h2><p id="prP"></p>
+ <a class="btn g" id="prWa" data-wa="post_pay_design" href="https://wa.me/966503639342" hidden target="_blank" rel="noopener" style="margin-bottom:10px"><svg class="ico"><use href="#i-wa"/></svg>أرسل تصميمك عبر واتساب</a>
+ <button class="btn p" id="prRe" type="button" hidden style="margin-bottom:10px">تحقق مرة أخرى</button>
+ <a class="wa-l" id="prHelp" data-wa="pay_help" href="https://wa.me/966503639342" hidden target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg><span><u>راسلنا عبر واتساب</u></span></a>
+ <button class="btn p" id="prOk" type="button">تم</button></div></div>
 
 <script>
-// مصدر واحد للتسعير والتحقق — إقرار Art الرسمي 3 أكتوبر 2026 (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
-// بإطار: (L×W×400/10000)+25 · بدون إطار: ((L+2)×(W+2)×200/10000)+25 · تقريب واحد لأقرب ريال
+// مصدر واحد للتسعير والتحقق — إقرار Art P18 (7 أكتوبر 2026) (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
+// بإطار: (L×W×400/10000)+25 · بدون إطار: زيادة داخلية لكل بُعد لا تظهر للعميل (UNFRAMED_PAD_MM)
+// التقريب: أي كسر يُرفع دائمًا إلى الريال الأعلى، مرة واحدة على سعر اللوحة الواحدة، بحساب صحيح بلا فاصلة عائمة
 const RATE = Object.freeze({ framed: 400, unframed: 200 });
 const EMBEDDED_SHIPPING = 25;
-const UNFRAMED_PAD_MM = 20; // +2 سم لكل بُعد في سعر بدون إطار فقط (يلغي +4 السابق)
+const UNFRAMED_PAD_MM = 40; // زيادة داخلية لكل بُعد في سعر بدون إطار فقط (P18)؛ لا تُعرض ولا تمسّ المقاس أو الحدود أو سعر الإطار
 const MIN_SIDE_CM = 20;
 const LIMITS = Object.freeze({
   framed:   { long: 290, short: 150 },
@@ -668,7 +688,10 @@ function evaluate({ lengthRaw, widthRaw, framed }) {
   if (Math.min(l, w) < MIN_SIDE_CM * 10) return { status: 'too_small' };
   const rate = framed ? RATE.framed : RATE.unframed;
   const pad = framed ? 0 : UNFRAMED_PAD_MM;
-  const price = Math.floor(((l + pad) * (w + pad) * rate + 500000) / 1000000) + EMBEDDED_SHIPPING;
+  // (ملّيمتر × ملّيمتر × ريال/م²) ÷ 1,000,000 = ريال. n عدد صحيح دائمًا (أقصاه نحو 2.1×10⁹، دون حد الدقة الآمنة)
+  // تقريب للأعلى بالأعداد الصحيحة فقط: الجزء الصحيح، ثم +1 إن بقي أي كسر
+  const n = (l + pad) * (w + pad) * rate, rem = n % 1000000;
+  const price = (n - rem) / 1000000 + (rem > 0 ? 1 : 0) + EMBEDDED_SHIPPING;
   return { status: 'ok', price, currency: 'SAR', framed, lengthCm: l / 10, widthCm: w / 10 };
 }
 
@@ -692,16 +715,46 @@ const COLORS = [
  {k:'gold',n:'ذهبي مجوف',hex:'#b98a55'},{k:'champagne',n:'شامبين مجوف',hex:'#c7b6a3'},{k:'fullChampagne',n:'فل شامبين مجوف',hex:'#bba78f'}];
 const $ = (id) => document.getElementById(id);
 const RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
-const MSG = { invalid_input:'أدخل الطول والعرض بالسنتيمتر بقيم رقمية.', too_small:'أصغر مقاس للوحة 20×20 سم.', too_large_framed:'هذا المقاس أكبر من المتاح مع الإطار. جرّب مقاسًا أصغر أو راسلنا.', too_large_unframed:'هذا المقاس أكبر من المتاح. جرّب مقاسًا أصغر أو راسلنا.' };
+const MSG = { invalid_input:'أدخل الطول والعرض بالسنتيمتر بقيم رقمية.', too_small:'أصغر مقاس للوحة 20×20 سم.', too_large_framed:'هذا المقاس أكبر من المتاح مع الإطار. جرّب مقاسًا أصغر أو ', too_large_unframed:'هذا المقاس أكبر من المتاح. جرّب مقاسًا أصغر أو ' };
+const TOO_LARGE = { too_large_framed:1, too_large_unframed:1 };   /* تنتهي برابط نصي «راسلنا عبر واتساب» (P20)، لا زر داخل الحاسبة */
 const money = (n) => Number(n).toLocaleString('en-US') + ' ر.س';
 const payHTML = (n, t) => `<span class="lk"><svg class="ico"><use href="#i-lock"/></svg></span>${t || 'ادفع الآن'}<span class="pc">${Number(n).toLocaleString('en-US')}<small>ر.س</small></span>`;
-/* الحالة: المقاس والإطار + المعاينة (غرفة العرض أو مكان العميل) + التصميم (الطقم أو تصميم العميل) */
-const st = { size:'80x50', l:'', w:'', framed:true, color:'gold', mode:'room', art:true, drag:'set',
+/* الحالة: المقاس والإطار + المعاينة (الغرفة النموذجية أو مكان العميل) + التصميم (الطقم أو تصميم العميل) */
+const st = { size:'80x50', l:'', w:'', framed:true, color:'gold', mode:'room', art:true, drag:'set', touched:false,
   place:null, cx:0.5, cy:0.36, k:1, design:[], z:1, ox:0, oy:0 };
-const track = (e) => { try{ (window.dataLayer = window.dataLayer || []).push({ event:e }); }catch(x){} };
+const track = (e, pos) => { try{ (window.dataLayer = window.dataLayer || []).push(pos ? { event:e, position:pos } : { event:e }); }catch(x){} };   /* أسماء أحداث وموضع الرابط فقط، بلا بيانات شخصية */
+/* ===== واتساب (P20): رسائل معبأة م1–م5 من تقرير whatsapp-support، باختيارات العميل الفعلية وبلا سعر ===== */
+const PROD = 'طقم «تجريدي بلمسات ذهبية»';
+const waHref = (t) => 'https://wa.me/' + CFG.WHATSAPP + '?text=' + encodeURIComponent(t);
+const WALL = '\nأبعاد الجدار تقريبًا (العرض × الارتفاع):\nوسأرفق صورة للجدار إن أمكن.';
+const DESIGN_TXT = { split:'صورة واحدة مقسّمة على 3 لوحات', three:'3 صور، صورة لكل لوحة' };
+const designKind = () => !custom() ? null : (st.design.length === 1 ? 'split' : 'three');
+/* المقاس كما اختاره العميل (أرقام محلَّلة فقط، لا نص خام) */
+function chosen(){
+ const [l, w] = dims(), L = parseCm(String(l)), W = parseCm(String(w));
+ if(L === null || W === null) return null;
+ const col = COLORS.find(c => c.k === st.color);
+ return { size: `${L / 10}×${W / 10}`, frame: st.framed ? 'بإطار لونه ' + col.n.replace(' مجوف', '') : 'بدون إطار' };
+}
+const payRef = { order:'', design:null };
+const WA = {
+ hero: () => `السلام عليكم، أطّلع على ${PROD} وأحتاج مساعدة في اختيار المقاس والإطار قبل الطلب.` + WALL,
+ faq_size: () => WA.hero(), faq_change: () => WA.hero(),
+ under_order: () => { const c = st.touched && chosen();
+  return c ? `السلام عليكم، أفكر في ${PROD} بمقاس ${c.size} سم للوحة الواحدة، ${c.frame}، وأحتاج رأيكم في المقاس قبل الطلب.` + WALL
+           : `السلام عليكم، أرغب في ${PROD} ولم أحدد المقاس بعد، وأحتاج رأيكم قبل الطلب.` + WALL; },
+ too_large: () => WA.under_order(),
+ not_ready: () => { const c = chosen() || { size:'', frame:'' };
+  return `السلام عليكم، أرغب في إتمام طلب ${PROD}: مقاس ${c.size} سم للوحة الواحدة، ${c.frame}${custom() ? '، مع تصميم خاص' : ''}. لم يكتمل الدفع الإلكتروني من الصفحة.`; },
+ post_pay_design: () => `السلام عليكم، طلبي${payRef.order ? ' رقم ' + payRef.order : ''} (${PROD}، تصميم خاص${DESIGN_TXT[payRef.design] ? ': ' + DESIGN_TXT[payRef.design] : ''}). أرسل لكم ملف تصميمي للطباعة.`,
+ pay_failed: () => `السلام عليكم، لم يكتمل دفع طلبي${payRef.order ? ' رقم ' + payRef.order : ''} من صفحة ${PROD}، وأحتاج مساعدة لإتمامه.`,
+ pay_check: () => `السلام عليكم، أتممت خطوات الدفع لطلبي${payRef.order ? ' رقم ' + payRef.order : ''} من صفحة ${PROD} ولم تظهر لي حالة الدفع، وأرجو التأكد منها.`
+};
+function waSet(a){ const k = a.dataset.waMsg || a.dataset.wa, f = WA[k]; if(f) a.href = waHref(f()); }
+function waAll(){ document.querySelectorAll('[data-wa]').forEach(waSet); }
 const api = (p) => (CFG.API_BASE || '').replace(/\/$/, '') + p;
 const dims = () => st.size === 'custom' ? [st.l, st.w] : st.size.split('x');
-// سعر الطقم = 3 × سعر اللوحة المقرّب (يُعاد التحقق منه في الخادم). التصميم الخاص بنفس السعر.
+// سعر الطقم = 3 × سعر اللوحة بعد تقريبه للأعلى (يُعاد التحقق منه في الخادم). التصميم الخاص بنفس السعر.
 function calc(framed){
  const [l, w] = dims();
  const r = evaluate({ lengthRaw: l, widthRaw: w, framed });
@@ -710,8 +763,8 @@ function calc(framed){
 const custom = () => st.design.length > 0;
 const designName = () => !custom() ? 'تصميم الطقم التجريدي' : (st.design.length === 1 ? 'تصميمك الخاص مقسّمًا على 3 لوحات' : 'تصميمك الخاص: صورة لكل لوحة');
 
-/* ===== المعاينة: غرفة العرض بمقياس حقيقي، أو صورة مكان العميل (مقياس تقريبي يضبطه العميل) ===== */
-/* معايرة غرفة العرض (bh-room): عرض الصورة ≈ 337 سم، وأعلى ظهر الكنب عند 44% من ارتفاعها */
+/* ===== المعاينة: الغرفة النموذجية بمقياس حقيقي، أو صورة مكان العميل (مقياس تقريبي يضبطه العميل) ===== */
+/* معايرة الغرفة النموذجية (bh-room): عرض الصورة ≈ 337 سم، وأعلى ظهر الكنب عند 44% من ارتفاعها */
 const ROOM_CM = 337, SOFA_TOP = 0.442, HANG = 25, GAP = 4;
 let lastGood = { l:80, w:50 };
 function geom(L, W, VW, VH){
@@ -734,7 +787,7 @@ function drawViz(cur){
  const L = lastGood.l, W = lastGood.w;
  const place = st.mode === 'place' && st.place;
  vbW = 400; vbH = place ? Math.round(400 * Math.min(1.6, Math.max(.6, st.place.h / st.place.w))) : 400;
- const svg = $('viz'); svg.setAttribute('viewBox', `0 0 ${vbW} ${place ? vbH : 300}`); /* غرفة العرض: نقص الأرضية لتقريب المقاسات من المعاينة */
+ const svg = $('viz'); svg.setAttribute('viewBox', `0 0 ${vbW} ${place ? vbH : 300}`); /* الغرفة النموذجية: نقص الأرضية لتقريب المقاسات من المعاينة */
  const g = geom(L, W, vbW, vbH), s = g.s, ph = L * s, pw = W * s, gp = GAP * s;
  const col = COLORS.find(c => c.k === st.color), fr = st.framed, t = fr ? Math.max(1.2, 1.7 * s) : 0;
  let o = `<defs><filter id="vs" x="-10%" y="-10%" width="125%" height="130%"><feDropShadow dx="0" dy="${(1.6*s).toFixed(2)}" stdDeviation="${(1.4*s).toFixed(2)}" flood-color="#2a2420" flood-opacity=".38"/></filter></defs>`;
@@ -785,7 +838,10 @@ function render(force){
  $('sw').hidden = !st.framed;
  const u = calc(false), f = calc(true), cur = calc(st.framed);
  $('pU').textContent = u.ok ? money(u.set) : '—'; $('pF').textContent = f.ok ? money(f.set) : '—';
- $('err').textContent = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '';
+ const em = !cur.ok && !(st.size === 'custom' && (!st.l || !st.w)) ? (MSG[cur.status] || '') : '', er = $('err');
+ er.textContent = em;
+ if(em && TOO_LARGE[cur.status]){ const a = document.createElement('a'); a.className = 'wa-in'; a.dataset.wa = 'too_large'; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'راسلنا عبر واتساب'; waSet(a); er.append(a, '.'); }
+ waSet($('waBuy'));
  $('dsn').textContent = designName();
  const tot = $('tot'), btn = $('payBtn');
  if(cur.ok){
@@ -883,12 +939,12 @@ function drawVizQuiet(){ const v = $('vizBox'); drawViz(calc(st.framed)); v.clas
 function bind(){
  document.addEventListener('change', (e) => {
   const t = e.target; if(!t.name) return;
-  if(t.name === 'sz'){ st.size = t.value; st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; $('custom2').classList.remove('on'); track('select_size'); }
-  if(t.name === 'fr'){ st.framed = t.value === 'f'; track('select_frame'); }
+  if(t.name === 'sz'){ st.size = t.value; st.l = ''; st.w = ''; $('inL').value = ''; $('inW').value = ''; $('custom2').classList.remove('on'); st.touched = true; track('select_size'); }
+  if(t.name === 'fr'){ st.framed = t.value === 'f'; st.touched = true; track('select_frame'); }
   if(t.name === 'cl'){ st.color = t.value; }
   render();
  });
- const cust = () => { st.size = 'custom'; $('custom2').classList.add('on'); document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
+ const cust = () => { st.size = 'custom'; st.touched = true; $('custom2').classList.add('on'); document.querySelectorAll('input[name=sz]').forEach(r => { r.checked = false; }); render(); };
  $('inL').addEventListener('input', (e) => { st.l = e.target.value; cust(); });
  $('inW').addEventListener('input', (e) => { st.w = e.target.value; cust(); });
  $('inL').addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); $('inW').focus(); } });
@@ -913,6 +969,8 @@ function bind(){
  document.addEventListener('keydown', (e) => { if(e.key === 'Escape'){ closeSheet(); closeLb(); } });
  $('goPay').addEventListener('click', pay);
  $('prOk').addEventListener('click', () => { $('payRes').hidden = true; });
+ $('prRe').addEventListener('click', recheck);
+ document.addEventListener('click', (e) => { const a = e.target.closest && e.target.closest('a[data-wa]'); if(!a) return; waSet(a); track('whatsapp_click', a.dataset.waMsg || a.dataset.wa); });
  document.querySelectorAll('.rc').forEach(c => { const open = () => openLb(c); c.addEventListener('click', open); c.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } }); });
  $('lbx').addEventListener('click', closeLb); $('lb').addEventListener('click', (e) => { if(e.target === $('lb')) closeLb(); });
 }
@@ -923,7 +981,7 @@ function openSheet(){
  const c = calc(st.framed); if(!c.ok) return;
  track('begin_checkout');
  $('shSum').textContent = sumText(); $('shTot').textContent = money(c.set);
- $('goPay').innerHTML = payHTML(c.set); $('coStatus').textContent = ''; $('cuErr').textContent = '';
+ $('goPay').innerHTML = payHTML(c.set); $('coStatus').textContent = ''; $('coWa').hidden = true; $('cuErr').textContent = '';
  $('sheet').hidden = false; document.body.style.overflow = 'hidden'; setTimeout(() => $('cuName').focus(), 80);
 }
 function closeSheet(){ $('sheet').hidden = true; document.body.style.overflow = ''; }
@@ -953,8 +1011,8 @@ async function pay(){
  const { c, err } = readCustomer(); cuError(err); if(err) return;
  const ms = (t, k) => { $('coStatus').textContent = t; $('coStatus').className = 'status' + (k ? ' ' + k : ''); };
  if(location.protocol === 'file:' || /claude|artifact/i.test(location.hostname) || !window.fetch){ ms('هذه معاينة: في الصفحة المنشورة ينقلك هذا الزر إلى صفحة الدفع الآمنة بنفس المبلغ.', 'bad'); return; }
- busy = true; $('goPay').disabled = true; $('goPay').textContent = 'جاري تحويلك للدفع...'; ms('');
- const body = { page: CFG.PAGE, customer: c, claimedTotal: cur.set,
+ busy = true; $('goPay').disabled = true; $('goPay').textContent = 'جاري تحويلك للدفع...'; ms(''); $('coWa').hidden = true;
+ const body = { page: CFG.PAGE, customer: c, claimedTotal: cur.set, design: designKind() || undefined,
   lines: [{ productId: CFG.PRODUCT_ID, length: String(cur.l), width: String(cur.w), framed: st.framed, frameColor: st.framed ? st.color : undefined, quantity: 1, claimedPrice: cur.set }] };
  const ctrl = new AbortController(), to = setTimeout(() => ctrl.abort(), 20000);
  try{
@@ -967,28 +1025,66 @@ async function pay(){
   try{ localStorage.setItem('av_pending_order_b', j.order); localStorage.setItem('av_custom_b', custom() ? String(st.design.length) : ''); }catch(e){}
   track('checkout_redirect'); location.href = j.url;
  }catch(e){
-  const m = { price:'تغيّر السعر. أعد اختيار المقاس ثم حاول مرة أخرى.', cu:'', notready:'الدفع الإلكتروني قيد التفعيل. تواصل معنا عبر واتساب لإتمام طلبك.' }[e.message];
+  const m = { price:'تغيّر السعر. أعد اختيار المقاس ثم حاول مرة أخرى.', cu:'', notready:'الدفع الإلكتروني قيد التفعيل. أكمل طلبك عبر واتساب باختياراتك نفسها.' }[e.message];
   if(m !== '') ms(m || 'تعذر بدء الدفع. حاول مرة أخرى.', 'bad');
+  if(e.message === 'notready'){ const a = $('coWa'); a.hidden = false; waSet(a); }
+  if(m !== ''){ const el = e.message === 'notready' ? $('coWa') : $('coStatus'); try{ el.scrollIntoView({ block:'center', behavior: RM ? 'auto' : 'smooth' }); }catch(x){} }
   track('checkout_failed'); busy = false; $('goPay').disabled = false; $('goPay').innerHTML = payHTML(cur.set);
  }finally{ clearTimeout(to); }
+}
+/* ===== العودة من Tap: ثلاث حالات واضحة =====
+   paid = تم الاستلام · failed = فشل صريح من Tap فقط · غير ذلك (تعذّر الاتصال أو حالة غير معروفة) = «جاري التأكد من الدفع» */
+let retId = '';
+async function fetchPay(id){
+ try{ const r = await fetch(api('/api/tap/status?tap_id=' + encodeURIComponent(id)), { cache:'no-store' }); return r.ok ? await r.json() : null; }catch(e){ return null; }
+}
+function showPay(s){
+ const ic = $('prIc'), use = ic.querySelector('use'), wa = $('prWa'), re = $('prRe'), help = $('prHelp'), ok = $('prOk');
+ let lsDesign = '', lsOrder = '';
+ try{ lsDesign = localStorage.getItem('av_custom_b') || ''; lsOrder = localStorage.getItem('av_pending_order_b') || ''; }catch(e){}
+ payRef.order = (s && s.order) || lsOrder || '';
+ wa.hidden = true; re.hidden = true; help.hidden = true; ic.className = 'ic'; ok.className = 'btn p'; ok.textContent = 'تم';
+ const ref = payRef.order ? ' رقم طلبك ' + payRef.order + '.' : '';
+ if(s && s.state === 'paid'){
+  use.setAttribute('href', '#i-check');
+  $('prT').textContent = 'تم استلام طلبك';
+  $('prP').textContent = 'رقم الطلب ' + (s.order || payRef.order) + ' · المبلغ ' + money(Number(s.amount) || 0) + '. سنتواصل معك لتأكيد التفاصيل، ويصلك الطلب خلال 5 إلى 7 أيام عمل.';
+  track('purchase');
+  // التصميم الخاص: من الخادم أولًا (علامة محفوظة مع عملية Tap)، ثم من المتصفح احتياطًا
+  payRef.design = s.design || (lsDesign === '1' ? 'split' : lsDesign === '3' ? 'three' : null);
+  if(s.design || lsDesign){
+   wa.dataset.waMsg = 'post_pay_design'; waSet(wa); wa.hidden = false;
+   $('prP').textContent += ' أرسل لنا ملف تصميمك عبر واتساب برقم طلبك لنبدأ.';
+  }
+  try{ localStorage.removeItem('av_custom_b'); localStorage.removeItem('av_pending_order_b'); }catch(e){}
+ } else if(s && s.state === 'failed'){
+  use.setAttribute('href', '#i-x'); ic.classList.add('no');
+  $('prT').textContent = 'لم يكتمل الدفع';
+  $('prP').textContent = 'لم تُخصم أي مبالغ مقابل هذا الطلب. يمكنك المحاولة مرة أخرى، أو إكمال طلبك عبر واتساب.';
+  help.dataset.waMsg = 'pay_failed'; help.querySelector('u').textContent = 'أكمل طلبك عبر واتساب'; waSet(help); help.hidden = false;
+  track('payment_failed');
+ } else {
+  use.setAttribute('href', '#i-clock'); ic.classList.add('wait');
+  const pend = s && s.state === 'pending';
+  $('prT').textContent = pend ? 'الدفع قيد المعالجة' : 'جاري التأكد من الدفع';
+  $('prP').textContent = (pend ? 'سنؤكد لك الطلب فور اكتمال الدفع.' : 'لم نتمكن من تأكيد حالة الدفع الآن.') + ' لا تُعِد الدفع؛ اضغط «تحقق مرة أخرى» بعد لحظات، أو راسلنا عبر واتساب' + (ref ? ' برقم طلبك ' + payRef.order + '.' : '.');
+  re.hidden = !retId; re.disabled = false; re.textContent = 'تحقق مرة أخرى';
+  help.dataset.waMsg = 'pay_check'; help.querySelector('u').textContent = 'راسلنا عبر واتساب'; waSet(help); help.hidden = false;
+  ok.className = 'btn g'; ok.textContent = 'إغلاق';
+  track(pend ? 'payment_pending' : 'payment_unverified');
+ }
+}
+async function recheck(){
+ if(!retId) return; const re = $('prRe'); re.disabled = true; re.textContent = 'جاري التحقق...';
+ track('payment_recheck'); showPay(await fetchPay(retId));
+ if(!$('prRe').hidden) $('prRe').focus(); else $('prOk').focus();
 }
 async function handleReturn(){
  const q = new URLSearchParams(location.search), id = q.get('tap_id'); if(!id) return;
  try{ history.replaceState(null, '', location.pathname + location.hash); }catch(e){}
- let s = null, cu = '';
- try{ cu = localStorage.getItem('av_custom_b') || ''; }catch(e){}
- try{ const r = await fetch(api('/api/tap/status?tap_id=' + encodeURIComponent(id))); s = r.ok ? await r.json() : null; }catch(e){}
- if(s && s.state === 'paid'){
-  $('prT').textContent = 'تم استلام طلبك';
-  $('prP').textContent = 'رقم الطلب ' + (s.order || '') + ' · المبلغ ' + money(Number(s.amount) || 0) + '. سنتواصل معك لتأكيد التفاصيل، ويصلك الطلب خلال 5 إلى 7 أيام عمل.'; track('purchase');
-  if(cu){ const a = $('prWa'); a.hidden = false; a.href = 'https://wa.me/' + CFG.WHATSAPP + '?text=' + encodeURIComponent('السلام عليكم، طلبي رقم ' + (s.order || '') + ' من صفحة الطقم التجريدي بلمسات ذهبية، وهذا ملف تصميمي الخاص للطباعة.'); $('prP').textContent += ' أرسل لنا ملف تصميمك عبر واتساب برقم طلبك لنبدأ.'; try{ localStorage.removeItem('av_custom_b'); }catch(e){} }
- } else if(s && s.state === 'pending'){
-  $('prT').textContent = 'الدفع قيد المعالجة'; $('prP').textContent = 'سنؤكد لك الطلب فور اكتمال الدفع.';
- } else {
-  $('prT').textContent = 'لم يكتمل الدفع'; $('prP').textContent = 'لم تُخصم أي مبالغ مقابل هذا الطلب. يمكنك المحاولة مرة أخرى.';
-  document.querySelector('#payRes .ic use').setAttribute('href', '#i-x'); track('payment_failed');
- }
- $('payRes').hidden = false; $('prOk').focus();
+ retId = /^chg_[A-Za-z0-9_]{6,80}$/.test(id) ? id : '';
+ showPay(retId ? await fetchPay(retId) : null);
+ $('payRes').hidden = false; (!$('prRe').hidden ? $('prRe') : $('prOk')).focus();
 }
 function stickyBar(){
  const bar = $('bar'), btn = $('payBtn'); if(!('IntersectionObserver' in window)){ bar.classList.add('on'); return; }
@@ -1049,7 +1145,7 @@ function fx(){
  if('IntersectionObserver' in window){ const vo = new IntersectionObserver(es => es.forEach(x => x.target.classList.toggle('vis', x.isIntersecting))); document.querySelectorAll('.glass').forEach(g => vo.observe(g)); }
  else document.querySelectorAll('.glass').forEach(g => g.classList.add('vis'));
  // اللمس الناعم: رفعة خفيفة وتلوين هادئ أثناء الضغط ثم هالة تتلاشى
- const SEL = '.tc,.dr,.opt,.nav a,.top a,.btn,.rc,.up,.seg2 button,details,.nx';
+ const SEL = '.tc,.dr,.opt,.nav a,.top a,.btn,.rc,.up,.seg2 button,details,.nx,.wa-l,.wa-in';
  const TXT = 'p,h1,h2,h3,li,small,blockquote,.lbl,.sec-h,.note';
  const held = new Map();
  document.addEventListener('pointerdown', (e) => {
@@ -1068,7 +1164,7 @@ function fx(){
 }
 function init(){
  $('finLogo').src = document.querySelector('.top img').src;
- buildUI(); bind(); render(true); stickyBar(); navSpy(); reviews(); hero(); fx(); handleReturn();
+ buildUI(); bind(); render(true); waAll(); stickyBar(); navSpy(); reviews(); hero(); fx(); handleReturn();
  if(location.protocol === 'file:' || /claude|artifact/i.test(location.hostname)) $('previewBanner').hidden = false;
 }
 if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

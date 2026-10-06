@@ -2,11 +2,12 @@
 // السر الوحيد TAP_SECRET_KEY يضعه Art في إعدادات المشروع على Cloudflare. لا بيانات بطاقات ولا بيانات عملاء في السجلات.
 
 // ===== التسعير (pricing-core.mjs) =====
-// مصدر واحد للتسعير والتحقق — إقرار Art الرسمي 3 أكتوبر 2026 (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
-// بإطار: (L×W×400/10000)+25 · بدون إطار: ((L+2)×(W+2)×200/10000)+25 · تقريب واحد لأقرب ريال
+// مصدر واحد للتسعير والتحقق — إقرار Art P18 (7 أكتوبر 2026) (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
+// بإطار: (L×W×400/10000)+25 · بدون إطار: زيادة داخلية لكل بُعد لا تظهر للعميل (UNFRAMED_PAD_MM)
+// التقريب: أي كسر يُرفع دائمًا إلى الريال الأعلى، مرة واحدة على سعر اللوحة الواحدة، بحساب صحيح بلا فاصلة عائمة
 const RATE = Object.freeze({ framed: 400, unframed: 200 });
 const EMBEDDED_SHIPPING = 25;
-const UNFRAMED_PAD_MM = 20; // +2 سم لكل بُعد في سعر بدون إطار فقط (يلغي +4 السابق)
+const UNFRAMED_PAD_MM = 40; // زيادة داخلية لكل بُعد في سعر بدون إطار فقط (P18)؛ لا تُعرض ولا تمسّ المقاس أو الحدود أو سعر الإطار
 const MIN_SIDE_CM = 20;
 const LIMITS = Object.freeze({
   framed:   { long: 290, short: 150 },
@@ -33,7 +34,10 @@ function evaluate({ lengthRaw, widthRaw, framed }) {
   if (Math.min(l, w) < MIN_SIDE_CM * 10) return { status: 'too_small' };
   const rate = framed ? RATE.framed : RATE.unframed;
   const pad = framed ? 0 : UNFRAMED_PAD_MM;
-  const price = Math.floor(((l + pad) * (w + pad) * rate + 500000) / 1000000) + EMBEDDED_SHIPPING;
+  // (ملّيمتر × ملّيمتر × ريال/م²) ÷ 1,000,000 = ريال. n عدد صحيح دائمًا (أقصاه نحو 2.1×10⁹، دون حد الدقة الآمنة)
+  // تقريب للأعلى بالأعداد الصحيحة فقط: الجزء الصحيح، ثم +1 إن بقي أي كسر
+  const n = (l + pad) * (w + pad) * rate, rem = n % 1000000;
+  const price = (n - rem) / 1000000 + (rem > 0 ? 1 : 0) + EMBEDDED_SHIPPING;
   return { status: 'ok', price, currency: 'SAR', framed, lengthCm: l / 10, widthCm: w / 10 };
 }
 
@@ -102,12 +106,13 @@ function checkCustomer(raw) {
 
 
 // lines: [{ productName, lengthCm, widthCm, framed, frameLabel, quantity, price }]
-function buildChargePayload({ lines, customer, orderRef, baseUrl, returnPath = '/' }) {
+function buildChargePayload({ lines, customer, orderRef, baseUrl, returnPath = '/', design = null }) {
   const total = lines.reduce((s, l) => s + l.price * l.quantity, 0);
   const lineText = (l) => `${l.quantity}× ${l.productName} ${l.pieces > 1 ? 'كل لوحة ' : ''}${l.lengthCm}×${l.widthCm} سم ${l.framed ? 'بإطار ' + l.frameLabel : 'بدون إطار'} (${l.price} ر.س)`;
   const [first, ...rest] = customer.name.split(' ');
   const metadata = { order: orderRef, city: customer.city, address: customer.address };
   if (customer.notes) metadata.notes = customer.notes;
+  if (design) metadata.design = design;   // يُعاد في /api/tap/status ليظهر زر إرسال التصميم دون الاعتماد على localStorage
   lines.forEach((l, i) => { metadata['l' + (i + 1)] = lineText(l); });
   const base = baseUrl.replace(/\/$/, '');
   return {
@@ -158,12 +163,19 @@ function createTapClient({ secretKey, baseUrl = TAP_API_BASE, fetchImpl = global
   };
 }
 
-// تصنيف حالة Tap: CAPTURED = مدفوع
+// تصنيف حالة Tap: CAPTURED = مدفوع. «فشل» فقط لحالة فشل صريحة من Tap؛ أي حالة أخرى = unknown (لا نقول للعميل «لم تُخصم أي مبالغ»)
+// STAFF-VERIFY: قائمة حالات Tap الحالية من توثيق Charges (developers.tap.company)
+const TAP_FAILED = Object.freeze(['DECLINED', 'CANCELLED', 'FAILED', 'ABANDONED', 'RESTRICTED', 'VOID', 'TIMEDOUT']);
 function payState(status) {
   if (status === 'CAPTURED') return 'paid';
   if (['INITIATED', 'IN_PROGRESS', 'AUTHORIZED', 'PENDING'].includes(status)) return 'pending';
-  return 'failed';
+  if (TAP_FAILED.includes(status)) return 'failed';
+  return 'unknown';
 }
+
+// علامة التصميم الخاص (بلا أي بيانات شخصية): split = صورة واحدة مقسّمة، three = صورة لكل لوحة
+const DESIGN_KINDS = Object.freeze(['split', 'three']);
+const designOf = (v) => (DESIGN_KINDS.includes(v) ? v : null);
 
 // ===== Web Crypto (بدل مكتبة Node حتى يعمل على Cloudflare بلا إعدادات إضافية) =====
 function newOrderRef(now = Date.now()) {
@@ -277,7 +289,7 @@ export default {
         return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': o || '', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '600', Vary: 'Origin' } });
       }
 
-      // حالة الدفع بعد العودة من صفحة Tap: الحد الأدنى فقط، بلا بيانات عميل
+      // حالة الدفع بعد العودة من صفحة Tap: الحد الأدنى فقط، بلا بيانات عميل (design علامة split/three فقط)
       if (p === '/api/tap/status') {
         if (req.method !== 'GET') return json(405, { error: 'method_not_allowed' }, o);
         if (!tap) return json(503, { error: 'tap_not_configured' }, o);
@@ -285,7 +297,7 @@ export default {
         const id = url.searchParams.get('tap_id') || '';
         if (!/^chg_[A-Za-z0-9_]{6,80}$/.test(id)) return json(422, { error: 'bad_tap_id' }, o);
         const c = await tap.client.retrieveCharge(id);
-        return json(200, { state: payState(c.status), order: c.reference?.order || null, amount: c.amount, currency: c.currency }, o);
+        return json(200, { state: payState(c.status), order: c.reference?.order || null, amount: c.amount, currency: c.currency, design: designOf(c.metadata?.design) }, o);
       }
 
       if (p === '/api/checkout' || p === '/api/free-size') return json(503, { error: 'salla_not_configured' }, o);
@@ -302,7 +314,7 @@ export default {
       const total = c.lines.reduce((s, l) => s + l.price * l.quantity, 0);
       if (body.claimedTotal !== undefined && Number(body.claimedTotal) !== total) return json(409, { error: 'price_mismatch', expected: total }, o);
       const order = newOrderRef(Date.now());
-      const charge = await tap.client.createCharge(buildChargePayload({ lines: c.lines, customer: cu.customer, orderRef: order, baseUrl: base, returnPath: Object.hasOwn(PAGES, body.page) ? body.page : '/' }));
+      const charge = await tap.client.createCharge(buildChargePayload({ lines: c.lines, customer: cu.customer, orderRef: order, baseUrl: base, returnPath: Object.hasOwn(PAGES, body.page) ? body.page : '/', design: designOf(body.design) }));
       console.log(`TAP CREATED order=${order} charge=${charge.id} amount=${total} SAR lines=${c.lines.length}`);
       return json(200, { url: charge.url, order, total, currency: 'SAR' }, o);
     } catch (e) {

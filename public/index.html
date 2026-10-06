@@ -693,11 +693,12 @@ footer .fl{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;margi
 <div class="sticky" id="sticky"><span class="pr" id="stPrice"></span><a class="btn p" id="stBtn" href="#configurator" data-ev="cta_sticky">اختر المقاس المناسب</a></div>
 
 <script>
-// مصدر واحد للتسعير والتحقق — إقرار Art الرسمي 3 أكتوبر 2026 (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
-// بإطار: (L×W×400/10000)+25 · بدون إطار: ((L+2)×(W+2)×200/10000)+25 · تقريب واحد لأقرب ريال
+// مصدر واحد للتسعير والتحقق — إقرار Art P18 (7 أكتوبر 2026) (المرجع الوحيد؛ لا أسعار سلة ولا Variants)
+// بإطار: (L×W×400/10000)+25 · بدون إطار: زيادة داخلية لكل بُعد لا تظهر للعميل (UNFRAMED_PAD_MM)
+// التقريب: أي كسر يُرفع دائمًا إلى الريال الأعلى، مرة واحدة على سعر اللوحة الواحدة، بحساب صحيح بلا فاصلة عائمة
 const RATE = Object.freeze({ framed: 400, unframed: 200 });
 const EMBEDDED_SHIPPING = 25;
-const UNFRAMED_PAD_MM = 20; // +2 سم لكل بُعد في سعر بدون إطار فقط (يلغي +4 السابق)
+const UNFRAMED_PAD_MM = 40; // زيادة داخلية لكل بُعد في سعر بدون إطار فقط (P18)؛ لا تُعرض ولا تمسّ المقاس أو الحدود أو سعر الإطار
 const MIN_SIDE_CM = 20;
 const LIMITS = Object.freeze({
   framed:   { long: 290, short: 150 },
@@ -724,7 +725,10 @@ function evaluate({ lengthRaw, widthRaw, framed }) {
   if (Math.min(l, w) < MIN_SIDE_CM * 10) return { status: 'too_small' };
   const rate = framed ? RATE.framed : RATE.unframed;
   const pad = framed ? 0 : UNFRAMED_PAD_MM;
-  const price = Math.floor(((l + pad) * (w + pad) * rate + 500000) / 1000000) + EMBEDDED_SHIPPING;
+  // (ملّيمتر × ملّيمتر × ريال/م²) ÷ 1,000,000 = ريال. n عدد صحيح دائمًا (أقصاه نحو 2.1×10⁹، دون حد الدقة الآمنة)
+  // تقريب للأعلى بالأعداد الصحيحة فقط: الجزء الصحيح، ثم +1 إن بقي أي كسر
+  const n = (l + pad) * (w + pad) * rate, rem = n % 1000000;
+  const price = (n - rem) / 1000000 + (rem > 0 ? 1 : 0) + EMBEDDED_SHIPPING;
   return { status: 'ok', price, currency: 'SAR', framed, lengthCm: l / 10, widthCm: w / 10 };
 }
 
